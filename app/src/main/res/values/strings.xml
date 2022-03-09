@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">MedicalReminder</string>
+    <string name="user_name">Username</string>
+    <string name="med_name">Medecine Name</string>
+    <string name="pill_left">Pill(s) left</string>
+    <string name="strngth">Strength</string>
+    <string name="add_med">Add a med</string>
+    <string name="active_meds">Active meds</string>
+    <string name="inactive_meds">Inactive meds</string>
+    <string name="email">Email</string>
+    <string name="invite">Invite</string>
+    <string name="add">Add</string>
+
+    <string name="Whatmed">What med would you like to add?</string>
+    <string name="entrmedname">Enter med name</string>
+    <string name="entrmedform">Enter med form</string>
+
+    <string name="entrmedstrength">Enter med strength</string>
+
+    <string name="whatform">What form is the med?</string>
+    <string name="whatstrength">What strength is the med?</string>
+
+
+
+    <string name="next">Next</string>
+
+    <string name="enter">Enter Tracker Email</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
