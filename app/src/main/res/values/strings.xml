@@ -92,4 +92,7 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="action_setting">Setting</string>
+    <string name="default_web_client_id">390370523377-um2ao3tk6mk5cu3e108sujmbv2rt324m.apps.googleusercontent.com</string>
+
+
 </resources>
