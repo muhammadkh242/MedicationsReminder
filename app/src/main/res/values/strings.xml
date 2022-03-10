@@ -47,14 +47,9 @@
     <string name="date_of_birth">Date of birth</string>
 
     <string name="already_have_an_account">Already have an account?</string>
-<string name="splash">Medication Reminder</string>
-
+   <string name="splash">Medication Reminder</string>
     <string name="next">Next</string>
-
     <string name="enter">Enter Tracker Email</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="q1">What med would you like to add?</string>
     <string name="q2">What form is the med?</string>
@@ -90,8 +85,49 @@
     <string name="_4_days_a_week">4 days a week</string>
     <string name="title_add">Add Medication</string>
     <string name="title_notifications">Notifications</string>
-
     <string name="action_setting">Setting</string>
+
+
+    <string name="drug_name">Panadol</string>
+    <string name="button_suspend">Suspend</string>
+    <string name="button_refill">Refill</string>
+    <string name="drug_quantity">2 mg</string>
+    <string name="drug_lastTaken">Last taken</string>
+    <string name="drug_day">Today, 6 Mar, 12:20</string>
+    <string name="drug_reminders">Reminders</string>
+    <string name="drug_reminder_details">Every day, take for 7 days</string>
+
+    <string name="edit_drug">Edit Medication</string>
+    <string name="done">Done</string>
+    <string name="medication_name">Medication Name</string>
+    <string name="reminder_times">Reminder Times</string>
+    <string name="take_as_needed">Take as needed</string>
+    <string name="one_day">One daily</string>
+    <string name="time">12:00</string>
+    <string name="take">Take 1 Stick(s)</string>
+
+    <string name="schedule">Schedule</string>
+    <string name="take_schedule">Every day, take for 4 days</string>
+    <string name="start_date">Start date:</string>
+    <string name="date">Yesterday, 7 Mar</string>
+    <string name="duration">Duration</string>
+    <string name="radio_duration_name1">ongoing treatment</string>
+    <string name="radio_duration_name2">number of days</string>
+    <string name="days">Days</string>
+    <string name="radio_days_name1">Every Day</string>
+    <string name="radio_days_name2">days interval</string>
+
+    <string name="strength">Strength</string>
+    <string name="value_strength">2 IU</string>
+    <string name="medication_strength">Medication strength:</string>
+    <string name="instructions">Instructions</string>
+    <string name="instructions_question">Should this be taked with food?</string>
+    <string name="instructions_radio1">Before eating</string>
+    <string name="instructions_radio2">While eating</string>
+    <string name="instructions_radio3">After eating</string>
+    <string name="instructions_radio4">Doesn\'t matter</string>
+
+
     <string name="default_web_client_id">390370523377-um2ao3tk6mk5cu3e108sujmbv2rt324m.apps.googleusercontent.com</string>
 
 

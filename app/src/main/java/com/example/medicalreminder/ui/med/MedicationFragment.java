@@ -65,7 +65,6 @@ RecyclerView activeRecycler;
         View view =inflater.inflate(R.layout.medications_fragment, container, false);
         activeRecycler = view.findViewById(R.id.recycler_one);
         inactiveRecycler = view.findViewById(R.id.recycler_two);
-
         activeRecycler.setHasFixedSize(true);
         inactiveRecycler.setHasFixedSize(true);
 

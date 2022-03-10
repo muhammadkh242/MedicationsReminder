@@ -5,21 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/back"
     android:layout_height="match_parent">
+
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="@string/q4"
+        android:text="@string/q2"
         android:textColor="@color/white"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@id/view_q5"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/view_q2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/view_q5"
+        android:id="@+id/view_q2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/top_corner_card"
@@ -27,18 +29,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHeight_percent="0.7" >
 
-
         <TextView
-            android:id="@+id/text1"
+            android:id="@+id/txtPill"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="@string/once_a_week"
+            android:layout_marginTop="60dp"
+            android:text="@string/pill"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/view_q5"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.8" />
 
         <View
@@ -47,16 +48,16 @@
             android:layout_height="2dp"
             android:layout_marginTop="12dp"
             android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text1"
-            app:layout_constraintTop_toBottomOf="@id/text1"
+            app:layout_constraintStart_toStartOf="@id/txtPill"
+            app:layout_constraintTop_toBottomOf="@id/txtPill"
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
-            android:id="@+id/text2"
+            android:id="@+id/txtInjection"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/every_2_days"
+            android:text="@string/injection"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.023"
@@ -70,16 +71,16 @@
             android:layout_height="2dp"
             android:layout_marginTop="12dp"
             android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text2"
-            app:layout_constraintTop_toBottomOf="@id/text2"
+            app:layout_constraintStart_toStartOf="@id/txtInjection"
+            app:layout_constraintTop_toBottomOf="@id/txtInjection"
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
-            android:id="@+id/text3"
+            android:id="@+id/txtPowder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/_2_days_a_week"
+            android:text="@string/powder"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.024"
@@ -93,16 +94,16 @@
             android:layout_height="2dp"
             android:layout_marginTop="12dp"
             android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text3"
-            app:layout_constraintTop_toBottomOf="@id/text3"
+            app:layout_constraintStart_toStartOf="@id/txtPowder"
+            app:layout_constraintTop_toBottomOf="@id/txtPowder"
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
-            android:id="@+id/text4"
+            android:id="@+id/txtDrops"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/_3_days_a_week"
+            android:text="@string/drops"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.024"
@@ -116,16 +117,16 @@
             android:layout_height="2dp"
             android:layout_marginTop="12dp"
             android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text4"
-            app:layout_constraintTop_toBottomOf="@id/text4"
+            app:layout_constraintStart_toStartOf="@id/txtDrops"
+            app:layout_constraintTop_toBottomOf="@id/txtDrops"
             app:layout_constraintWidth_percent="0.8" />
 
         <TextView
-            android:id="@+id/text5"
+            android:id="@+id/txtInhaler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/every_28_days"
+            android:text="@string/inhaler"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.024"
@@ -139,61 +140,25 @@
             android:layout_height="2dp"
             android:layout_marginTop="12dp"
             android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text5"
-            app:layout_constraintTop_toBottomOf="@id/text5"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/text6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/_4_days_a_week"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="@id/line5"
-            app:layout_constraintTop_toTopOf="@id/line5"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line6"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/teal_700"
-            app:layout_constraintStart_toStartOf="@id/text6"
-            app:layout_constraintTop_toBottomOf="@id/text6"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/text7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/only_as_needed"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="@id/line6"
-            app:layout_constraintTop_toTopOf="@id/line6"
+            app:layout_constraintStart_toStartOf="@id/txtInhaler"
+            app:layout_constraintTop_toBottomOf="@id/txtInhaler"
             app:layout_constraintWidth_percent="0.8" />
 
         <Button
-        android:id="@+id/inviteBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="30dp"
-        android:textColor="@color/black"
-        android:backgroundTint="#808080"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="669dp" />
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="@color/back"
+            android:text="@string/next"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/view_q2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/view_q2"
+            app:layout_constraintTop_toBottomOf="@id/txtInhaler"
+            app:layout_constraintVertical_bias="0.739" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
