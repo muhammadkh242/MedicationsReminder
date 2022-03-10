@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MedicalReminder</string>
     <string name="user_name">Username</string>
-    <string name="med_name">Medecine Name</string>
+    <string name="med_name">Medicine Name</string>
     <string name="pill_left">Pill(s) left</string>
     <string name="strngth">Strength</string>
     <string name="add_med">Add a med</string>
@@ -20,6 +20,33 @@
     <string name="whatform">What form is the med?</string>
     <string name="whatstrength">What strength is the med?</string>
 
+    <string name="welcome">Welcome</string>
+
+    <string name="first_name">First Name</string>
+
+    <string name="last_name">Last Name</string>
+
+    <string name="signin">SignIn</string>
+
+    <string name="welcome_back">welcome Back</string>
+
+    <string name="password">Password</string>
+
+    <string name="signup">Signup</string>
+
+    <string name="forget_password">Forget Password?</string>
+
+    <string name="or">OR</string>
+
+    <string name="gender">Gender</string>
+
+    <string name="male">Male</string>
+
+    <string name="female">Female</string>
+
+    <string name="date_of_birth">Date of birth</string>
+
+    <string name="already_have_an_account">Already have an account?</string>
 
 
     <string name="next">Next</string>
@@ -29,6 +56,40 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="q1">What med would you like to add?</string>
+    <string name="q2">What form is the med?</string>
+    <string name="q3">Do you need to take this med everyday?</string>
+    <string name="q4">How often do you take it?</string>
+    <string name="q5">On which day(s) do you need to take this med?</string>
+    <string name="q6">How many pills do you have in your stock?</string>
+    <string name="medicine_name">Medicine Name</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_add_med">Add Medication</string>
+    <string name="title_med">Medication</string>
+    <string name="pill">Pill</string>
+    <string name="injection">Injection</string>
+    <string name="powder">Powder</string>
+    <string name="drops">Drops</string>
+    <string name="inhaler">Inhaler</string>
+    <string name="others">Others</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="only_as_needed">Only as needed</string>
+    <string name="once_day">Once day</string>
+    <string name="twice_day">Twice day</string>
+    <string name="_3_times_a_day">3 times a day</string>
+    <string name="_4_times_a_day">4 times a day</string>
+    <string name="_6_times_a_day">6 times a day</string>
+    <string name="every_6_hours">Every 6 hours</string>
+    <string name="once_a_week">Once a week</string>
+    <string name="every_2_days">Every 2 days</string>
+    <string name="_2_days_a_week">2 days a week</string>
+    <string name="_3_days_a_week">3 days a week</string>
+    <string name="every_28_days">Every 28 days</string>
+    <string name="_4_days_a_week">4 days a week</string>
+    <string name="title_add">Add Medication</string>
+    <string name="title_notifications">Notifications</string>
 
-
+    <string name="action_setting">Setting</string>
 </resources>

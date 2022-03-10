@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="36dp"
-        android:text="@string/q1"
+        android:text="@string/q6"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/view_q1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,13 +32,13 @@
         <EditText
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="56dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
             android:background="@color/grey"
             android:hint="@string/medicine_name"
+            app:layout_constraintHeight_percent="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHeight_percent="0.1"
             app:layout_constraintWidth_percent="0.7" />
 
         <Button

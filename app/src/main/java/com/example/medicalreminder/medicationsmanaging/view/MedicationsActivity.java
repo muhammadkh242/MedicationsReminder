@@ -17,7 +17,7 @@ public class MedicationsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+      //  setContentView(R.layout.activity_main);
 
         //add fragment dynamically
         manager = getSupportFragmentManager();
@@ -25,8 +25,8 @@ public class MedicationsActivity extends AppCompatActivity {
             medicationsFragment = new MedicationsFragment();
             transaction = manager.beginTransaction();
             //inject fragment in container
-            transaction.add(R.id.fragmentContainerView, medicationsFragment, "med_frag");
-            transaction.commit();
+//            transaction.add(R.id.fragmentContainerView, medicationsFragment, "med_frag");
+//            transaction.commit();
 
         }
         else{
