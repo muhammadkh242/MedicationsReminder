@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_med_navigation"
+    >
+
+
+    <fragment
+        android:name="com.example.addMedication.view.FragmentNameDrug"
+        android:id="@+id/nameDrugQue"
+        tools:layout="@layout/name_drug_question_screen"
+        >
+        <action
+            android:id="@+id/formDrugAct"
+            app:destination="@id/formDrugQue"
+            >
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:name="com.example.addMedication.view.FragmentFormDrug"
+        android:id="@+id/formDrugQue"
+        tools:layout="@layout/form_med_question_screen"
+        >
+        <action
+            android:id="@+id/everydayOrAct"
+            app:destination="@id/everydayOrQue"
+            >
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:name="com.example.addMedication.view.FragmentEverydayOr"
+        android:id="@+id/everydayOrQue"
+        tools:layout="@layout/everyday_or_question_screen"
+        >
+        <action
+            android:id="@+id/numberDaysAct"
+            app:destination="@id/numberDaysQue"
+            >
+
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/numberHoursQue"
+        tools:layout="@layout/number_of_hours_question_screen"
+        >
+    </fragment>
+    <fragment
+        android:id="@+id/numberDaysQue"
+        tools:layout="@layout/number_of_days_question_screen"
+        >
+
+        <action
+            android:id="@+id/chooseDaysAct"
+            app:destination="@id/chooseDays"
+            >
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/chooseDays"
+        tools:layout="@layout/choose_days_question_screen"
+        >
+
+        <action
+            android:id="@+id/numberHoursAct"
+            app:destination="@id/numberHoursQue"
+            >
+
+        </action>
+    </fragment>
+</navigation>
