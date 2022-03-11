@@ -13,13 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder">
 
-        <activity android:name=".SigninActivity"/>
-        <activity android:name=".SignupActivity"/>
+        <activity android:name=".authentication.signup.view.SignupActivity"/>
+        <activity android:name=".HomeActivity"/>
         <activity android:name=".medicationsmanaging.view.MedicationsActivity"/>
         <activity
-            android:name=".HomeActivity"
+            android:name=".authentication.signin.view.SignInActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

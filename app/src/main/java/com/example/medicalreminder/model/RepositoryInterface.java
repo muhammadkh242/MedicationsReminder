@@ -1,17 +1,17 @@
-package com.example.mvp_movies.model;
+package com.example.medicalreminder.model;
 
-import androidx.lifecycle.LiveData;
 
-import com.example.mvp_movies.network.NetworkDelegate;
-
-import java.util.List;
 
 public interface RepositoryInterface {
 
-    void getAllMovies(NetworkDelegate networkDelegate);
+//    void getAllMovies(NetworkDelegate networkDelegate);
+//
+//    LiveData<List<MovieModel>> getStoredMovie();
+//
+//    void insertMovie(MovieModel movie);
+//    void deleteMovie(MovieModel movie);
 
-    LiveData<List<MovieModel>> getStoredMovie();
-
-    void insertMovie(MovieModel movie);
-    void deleteMovie(MovieModel movie);
+    void perForLogin(User user);
+    void perForAuth(User user);
+    void signOut();
 }

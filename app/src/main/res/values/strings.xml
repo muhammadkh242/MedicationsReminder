@@ -86,8 +86,6 @@
     <string name="title_add">Add Medication</string>
     <string name="title_notifications">Notifications</string>
     <string name="action_setting">Setting</string>
-
-
     <string name="drug_name">Panadol</string>
     <string name="button_suspend">Suspend</string>
     <string name="button_refill">Refill</string>
@@ -126,9 +124,7 @@
     <string name="instructions_radio2">While eating</string>
     <string name="instructions_radio3">After eating</string>
     <string name="instructions_radio4">Doesn\'t matter</string>
-
-
-    <string name="default_web_client_id">390370523377-um2ao3tk6mk5cu3e108sujmbv2rt324m.apps.googleusercontent.com</string>
+    <string name="signout">SignOut</string>
 
 
 </resources>

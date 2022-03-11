@@ -1,0 +1,87 @@
+package com.example.medicalreminder.firebase.auth;
+
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.example.medicalreminder.model.User;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class FirebaseClient implements FirebaseSource {
+
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
+    private FirebaseUser user = auth.getCurrentUser();
+    private static FirebaseClient client;
+    private static GoogleSignInClient googleSignInClient;
+    private Context context;
+    private ProgressDialog progressDialog;
+
+
+    public FirebaseClient(Context context) {
+        this.context = context;
+        progressDialog = new ProgressDialog(context);
+    }
+
+    public static FirebaseClient getInstance(Context context){
+        if(client == null){
+            client = new FirebaseClient(context);
+        }
+        return client;
+    }
+
+    @Override
+    public void perForAuth(User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        progressDialog.setMessage("Wait for Login.");
+        progressDialog.setTitle("Login.");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    progressDialog.dismiss();
+                    Log.i("TAG", "onComplete: success");
+
+                } else {
+                    progressDialog.dismiss();
+                    Log.i("TAG", "onComplete: fail");
+
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public void perForLogin(User user) {
+        String email = user.getEmail();
+        String password = user.getPassword();
+
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Log.i("TAG", "onComplete: success");
+                } else {
+                    Log.i("TAG", "onComplete:  fail");
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void logout() {
+        auth.signOut();
+    }
+}

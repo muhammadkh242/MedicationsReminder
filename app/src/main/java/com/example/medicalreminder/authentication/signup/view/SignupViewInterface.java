@@ -1,4 +1,7 @@
 package com.example.medicalreminder.authentication.signup.view;
 
-public interface onSignupViewInterface {
+public interface SignupViewInterface {
+
+    //    public void showMsg();
+    public void saveUser(String email, String password);
 }
