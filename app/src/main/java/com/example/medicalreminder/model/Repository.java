@@ -16,7 +16,6 @@ import com.example.medicalreminder.local.SharedPrefsInterface;
 public class Repository implements RepositoryInterface {
 
     private static Repository repo = null;
-    private FirebaseDelegate firebaseDelegate;
     private FirebaseSource firebaseSource;
     private SharedPrefsInterface prefsInterface;
     private Context context;
@@ -28,7 +27,6 @@ public class Repository implements RepositoryInterface {
     public Repository(Context context, FirebaseSource firebaseSource) {
         this.context = context;
         this.firebaseSource = firebaseSource;
-        this.firebaseDelegate = firebaseDelegate;
         prefsInterface = new SharedPref(context);
         cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         activeNetwork = cm.getActiveNetworkInfo();
@@ -43,41 +41,44 @@ public class Repository implements RepositoryInterface {
     }
 
     @Override
-    public void perForLogin(User userLogin) {
+    public void perForLogin(User userLogin, FirebaseDelegate delegate) {
        if(activeNetwork != null) {
+           String email = userLogin.getEmail();
+           String password = userLogin.getPassword();
            user = prefsInterface.getFromPrefs();
            if (user.getEmail() == null) {
-               String email = userLogin.getEmail();
-               String password = userLogin.getPassword();
                if (email.isEmpty()) {
-                   firebaseDelegate.onFailureResult("Enter correct email.");
+                   delegate.onFailureResult("Enter correct email.");
                } else if (password.isEmpty() || password.length() < 6) {
-                   firebaseDelegate.onFailureResult("Enter correct password.");
-               } else
-                   firebaseSource.perForLogin(user);
+                   delegate.onFailureResult("Enter correct password.");
+               } else{
+                   Log.i("TAG", "perForLogin: " + userLogin.getEmail());
+                   firebaseSource.perForLogin(userLogin, delegate);
+                   prefsInterface.savePrefs(userLogin);
+               }
                Log.i("TAG", "perForLogin: prefs");
            }else {
                Log.i("TAG", "perForLogin: "+ prefsInterface.getFromPrefs().getEmail());
            }
        }else {
-            firebaseDelegate.onFailureResult("No Internet.");
+            delegate.onFailureResult("No Internet.");
        }
     }
 
     @Override
-    public void perForAuth(User user) {
+    public void perForAuth(User user, FirebaseDelegate delegate) {
         if(activeNetwork != null){
             String email = user.getEmail();
             String password = user.getPassword();
             if(email.isEmpty()){
-                firebaseDelegate.onFailureResult("Enter correct email.");
+                delegate.onFailureResult("Enter correct email.");
             }else if(password.isEmpty() || password.length()<6){
-                firebaseDelegate.onFailureResult("Enter correct password.");
+                delegate.onFailureResult("Enter correct password.");
             }else
-                firebaseSource.perForAuth(user);
+                firebaseSource.perForAuth(user, delegate);
                 prefsInterface.savePrefs(user);
         }else {
-            firebaseDelegate.onFailureResult("No Internet.");
+            delegate.onFailureResult("No Internet....");
         }
     }
 

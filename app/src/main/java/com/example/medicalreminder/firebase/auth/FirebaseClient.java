@@ -37,12 +37,12 @@ public class FirebaseClient implements FirebaseSource {
     }
 
     @Override
-    public void perForAuth(User user) {
+    public void perForAuth(User user, FirebaseDelegate delegate) {
         String email = user.getEmail();
         String password = user.getPassword();
 
-        progressDialog.setMessage("Wait for Login.");
-        progressDialog.setTitle("Login.");
+        progressDialog.setMessage("Wait for Register.");
+        progressDialog.setTitle("Register.");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -51,11 +51,11 @@ public class FirebaseClient implements FirebaseSource {
                 if (task.isSuccessful()) {
                     progressDialog.dismiss();
                     Log.i("TAG", "onComplete: success");
-
+                    delegate.onSuccessResult("success");
                 } else {
                     progressDialog.dismiss();
                     Log.i("TAG", "onComplete: fail");
-
+                    delegate.onFailureResult("fail");
                 }
             }
         });
@@ -63,18 +63,24 @@ public class FirebaseClient implements FirebaseSource {
 
 
     @Override
-    public void perForLogin(User user) {
+    public void perForLogin(User user, FirebaseDelegate delegate) {
         String email = user.getEmail();
         String password = user.getPassword();
+
+        progressDialog.setMessage("Wait for Login.");
+        progressDialog.setTitle("Login.");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Log.i("TAG", "onComplete: success");
+                    delegate.onSuccessResult("success");
                 } else {
                     Log.i("TAG", "onComplete:  fail");
-
+                    delegate.onFailureResult("fail");
                 }
             }
         });

@@ -1,17 +1,11 @@
 package com.example.medicalreminder.model;
 
 
+import com.example.medicalreminder.firebase.auth.FirebaseDelegate;
 
 public interface RepositoryInterface {
 
-//    void getAllMovies(NetworkDelegate networkDelegate);
-//
-//    LiveData<List<MovieModel>> getStoredMovie();
-//
-//    void insertMovie(MovieModel movie);
-//    void deleteMovie(MovieModel movie);
-
-    void perForLogin(User user);
-    void perForAuth(User user);
+    void perForLogin(User user, FirebaseDelegate delegate);
+    void perForAuth(User user, FirebaseDelegate delegate);
     void signOut();
 }

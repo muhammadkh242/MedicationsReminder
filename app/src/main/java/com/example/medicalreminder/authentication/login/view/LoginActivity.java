@@ -64,8 +64,10 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
             public void onClick(View view) {
                 //perForLogin();
                 Log.i("TAG", "onClick: ");
-                saveUser(binding.editEmailSignup.getText().toString(), binding.editPasswordSignup.getText().toString());
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                saveUser(
+                        binding.editEmailSignup.getText().toString(),
+                        binding.editPasswordSignup.getText().toString());
+
             }
         });
 
