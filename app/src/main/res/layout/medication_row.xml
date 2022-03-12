@@ -3,53 +3,57 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
-    android:background="@drawable/btn_bg">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/circularimage"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+    android:paddingBottom="10dp"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/cv"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="5dp">
 
-    <TextView
-        android:id="@+id/medTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toRightOf="@id/imageView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/med_name" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/circularimage"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_launcher_background" />
 
-    <TextView
-        android:id="@+id/pillsTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="@id/medTxt"
-        app:layout_constraintTop_toBottomOf="@+id/medTxt"
-        tools:layout_editor_absoluteX="191dp"
-        tools:text="@string/pill_left" />
+        <TextView
+            android:id="@+id/medTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="10dp"
+            tools:text="@string/med_name" />
 
-    <TextView
-        android:id="@+id/strengthTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@id/medTxt"
-        app:layout_constraintTop_toTopOf="@id/medTxt"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="13dp"
-        tools:text="@string/strngth" />
+        <TextView
+            android:id="@+id/pillsTxt"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="191dp"
+            tools:text="@string/pill_left" />
 
+        <TextView
+            android:id="@+id/strengthTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginTop="@dimen/padding_10"
+            android:layout_marginStart="220dp"
+            tools:layout_editor_absoluteX="267dp"
+            tools:layout_editor_absoluteY="13dp"
+            tools:text="@string/strngth" />
 
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,8 +47,8 @@ public class Repository implements RepositoryInterface {
        if(activeNetwork != null) {
            user = prefsInterface.getFromPrefs();
            if (user.getEmail() == null) {
-               String email = user.getEmail();
-               String password = user.getPassword();
+               String email = userLogin.getEmail();
+               String password = userLogin.getPassword();
                if (email.isEmpty()) {
                    firebaseDelegate.onFailureResult("Enter correct email.");
                } else if (password.isEmpty() || password.length() < 6) {

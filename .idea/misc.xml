@@ -46,6 +46,9 @@
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/layout/thirdquestion_screen.xml" value="0.17074275362318841" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1787037037037037" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/menu/home.xml" value="0.20416666666666666" />
+        <entry key="..\:/MyProjects/MedicationsReminder/app/src/main/res/layout/activity_home.xml" value="0.15364583333333334" />
+        <entry key="..\:/MyProjects/MedicationsReminder/app/src/main/res/layout/fragment_medication.xml" value="0.15416666666666667" />
+        <entry key="..\:/MyProjects/MedicationsReminder/app/src/main/res/layout/medication_row.xml" value="0.1" />
       </map>
     </option>
   </component>
