@@ -63,11 +63,11 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
             @Override
             public void onClick(View view) {
                 //perForLogin();
+
                 Log.i("TAG", "onClick: ");
                 saveUser(
                         binding.editEmailSignup.getText().toString(),
                         binding.editPasswordSignup.getText().toString());
-
             }
         });
 

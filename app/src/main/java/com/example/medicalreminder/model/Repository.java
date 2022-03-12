@@ -33,7 +33,7 @@ public class Repository implements RepositoryInterface {
         user = new User();
     }
 
-    public static Repository getInstance(Context context,  FirebaseSource firebaseSource) {
+    public static Repository getInstance(Context context, FirebaseSource firebaseSource) {
         if (repo == null) {
             repo = new Repository(context, firebaseSource);
         }
