@@ -1,26 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/navigation_home"
-    android:id="@+id/mobile_navigation">
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.medicalreminder.ui.home.HomeFragment"
+        android:name="com.example.medicalreminder.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_add"
-        android:name="com.example.medicalreminder.ui.addmed.AddMedFragment"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentNameDrug"
         android:label="@string/title_add_med"
         tools:layout="@layout/fragment_add_medication" />
 
     <fragment
         android:id="@+id/navigation_med"
-        android:name="com.example.medicalreminder.ui.med.MedicationFragment"
+        android:name="com.example.medicalreminder.medicationsmanaging.view.MedicationsFragment"
         android:label="@string/title_med"
         tools:layout="@layout/fragment_medication" />
+
+    <fragment
+        android:id="@+id/navigation_healthtracker"
+        android:name="com.example.medicalreminder.addhealthtracker.view.AddHealthTrackerFragment"
+        android:label="Health Tracker"
+        tools:layout="@layout/healthtracker_screen" />
 
 </navigation>

@@ -13,16 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder">
 
-        <activity android:name=".authentication.signup.view.SignupActivity"/>
+        <activity android:name=".authentication.login.view.LoginActivity"/>
         <activity android:name=".HomeActivity"/>
         <activity android:name=".medicationsmanaging.view.MedicationsActivity"/>
+        <activity android:name=".authentication.register.view.RegisterActivity"/>
         <activity
-            android:name=".authentication.signin.view.SignInActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".addhealthtracker.view.InvitationService"
+            android:enabled="true"
+            android:exported="true"/>
+
     </application>
 </manifest>

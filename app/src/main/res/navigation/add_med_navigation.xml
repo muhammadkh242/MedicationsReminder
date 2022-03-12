@@ -7,7 +7,7 @@
 
 
     <fragment
-        android:name="com.example.addMedication.view.FragmentNameDrug"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentNameDrug"
         android:id="@+id/nameDrugQue"
         tools:layout="@layout/name_drug_question_screen"
         >
@@ -21,7 +21,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.addMedication.view.FragmentFormDrug"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentFormDrug"
         android:id="@+id/formDrugQue"
         tools:layout="@layout/form_med_question_screen"
         >
@@ -34,7 +34,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.addMedication.view.FragmentEverydayOr"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentEverydayOr"
         android:id="@+id/everydayOrQue"
         tools:layout="@layout/everyday_or_question_screen"
         >

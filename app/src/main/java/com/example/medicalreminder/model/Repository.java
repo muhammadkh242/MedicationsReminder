@@ -1,14 +1,16 @@
 package com.example.medicalreminder.model;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.example.local.SharedPref;
-import com.example.local.SharedPrefsInterface;
+
 import com.example.medicalreminder.firebase.auth.FirebaseDelegate;
 import com.example.medicalreminder.firebase.auth.FirebaseSource;
+import com.example.medicalreminder.local.SharedPref;
+import com.example.medicalreminder.local.SharedPrefsInterface;
 
 
 public class Repository implements RepositoryInterface {
@@ -54,12 +56,11 @@ public class Repository implements RepositoryInterface {
                } else
                    firebaseSource.perForLogin(user);
                Log.i("TAG", "perForLogin: prefs");
-           } else {
-               firebaseDelegate.onFailureResult("No Internet.");
+           }else {
+               Log.i("TAG", "perForLogin: "+ prefsInterface.getFromPrefs().getEmail());
            }
        }else {
-           firebaseSource.perForLogin(user);
-           Log.i("TAG", "perForLogin: firebase");
+            firebaseDelegate.onFailureResult("No Internet.");
        }
     }
 
