@@ -13,22 +13,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-//import com.example.medicalreminder.R;
-//import com.example.medicalreminder.firebase.healthtracker.HealthTrackersClient;
-//import com.example.medicalreminder.model.healthtracker.HealthTrackerUser;
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.Query;
-//import com.google.firebase.database.ValueEventListener;
+import com.example.medicalreminder.R;
+import com.example.medicalreminder.model.healthtracker.RequestUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class InvitationService extends Service {
     private static final String TAG = "TAG";
     public static  final String CHANNEL_ID = "id";
 
-//    DatabaseReference databaseReference;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,7 +45,7 @@ public class InvitationService extends Service {
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                //readData();
+                readData();
             }
         };
         Thread thread = new Thread(r);
@@ -49,57 +54,56 @@ public class InvitationService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-//Read Data From Firebase DataBase
-//    public void readData(){
-//        databaseReference = HealthTrackersClient.getDatabaseReference();
-//        Query query = databaseReference.orderByChild("userID").equalTo("20");
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        HealthTrackerUser user = dataSnapshot.getValue(HealthTrackerUser.class);
-//                        Log.i(TAG, "onDataChange: " + user.isTracker() + " : " + user.getUserID());
-//                        if(user.isTracker() == true){
-//                            showNotification();
-//                        }
-//                        else{
-//                            Log.i(TAG, "onDataChange: no request");
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+    //Read Data From Firebase DataBase
+    public void readData(){
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("request_users");
+        Query query = db.orderByChild("userID").equalTo(FirebaseAuth.getInstance().getUid());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        RequestUser user = dataSnapshot.getValue(RequestUser.class);
+                        Log.i(TAG, "onDataChange: " + user.isRequest() + " : " + user.getUserID());
+                        if(user.isRequest() == true){
+                            showNotification();
+                        }
+                        else{
+                            Log.i(TAG, "onDataChange: no request");
+                        }
+                    }
+                }
+            }
 
-//    public void showNotification(){
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            CharSequence name = getString(R.string.channel);
-//            String desc = getString(R.string.channel_desc);
-//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-//            channel.setDescription(desc);
-//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-//            notificationManager.createNotificationChannel(channel);
-//
-//        }
-//
-//        Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
-//                .setSmallIcon(R.drawable.ic_launcher_foreground)
-//                .setContentTitle("Invitation")
-//                .setContentText("Invitation to be a HealthTracker")
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//                .setAutoCancel(true).build();
-//
-//        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-//        managerCompat.notify(999, notification);
-//
-//    }
-//
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+    public void showNotification(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = getString(R.string.channel);
+            String desc = getString(R.string.channel_desc);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(desc);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
+
+        Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle("Invitation")
+                .setContentText("Invitation to be a HealthTracker")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true).build();
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(999, notification);
+    }
 
 }

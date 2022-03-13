@@ -12,30 +12,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.medicalreminder.R;
-//import com.example.medicalreminder.firebase.healthtracker.HealthTrackersClient;
-//import com.example.medicalreminder.model.healthtracker.HealthTrackerUser;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.Query;
-//import com.google.firebase.database.ValueEventListener;
+import com.example.medicalreminder.addhealthtracker.presenter.TrackerPresenter;
+import com.example.medicalreminder.addhealthtracker.presenter.TrackerPresenterInterface;
+import com.example.medicalreminder.firebase.addhealthtracker.TrackerFirebaseClient;
+import com.example.medicalreminder.model.healthtracker.RequestUser;
+import com.example.medicalreminder.model.healthtracker.TrackerRepo;
+import com.example.medicalreminder.model.healthtracker.TrackerRepoInterface;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-//fragment send email from edit text to invitation service
 
-public class AddHealthTrackerFragment extends Fragment {
+public class AddHealthTrackerFragment extends Fragment implements TrackerViewInterface {
+    TrackerPresenterInterface presenter;
+
     Button inviteBtn;
     EditText trackerEdit;
     private static final String TAG = "TAG";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        HealthTrackerUser healthTrackerUser = new HealthTrackerUser("20", null, false, "mo@gmail");
-//        DatabaseReference databaseReference = HealthTrackersClient.getDatabaseReference();
-//        databaseReference.push().setValue(healthTrackerUser);
+
     }
 
     @Override
@@ -44,49 +50,28 @@ public class AddHealthTrackerFragment extends Fragment {
         View view = inflater.inflate(R.layout.healthtracker_screen, container, false);
         inviteBtn = view.findViewById(R.id.inviteBtn);
         trackerEdit = view.findViewById(R.id.trackerMail);
-        return view;
-    }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        String trackerEmail = trackerEdit.getText().toString();
+        presenter = new TrackerPresenter(TrackerRepo.getInstance(TrackerFirebaseClient
+                .getTrackerFirebaseClient(getContext()),getContext()), this);
+
+
         inviteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                sendInvitation(trackerEmail);
-                Log.i(TAG, "Edit Text: " + trackerEmail);
+                String email = trackerEdit.getText().toString();
+                Log.i(TAG, "onCreateView: " + email);
+                Log.i(TAG, "onClick: " + inviteBtn.getText().toString());
+                sendInvitation(email);
             }
         });
+        return view;
     }
 
-    //send invitation
-//    public void sendInvitation(String email){
-//        DatabaseReference databaseReference = HealthTrackersClient.getDatabaseReference();
-//        Query query = databaseReference.orderByChild("userEmail");
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        HealthTrackerUser user = dataSnapshot.getValue(HealthTrackerUser.class);
-//                        if(user.getUserEmail().equals(email)){
-//                            Toast.makeText(getContext(), "user found", Toast.LENGTH_LONG).show();
-//
-//                        }
-//                    }
-//                }
-//                else{
-//                    Toast.makeText(getContext(), "User not found" , Toast.LENGTH_LONG).show();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
+
+    @Override
+    public void sendInvitation(String email) {
+        presenter.sendInvitation(email);
+    }
+
 
 }
