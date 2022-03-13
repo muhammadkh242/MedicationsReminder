@@ -40,7 +40,6 @@ public class AddHealthTrackerFragment extends Fragment implements TrackerViewInt
         presenter = new TrackerPresenter(TrackerRepo.getInstance(TrackerFirebaseClient
                 .getTrackerFirebaseClient(getContext()),getContext()), this);
 
-
         inviteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,7 +1,6 @@
-package com.example.medicalreminder.firebase.addhealthtracker;
+package com.example.medicalreminder.firebase.invitation;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -14,36 +13,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class TrackerFirebaseClient implements TrackerFirebaseSource{
-    private static final String TAG = "TAG";
-    private Context context;
-    private static TrackerFirebaseClient trackerFirebaseClient = null;
+public class InvitationFirebaseClient implements InvitationFirebaseSource{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("request_users");
+    private Context context;
+    private static InvitationFirebaseClient client = null;
 
-    private TrackerFirebaseClient(Context context) {
+    private InvitationFirebaseClient(Context context) {
         this.context = context;
     }
 
-    public static TrackerFirebaseClient getTrackerFirebaseClient(Context context) {
-        if(trackerFirebaseClient == null){
-            trackerFirebaseClient = new TrackerFirebaseClient(context);
+    public static InvitationFirebaseClient getClient(Context context) {
+        if(client == null){
+            client = new InvitationFirebaseClient(context);
         }
-        return trackerFirebaseClient;
+        return client;
     }
 
     @Override
-    public void sendInvitation(String email) {
-        Query query = databaseReference.orderByChild("userEmail").equalTo(email);
-
-        Log.i(TAG, "sendInvitation: " + query.getRef().toString());
-
+    public void accept(String email) {
+        Query query = databaseReference.orderByChild("userID")
+                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     RequestUser user = dataSnapshot.getValue(RequestUser.class);
                     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("request_users");
-                    databaseReference.child(dataSnapshot.getKey()).child("request").setValue(true);
                     databaseReference.child(dataSnapshot.getKey()).child("requesterID").setValue(FirebaseAuth.getInstance().getUid());
                 }
             }
@@ -53,8 +48,10 @@ public class TrackerFirebaseClient implements TrackerFirebaseSource{
 
             }
         });
-
     }
 
+    @Override
+    public void deny() {
 
+    }
 }
