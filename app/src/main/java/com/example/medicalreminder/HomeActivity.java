@@ -1,7 +1,9 @@
 package com.example.medicalreminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.medicalreminder.addhealthtracker.view.InvitationService;
 import com.example.medicalreminder.databinding.ActivityHomeBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -33,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_home);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
     }
 
 }

@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, 3000);
 
-        //star listening for health tracker invitation
+        //start listening for health tracker invitation
         Intent intent = new Intent(getApplicationContext(), InvitationService.class);
         startService(intent);
 //
