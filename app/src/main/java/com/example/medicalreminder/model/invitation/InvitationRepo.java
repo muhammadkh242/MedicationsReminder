@@ -26,8 +26,8 @@ public class InvitationRepo implements InvitationRepoInterface{
     }
 
     @Override
-    public void accept(String email) {
-        invitationFirebaseSource.accept(email);
+    public void accept(String id) {
+        invitationFirebaseSource.accept(id);
     }
 
     @Override

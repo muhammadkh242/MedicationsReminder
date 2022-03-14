@@ -14,8 +14,8 @@ public class InvitationPresenter implements InvitationPresenterInterface{
     }
 
     @Override
-    public void accept(String email) {
-        invitationRepo.accept(email);
+    public void accept(String id) {
+        invitationRepo.accept(id);
 
     }
 

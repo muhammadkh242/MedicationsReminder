@@ -79,16 +79,8 @@ public class InvitationService extends Service {
                         RequestUser user = dataSnapshot.getValue(RequestUser.class);
                         Log.i(TAG, "onDataChange: " + user.isRequest() + " : " + user.getUserID());
                         if(user.isRequest() == true){
-//                            if(getApplicationContext().isUiContext()){
-//                                Intent intent1 = new Intent(getApplicationContext(), InvitationActivity.class);
-//                                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                startActivity(intent1);
-//
-//                            }
-//                            else{
-//                                showNotification(intent);
-//                            }
-                        showNotification(intent, user.getRequesterID());
+
+                            showNotification(intent, user.getUserEmail());
 
                         }
                         else{
@@ -122,7 +114,7 @@ public class InvitationService extends Service {
         Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Invitation")
-                .setContentText( requesterID +" invite you to be a HealthTracker")
+                .setContentText( requesterID +" invited you to be a HealthTracker")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(intent)
                 .setAutoCancel(true).build();

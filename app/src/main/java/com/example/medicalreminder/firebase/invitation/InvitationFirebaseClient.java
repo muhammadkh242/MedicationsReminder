@@ -30,24 +30,9 @@ public class InvitationFirebaseClient implements InvitationFirebaseSource{
     }
 
     @Override
-    public void accept(String email) {
-        Query query = databaseReference.orderByChild("userID")
-                .equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    RequestUser user = dataSnapshot.getValue(RequestUser.class);
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("request_users");
-                    databaseReference.child(dataSnapshot.getKey()).child("requesterID").setValue(FirebaseAuth.getInstance().getUid());
-                }
-            }
+    public void accept(String id) {
+        //get data for user that has the argument id and display it in second user list (medications)
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     @Override

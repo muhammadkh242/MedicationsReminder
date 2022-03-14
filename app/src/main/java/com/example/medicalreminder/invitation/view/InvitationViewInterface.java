@@ -1,6 +1,6 @@
 package com.example.medicalreminder.invitation.view;
 
 public interface InvitationViewInterface {
-    public void accept(String email);
+    public void accept();
     public void deny();
 }

@@ -21,5 +21,9 @@
         android:id="@+id/navigation_healthtracker"
         android:icon="@drawable/ic_baseline_person_add_24"
         android:title="@string/health_tracker" />
+    <item
+        android:id="@+id/navigation_seconduser"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="Secondary List" />
 
 </menu>

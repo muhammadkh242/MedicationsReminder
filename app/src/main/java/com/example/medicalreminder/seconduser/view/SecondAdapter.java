@@ -1,4 +1,4 @@
-package com.example.medicalreminder.medicationsmanaging.view;
+package com.example.medicalreminder.seconduser.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,26 +11,28 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.medicationsmanaging.view.RecyclerAdapter;
 import com.example.medicalreminder.model.Med;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder>{
     private List<Med> meds = new ArrayList<>();
     private final Context context;
 
-    public RecyclerAdapter(Context context) {
+    public SecondAdapter(Context context) {
         this.context = context;
     }
-
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.medication_row, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
+        SecondAdapter.ViewHolder viewHolder = new SecondAdapter.ViewHolder(view);
+
         return viewHolder;
     }
 
@@ -40,7 +42,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.getTimeTxt().setText(String.valueOf(meds.get(position).getStrength()));
         holder.getPillsTxt().setText(meds.get(position).getPill());
         holder.getImageView().setImageResource(meds.get(position).getThumbnail());
-
     }
 
     public void setData(List<Med> meds){
@@ -53,7 +54,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return meds.size();
     }
 
-    //________________________VIEW HOLDER______________________________________________
 
 
     class ViewHolder extends RecyclerView.ViewHolder{

@@ -29,5 +29,10 @@
         android:name="com.example.medicalreminder.addhealthtracker.view.AddHealthTrackerFragment"
         android:label="Health Tracker"
         tools:layout="@layout/healthtracker_screen" />
+    <fragment
+        android:id="@+id/navigation_seconduser"
+        android:name="com.example.medicalreminder.seconduser.view.SecondUserFragment"
+        android:label="Secondary List"
+        tools:layout="@layout/fragment_second_user"/>
 
 </navigation>
