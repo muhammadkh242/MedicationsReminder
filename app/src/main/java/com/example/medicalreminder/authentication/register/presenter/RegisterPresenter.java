@@ -8,8 +8,8 @@ import android.widget.Toast;
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.authentication.register.view.RegisterViewInterface;
 import com.example.medicalreminder.firebase.auth.FirebaseDelegate;
-import com.example.medicalreminder.model.RepositoryInterface;
-import com.example.medicalreminder.model.User;
+import com.example.medicalreminder.model.authentication.RepositoryInterface;
+import com.example.medicalreminder.model.authentication.User;
 
 public class RegisterPresenter implements RegisterPresenterInterface, FirebaseDelegate{
 

@@ -1,9 +1,9 @@
-package com.example.medicalreminder.local;
+package com.example.medicalreminder.local.sharedpref;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.medicalreminder.model.User;
+import com.example.medicalreminder.model.authentication.User;
 
 public class SharedPref implements SharedPrefsInterface {
 

@@ -1,4 +1,4 @@
-package com.example.medicalreminder.model;
+package com.example.medicalreminder.model.authentication;
 
 
 import com.example.medicalreminder.firebase.auth.FirebaseDelegate;

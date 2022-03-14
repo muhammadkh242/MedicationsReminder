@@ -6,11 +6,10 @@ package com.example.medicalreminder.authentication.login.presenter;
 import android.widget.Toast;
 
   import com.example.medicalreminder.HomeActivity;
-  import com.example.medicalreminder.authentication.login.view.LoginActivity;
   import com.example.medicalreminder.authentication.login.view.LoginViewInterface;
 import com.example.medicalreminder.firebase.auth.FirebaseDelegate;
-import com.example.medicalreminder.model.RepositoryInterface;
-import com.example.medicalreminder.model.User;
+import com.example.medicalreminder.model.authentication.RepositoryInterface;
+import com.example.medicalreminder.model.authentication.User;
 
 public class LoginPresenter implements LoginPresenterInterface, FirebaseDelegate {
 

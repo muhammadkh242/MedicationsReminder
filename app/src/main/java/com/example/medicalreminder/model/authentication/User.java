@@ -1,4 +1,4 @@
-package com.example.medicalreminder.model;
+package com.example.medicalreminder.model.authentication;
 
 public class User {
 

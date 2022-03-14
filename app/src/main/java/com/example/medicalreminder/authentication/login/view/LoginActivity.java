@@ -11,13 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenter;
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenterInterface;
 import com.example.medicalreminder.databinding.ActivitySignupBinding;
 import com.example.medicalreminder.firebase.auth.FirebaseClient;
-import com.example.medicalreminder.model.Repository;
+import com.example.medicalreminder.model.authentication.Repository;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;

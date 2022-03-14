@@ -1,7 +1,6 @@
-package com.example.medicalreminder.model;
+package com.example.medicalreminder.model.authentication;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -9,8 +8,8 @@ import android.util.Log;
 
 import com.example.medicalreminder.firebase.auth.FirebaseDelegate;
 import com.example.medicalreminder.firebase.auth.FirebaseSource;
-import com.example.medicalreminder.local.SharedPref;
-import com.example.medicalreminder.local.SharedPrefsInterface;
+import com.example.medicalreminder.local.sharedpref.SharedPref;
+import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
 
 
 public class Repository implements RepositoryInterface {

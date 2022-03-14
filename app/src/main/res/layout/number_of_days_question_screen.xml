@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/back"
     android:layout_height="match_parent">
     <TextView
@@ -27,121 +26,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHeight_percent="0.7" >
 
-
-        <TextView
-            android:id="@+id/txtOnceWeek"
-            android:layout_width="0dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="@string/once_a_week"
-            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toTopOf="@id/btnNext"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/view_q5"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line1"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/txtOnceWeek"
-            app:layout_constraintTop_toBottomOf="@id/txtOnceWeek"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/txtEveryTwoDays"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/every_2_days"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.023"
-            app:layout_constraintStart_toStartOf="@id/line1"
-            app:layout_constraintTop_toBottomOf="@id/line1"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line2"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/txtEveryTwoDays"
-            app:layout_constraintTop_toBottomOf="@id/txtEveryTwoDays"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/txtTwoDaysInWeek"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/_2_days_a_week"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="@id/line2"
-            app:layout_constraintTop_toTopOf="@id/line2"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line3"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/txtTwoDaysInWeek"
-            app:layout_constraintTop_toBottomOf="@id/txtTwoDaysInWeek"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/txtThreeDaysInweek"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/_3_days_a_week"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="@id/line3"
-            app:layout_constraintTop_toTopOf="@id/line3"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line4"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/txtThreeDaysInweek"
-            app:layout_constraintTop_toBottomOf="@id/txtThreeDaysInweek"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <TextView
-            android:id="@+id/txtxFiveDaysInWeek"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/_4_days_a_week"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.024"
-            app:layout_constraintStart_toStartOf="@id/line4"
-            app:layout_constraintTop_toTopOf="@id/line4"
-            app:layout_constraintWidth_percent="0.8" />
-
-        <View
-            android:id="@+id/line5"
-            android:layout_width="0dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="12dp"
-            android:background="@color/gray"
-            app:layout_constraintStart_toStartOf="@id/txtxFiveDaysInWeek"
-            app:layout_constraintTop_toBottomOf="@id/txtxFiveDaysInWeek"
-            app:layout_constraintWidth_percent="0.8" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.258" />
 
 
         <Button
@@ -157,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="@id/view_q5"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@id/view_q5"
-            app:layout_constraintTop_toBottomOf="@id/line5"
+            app:layout_constraintTop_toBottomOf="@id/recycler"
             app:layout_constraintVertical_bias="0.821" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

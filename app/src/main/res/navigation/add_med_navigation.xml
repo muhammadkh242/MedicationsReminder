@@ -5,7 +5,6 @@
     android:id="@+id/add_med_navigation"
     >
 
-
     <fragment
         android:name="com.example.medicalreminder.addMedication.view.FragmentNameDrug"
         android:id="@+id/nameDrugQue"
@@ -15,7 +14,6 @@
             android:id="@+id/formDrugAct"
             app:destination="@id/formDrugQue"
             >
-
         </action>
 
     </fragment>
@@ -29,7 +27,6 @@
             android:id="@+id/everydayOrAct"
             app:destination="@id/everydayOrQue"
             >
-
         </action>
     </fragment>
 
@@ -38,20 +35,35 @@
         android:id="@+id/everydayOrQue"
         tools:layout="@layout/everyday_or_question_screen"
         >
+
         <action
             android:id="@+id/numberDaysAct"
             app:destination="@id/numberDaysQue"
             >
 
         </action>
+        <action
+            android:id="@+id/numberTakeDayAct"
+            app:destination="@id/numberTakeDayQue"
+            >
+
+        </action>
 
     </fragment>
     <fragment
-        android:id="@+id/numberHoursQue"
-        tools:layout="@layout/number_of_hours_question_screen"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentTimesInDay"
+        android:id="@+id/numberTakeDayQue"
+        tools:layout="@layout/number_of_taked_day_question_screen"
         >
+        <action android:id="@+id/startdateDrugAct"
+            app:destination="@id/startdateDrugQue"
+            >
+
+        </action>
     </fragment>
+
     <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentNumberOfDays"
         android:id="@+id/numberDaysQue"
         tools:layout="@layout/number_of_days_question_screen"
         >
@@ -65,15 +77,47 @@
     </fragment>
 
     <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentChooseDays"
         android:id="@+id/chooseDays"
         tools:layout="@layout/choose_days_question_screen"
         >
 
         <action
-            android:id="@+id/numberHoursAct"
-            app:destination="@id/numberHoursQue"
+            android:id="@+id/startdateDrugAct"
+            app:destination="@id/startdateDrugQue"
             >
 
         </action>
+    </fragment>
+
+    <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentStartDateDrug"
+        android:id="@+id/startdateDrugQue"
+        tools:layout="@layout/startdate_drug_question_screen"
+        >
+
+        <action
+            android:id="@+id/startTimeAct"
+            app:destination="@id/startTimeQues"
+            >
+        </action>
+    </fragment>
+    <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentDurationDrug"
+        android:id="@+id/durationDrugQue"
+        tools:layout="@layout/duration_of_drug_question_screen"
+        >
+    </fragment>
+    <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentStartTime"
+        android:id="@+id/startTimeQues"
+        tools:layout="@layout/starttime_dose_question_screen"
+        >
+        <action
+            android:id="@+id/durationDrugAct"
+            app:destination="@id/durationDrugQue"
+            >
+        </action>
+
     </fragment>
 </navigation>

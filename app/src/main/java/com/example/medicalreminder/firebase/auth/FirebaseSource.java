@@ -1,6 +1,6 @@
 package com.example.medicalreminder.firebase.auth;
 
-import com.example.medicalreminder.model.User;
+import com.example.medicalreminder.model.authentication.User;
 
 public interface FirebaseSource {
 

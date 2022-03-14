@@ -1,21 +1,32 @@
 package com.example.medicalreminder.addMedication.view;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.model.addmedication.Medication;
+import java.io.Serializable;
 
 
-public class FragmentNameDrug  extends Fragment {
+public class FragmentNameDrug  extends Fragment implements AddMedicationViewInterface {
+
+    Medication medication;
+    EditText edtName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        medication = Medication.getInstance();
     }
 
     @Override
@@ -23,15 +34,25 @@ public class FragmentNameDrug  extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.name_drug_question_screen, container, false);
+        edtName = view.findViewById(R.id.edtNameDrug);
+
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                NavDirections navDirections=FragmentNameDrugDirections.;
-//                NavController navController= Navigation.findNavController(view);
-//                navController.navigate(navDirections);
+                addInfoMed(medication);
+                NavController navController= Navigation.findNavController(view);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("object", (Serializable) medication);
+                navController.navigate(R.id.formDrugAct,bundle);
             }
         });
         return view;
 
+    }
+
+
+    @Override
+    public void addInfoMed(Medication med) {
+        medication.setName(edtName.getText().toString());
     }
 }

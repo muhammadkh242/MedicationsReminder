@@ -13,7 +13,7 @@ import com.example.medicalreminder.authentication.register.presenter.RegisterPre
 import com.example.medicalreminder.authentication.login.view.LoginActivity;
 import com.example.medicalreminder.databinding.ActivitySigninBinding;
 import com.example.medicalreminder.firebase.auth.FirebaseClient;
-import com.example.medicalreminder.model.Repository;
+import com.example.medicalreminder.model.authentication.Repository;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterViewInterface {
 
