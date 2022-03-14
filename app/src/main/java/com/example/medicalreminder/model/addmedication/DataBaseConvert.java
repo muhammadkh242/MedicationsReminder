@@ -1,41 +1,55 @@
 package com.example.medicalreminder.model.addmedication;
 
 import androidx.room.TypeConverter;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.Serializable;
 import java.lang.reflect.Type;
-
+import java.util.Collections;
 import java.util.List;
 
 public class DataBaseConvert implements Serializable {
 
+        static Gson gson = new Gson();
+        @androidx.room.TypeConverter
+        public static List<MedicationDose> stringToObjectList(String data) {
+            if (data == null) {
+                return Collections.emptyList();
+            }
 
-        @TypeConverter // note this annotation
-        public String fromStringList(List<MedicationDose> hour) {
-            if (hour == null) {
+            Type listType = new TypeToken<List<MedicationDose>>() {
+            }.getType();
+
+            return gson.fromJson(data, listType);
+        }
+
+        @androidx.room.TypeConverter
+        public static String someObjectListToString(List<MedicationDose> someObjects) {
+            return gson.toJson(someObjects);
+        }
+
+
+/*    @TypeConverter // note this annotation
+        public String fromMedicationDoseList(List<MedicationDose> medDose) {
+            if (medDose == null) {
                 return (null);
             }
             Gson gson = new Gson();
             Type type = new TypeToken<List<MedicationDose>>() {
             }.getType();
-            String json = gson.toJson(hour, type);
+            String json = gson.toJson(medDose, type);
             return json;
         }
 
         @TypeConverter // note this annotation
-        public List<MedicationDose> toStringList(String hour) {
-            if (hour == null) {
+        public List<MedicationDose> toStringList(String medDose) {
+            if (medDose == null) {
                 return (null);
             }
             Gson gson = new Gson();
-            Type type = new TypeToken<List<String>>() {
+            Type type = new TypeToken<List<MedicationDose>>() {
             }.getType();
-            List<MedicationDose> hours = gson.fromJson(hour, type);
+            List<MedicationDose> hours = gson.fromJson(medDose, type);
             return hours;
-        }
-
-
+        }*/
     }
