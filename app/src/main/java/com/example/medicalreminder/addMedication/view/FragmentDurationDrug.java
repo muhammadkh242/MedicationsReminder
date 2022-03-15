@@ -93,14 +93,14 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
 
     @Override
     public void addInfoMed(Medication med) {
-        LiveData<List<MedicationList>> l = addMedPreI.getInfoMed();
-        l.observe((LifecycleOwner) this, new Observer<List<MedicationList>>() {
+        /*LiveData<List<MedicationList>> l = addMedPreI.getInfoMed();
+        l.observe( this, new Observer<List<MedicationList>>() {
             @Override
             public void onChanged(List<MedicationList> medicationLists) {
-                //Log.i("TAG", "onChanged: "+medicationLists.get(0).getDate());
+                Log.i("TAG", "onChanged: "+medicationLists.size());
 
             }
-        });
+        });*/
     }
 }
 
