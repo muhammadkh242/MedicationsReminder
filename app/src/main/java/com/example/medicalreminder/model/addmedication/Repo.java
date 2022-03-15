@@ -65,8 +65,13 @@ public class Repo implements RepoInterface {
     }
 
     @Override
-    public MedicationList getDurgs() {
-        firestoreInterface.getDrugs();
+    public MedicationList getDurgs(MedicationList list) {
+        firestoreInterface.getDrugs(list);
         return null;
     }
+
+    @Override
+    public void createDocument() {
+    }
+
 }

@@ -28,7 +28,6 @@ public class EditDrug extends AppCompatActivity {
 
     ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

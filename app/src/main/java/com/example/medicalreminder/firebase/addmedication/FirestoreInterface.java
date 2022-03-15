@@ -8,5 +8,5 @@ import java.util.Map;
 public interface FirestoreInterface {
 
     public void sendDrugs(MedicationList list);
-    public MedicationList getDrugs();
+    public MedicationList getDrugs(MedicationList list);
 }

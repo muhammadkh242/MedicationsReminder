@@ -12,7 +12,7 @@ public class DataBaseConvert implements Serializable {
 
         static Gson gson = new Gson();
         @androidx.room.TypeConverter
-        public static List<MedicationDose> stringToObjectList(String data) {
+        public  List<MedicationDose> stringToObjectList(String data) {
             if (data == null) {
                 return Collections.emptyList();
             }
@@ -24,8 +24,15 @@ public class DataBaseConvert implements Serializable {
         }
 
         @androidx.room.TypeConverter
-        public static String someObjectListToString(List<MedicationDose> someObjects) {
-            return gson.toJson(someObjects);
+        public  String someObjectListToString(List<MedicationDose> data) {
+            if (data == null) {
+                return (null);
+            }
+            Gson gson = new Gson();
+            Type type = new TypeToken<List<MedicationDose>>() {
+            }.getType();
+            String json = gson.toJson(data, type);
+            return json;
         }
 
 

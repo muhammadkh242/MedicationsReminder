@@ -16,6 +16,9 @@ public interface RepoInterface {
     public void sendDrug(MedicationList list);
     //connection Network
     public boolean connection();
-    public MedicationList getDurgs();
+    //firestore
+    public MedicationList getDurgs(MedicationList list);
+    //firestore
+    public void createDocument();
 
 }

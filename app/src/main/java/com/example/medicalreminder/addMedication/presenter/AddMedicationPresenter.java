@@ -49,9 +49,9 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
 
 
     @Override
-    public LiveData<List<Drug>> getInfoMed() {
-        return null;
-                //repoInterface.getDrugs();
+    public LiveData<List<MedicationList>> getInfoMed() {
+
+        return repoInterface.getDrugs("14/3/2022");
     }
 
     @Override
@@ -62,7 +62,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         drug.setForm(medication.getForm());
         drug.setHours(medication.getHours());
        drug.setDays(medication.getDays());
-        //repoInterface.addDrug(drug);
+        repoInterface.getDrugs("14/3/2022");
     }
 
     public int getAnswer(Medication medication){
@@ -141,7 +141,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         String firstDate = medication.getFirstDateDose();
         days(firstDate,duration);
           }
-
     public void days(String firstDate,int duration){
 
         List<String> days = new ArrayList<>();
@@ -162,17 +161,18 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
 
             c.setTime(sdf.parse(dt));
             dt = sdf.format(c.getTime());
+            //repoInterface.addDrug(new MedicationList(dt,medDose));
             // list for date , list (name,hour)
             for(int i =0;i<duration;i++){
+                //if(repoInterface.connection()){
+                repoInterface.sendDrug(new MedicationList(dt,medDose));
+                //repoInterface.getDurgs(new MedicationList(dt,medDose));
+                //Log.i("TAG", "days: "+m.getDate());
+                //}
+                //else{
+                    //repoInterface.addDrug(new MedicationList(dt,medDose));
 
-                if(repoInterface.connection()){
-                    //repoInterface.sendDrug(new MedicationList(dt,medDose));
-                    //repoInterface.sendDrug(listMap);
-                    repoInterface.getDurgs();
-                }
-                else{
-                    repoInterface.addDrug(new MedicationList(dt,medDose));
-                }
+                //}
                 c.setTime(sdf.parse(dt));
                 c.add(Calendar.DAY_OF_MONTH, 1);
                 dt = sdf.format(c.getTime());
