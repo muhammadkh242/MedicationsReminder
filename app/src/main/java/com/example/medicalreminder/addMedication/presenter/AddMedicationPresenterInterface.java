@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface AddMedicationPresenterInterface {
 
-    public LiveData<List<MedicationList>> getInfoMed();
+    public List<MedicationList> getInfoMed();
     public void addInfoMed(Medication medication);
     public int getAnswer(Medication medication);
     public void calListHour(Medication medication);

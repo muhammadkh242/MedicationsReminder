@@ -12,20 +12,29 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
 
+import io.reactivex.Completable;
+import io.reactivex.Single;
+
 @Dao
 public interface MedicationDao {
 
-     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertDrug(MedicationList medList );
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    Completable insertDrug(MedicationList medList);
+
+    //@Insert(onConflict = OnConflictStrategy.IGNORE)
+    //void insertDrug(MedicationList medList );
+
+    @Query("SELECT * FROM drug WHERE date LIKE :datee")
+    Single<List<MedicationList>> getDrugs(String datee);
 
     @Delete
-    void deleteDrug(MedicationList medList) ;
+    Completable deleteDrug(MedicationList medList) ;
 
+    //@Query("SELECT * FROM drug WHERE date LIKE :datee ")
+   //List<MedicationList>getDrugs(String datee);
 
-    //@Query("SELECT * FROM me WHERE date LIKE :datee LIMIT 1")
-
-    //@Query("SELECT * FROM me WHERE date")
-    @Query("SELECT * FROM me WHERE date LIKE '15/3/2022' LIMIT 1")
-    LiveData<List<MedicationList>> getDrugs();
+    @Query("DELETE FROM drug WHERE date LIKE :datee")
+    void deleteDate(String datee);
 
 }

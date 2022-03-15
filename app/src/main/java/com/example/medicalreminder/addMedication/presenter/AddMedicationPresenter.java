@@ -49,9 +49,8 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
 
 
     @Override
-    public LiveData<List<MedicationList>> getInfoMed() {
-
-        return repoInterface.getDrugs("14/3/2022");
+    public List<MedicationList> getInfoMed() {
+        return null;
     }
 
     @Override
@@ -62,7 +61,16 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         drug.setForm(medication.getForm());
         drug.setHours(medication.getHours());
        drug.setDays(medication.getDays());
-        repoInterface.getDrugs("14/3/2022");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(String.valueOf(14/03/2022)));
+            String dt = sdf.format(c.getTime());
+            //repoInterface.getDrugs(dt);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int getAnswer(Medication medication){
@@ -113,7 +121,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
            if(Integer.parseInt(h)>=24){
                h=String.valueOf(Integer.parseInt(h)-24);
            }
-            Log.i("TAG", "setListHour: "+h);
             hours.add(h+":"+minutes);
         }
         medication.setHours(hours);
@@ -149,7 +156,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         days.add(firstDate);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
-
         try {
             // list for name , hour
             for(int i =0 ;i<medication.getHours().size();i++){
@@ -164,8 +170,9 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
             //repoInterface.addDrug(new MedicationList(dt,medDose));
             // list for date , list (name,hour)
             for(int i =0;i<duration;i++){
+                repoInterface.getDrugs(new MedicationList(dt,medDose));
                 //if(repoInterface.connection()){
-                repoInterface.sendDrug(new MedicationList(dt,medDose));
+                //repoInterface.sendDrug(new MedicationList(dt,medDose));
                 //repoInterface.getDurgs(new MedicationList(dt,medDose));
                 //Log.i("TAG", "days: "+m.getDate());
                 //}

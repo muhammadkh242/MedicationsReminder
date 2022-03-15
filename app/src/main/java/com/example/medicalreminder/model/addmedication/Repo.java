@@ -3,13 +3,20 @@ package com.example.medicalreminder.model.addmedication;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 
 import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.db.LocalSource;
+import com.example.medicalreminder.local.db.MedicationDataBase;
+
 import java.util.List;
+
+import io.reactivex.Single;
 
 public class Repo implements RepoInterface {
 
@@ -33,10 +40,9 @@ public class Repo implements RepoInterface {
         return repository;
     }
 
-
     @Override
-    public void addDrug(MedicationList medDose  ) {
-        localSource.addDrug(medDose);
+    public void addDrug(MedicationList medDose ) {
+     localSource.addDrug(medDose);
     }
 
     @Override
@@ -45,7 +51,17 @@ public class Repo implements RepoInterface {
     }
 
     @Override
-    public LiveData<List<MedicationList >> getDrugs(String date) {
+    public Single<MedicationList> getDrugs(MedicationList medicationList) {
+        return localSource.getDrugs(medicationList);
+    }
+
+    @Override
+    public void deleteDate(String date) {
+
+    }
+
+/*    @Override
+    public List<MedicationList > getDrugs(String date) {
         return localSource.getDrugs(date);
     }
 
@@ -67,11 +83,11 @@ public class Repo implements RepoInterface {
     @Override
     public MedicationList getDurgs(MedicationList list) {
         firestoreInterface.getDrugs(list);
-        return null;
+        return list;
     }
 
     @Override
     public void createDocument() {
     }
-
+*/
 }
