@@ -1,6 +1,7 @@
 package com.example.medicalreminder.model.addmedication;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
@@ -13,8 +14,10 @@ public class MedicationList {
 
     @PrimaryKey(autoGenerate = false)
     @NonNull
+    @ColumnInfo(defaultValue = "date")
     String date;
     @TypeConverters(DataBaseConvert.class)
+    @ColumnInfo(defaultValue = "list")
     List<MedicationDose> list;
 
     public MedicationList() {

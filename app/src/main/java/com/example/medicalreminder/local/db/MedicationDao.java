@@ -21,7 +21,11 @@ public interface MedicationDao {
     @Delete
     void deleteDrug(MedicationList medList) ;
 
-    @Query("SELECT * FROM me WHERE date LIKE :datee")
-   LiveData<List<MedicationList>> getDrugs(String datee);
+
+    //@Query("SELECT * FROM me WHERE date LIKE :datee LIMIT 1")
+
+    //@Query("SELECT * FROM me WHERE date")
+    @Query("SELECT * FROM me WHERE date LIKE '15/3/2022' LIMIT 1")
+    LiveData<List<MedicationList>> getDrugs();
 
 }

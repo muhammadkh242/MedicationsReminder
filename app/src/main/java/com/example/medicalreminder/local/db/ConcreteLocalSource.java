@@ -52,5 +52,5 @@ public class ConcreteLocalSource implements LocalSource{
 
     @Override
     public LiveData<List<MedicationList >> getDrugs(String date) {
-        return medDao.getDrugs(date);  }
+        return medDao.getDrugs();  }
 }
