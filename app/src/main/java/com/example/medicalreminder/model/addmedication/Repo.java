@@ -4,10 +4,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.db.LocalSource;
 
+import java.util.List;
 
 public class Repo implements RepoInterface {
 
@@ -31,16 +34,19 @@ public class Repo implements RepoInterface {
         return repository;
     }
 
+    //room
     @Override
     public void addDrug(MedicationList medDose ) {
      localSource.addDrug(medDose);
     }
-
     @Override
-    public MedicationList getDrugs(String date) {
+    public LiveData<MedicationList> getDrugs(String date) {
         return localSource.getDrugs(date);
     }
-
+    @Override
+    public LiveData<List<MedicationList>>  getAllDrugs() {
+        return localSource.getAllDrugs();
+    }
     @Override
     public void deleteDate(String date) {
         localSource.deleteDate(date);
@@ -49,6 +55,11 @@ public class Repo implements RepoInterface {
     @Override
     public void sendDrug( MedicationList list) {
         firestoreInterface.sendDrugs(list);
+    }
+    @Override
+    public MedicationList getDurgs(MedicationList list) {
+        firestoreInterface.getDrugs(list);
+        return list;
     }
 
     public boolean connection(){
@@ -61,10 +72,6 @@ public class Repo implements RepoInterface {
         return  checkNetwork;
     }
 
-    @Override
-    public MedicationList getDurgs(MedicationList list) {
-        firestoreInterface.getDrugs(list);
-        return list;
-    }
+
 
 }

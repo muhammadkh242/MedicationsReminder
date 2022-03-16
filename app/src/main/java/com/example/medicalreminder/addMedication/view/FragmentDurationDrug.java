@@ -22,6 +22,7 @@ import com.example.medicalreminder.R;
 import com.example.medicalreminder.local.db.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Medication;
+import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.addmedication.Repo;
 
@@ -68,7 +69,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addMedPreI.calListDay(medication);
+                //addMedPreI.calListDay(medication);
                 addInfoMed(medication);
             }
         });
@@ -80,7 +81,6 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
     public void onClick(String txt) {
      medication.setDurationDrug(txt);
     }
-
     public void getInti(){
         list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
@@ -93,14 +93,14 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
 
     @Override
     public void addInfoMed(Medication med) {
-        /*LiveData<List<MedicationList>> l = addMedPreI.getInfoMed();
-        l.observe( this, new Observer<List<MedicationList>>() {
+        LiveData<MedicationList>   drugs= addMedPreI.getDrugs();
+        drugs.observe(this, new Observer<MedicationList>() {
             @Override
-            public void onChanged(List<MedicationList> medicationLists) {
-                Log.i("TAG", "onChanged: "+medicationLists.size());
-
+            public void onChanged(MedicationList medicationList) {
+                Log.i("TAG", "onChanged: "+medicationList.getList().get(0).getName());
             }
-        });*/
+        });
+
     }
 }
 

@@ -35,8 +35,8 @@ public class DataBaseConvert implements Serializable {
             return json;
         }
 
-    @androidx.room.TypeConverter
-    public  MedicationList stringToObject(String data) {
+       @androidx.room.TypeConverter
+       public  MedicationList stringToObject(String data) {
         if (data == null) {
             return null;
         }
@@ -47,8 +47,8 @@ public class DataBaseConvert implements Serializable {
         return gson.fromJson(data, listType);
     }
 
-    @androidx.room.TypeConverter
-    public  String objectToString(MedicationList data) {
+      @androidx.room.TypeConverter
+       public  String objectToString(MedicationList data) {
         if (data == null) {
             return (null);
         }
@@ -59,27 +59,4 @@ public class DataBaseConvert implements Serializable {
         return json;
     }
 
-/*    @TypeConverter // note this annotation
-        public String fromMedicationDoseList(List<MedicationDose> medDose) {
-            if (medDose == null) {
-                return (null);
-            }
-            Gson gson = new Gson();
-            Type type = new TypeToken<List<MedicationDose>>() {
-            }.getType();
-            String json = gson.toJson(medDose, type);
-            return json;
-        }
-
-        @TypeConverter // note this annotation
-        public List<MedicationDose> toStringList(String medDose) {
-            if (medDose == null) {
-                return (null);
-            }
-            Gson gson = new Gson();
-            Type type = new TypeToken<List<MedicationDose>>() {
-            }.getType();
-            List<MedicationDose> hours = gson.fromJson(medDose, type);
-            return hours;
-        }*/
     }

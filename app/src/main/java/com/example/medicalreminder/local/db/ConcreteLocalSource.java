@@ -1,6 +1,9 @@
 package com.example.medicalreminder.local.db;
 
 import android.content.Context;
+
+import androidx.lifecycle.LiveData;
+
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import java.util.ArrayList;
@@ -28,18 +31,27 @@ public class ConcreteLocalSource implements LocalSource{
 
     @Override
     public void deleteDate(String date) {
-     medDao.deleteDate(date);
+     new Thread(new Runnable() {
+         @Override
+         public void run() {
+            medDao.deleteDate(date);
+         }
+     });
+    }
+
+    @Override
+    public LiveData<List<MedicationList>>  getAllDrugs() {
+        return medDao.getAllDrugs();
     }
 
     @Override
     public void addDrug(MedicationList medList ) {
-
         new Thread(new Runnable() {
             @Override
             public void run() {
-                MedicationList list = medDao.getDrugs(medList.getDate());
+                LiveData<MedicationList> list = medDao.getDrugs(medList.getDate());
                 if(list!=null){
-                    List<MedicationDose> listQuery = list.getList();
+                    List<MedicationDose> listQuery = list.getValue().getList();
                     List<MedicationDose> listUser = medList.getList();
                     List<MedicationDose> listMed= new ArrayList<>();
 
@@ -50,7 +62,7 @@ public class ConcreteLocalSource implements LocalSource{
                         listMed.add(listUser.get(i));
                     }
                     medList.setList(listMed);
-                    medDao.deleteDate(list.getDate());
+                    medDao.deleteDate(list.getValue().getDate());
                 }
                 medDao.insertDrug(medList);
             }
@@ -58,7 +70,7 @@ public class ConcreteLocalSource implements LocalSource{
     }
 
     @Override
-    public MedicationList getDrugs(String date) {
+    public LiveData<MedicationList> getDrugs(String date) {
         return medDao.getDrugs(date);
     }
 

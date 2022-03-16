@@ -34,7 +34,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
     private static AddMedicationPresenter addMedicationPresenter;
     Medication medication;
     private RepoInterface repoInterface;
-    MutableLiveData<MedicationList> medicationListMutableLiveData;
 
     private AddMedicationPresenter(Context context, RepoInterface repoInterface){
         this.context = context;
@@ -49,30 +48,16 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
 
     }
 
-
     @Override
-    public List<MedicationList> getInfoMed() {
-        return null;
+    public LiveData<List<MedicationList>> getAllDrugs() {
+        return repoInterface.getAllDrugs();
     }
 
     @Override
-    public void addInfoMed(Medication medication) {
-        this.medication = medication;
-        Drug drug = new Drug();
-        drug.setName(medication.getName());
-        drug.setForm(medication.getForm());
-        drug.setHours(medication.getHours());
-       drug.setDays(medication.getDays());
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = Calendar.getInstance();
-        try {
-            c.setTime(sdf.parse(String.valueOf(14/03/2022)));
-            String dt = sdf.format(c.getTime());
-            //repoInterface.getDrugs(dt);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+    public LiveData<MedicationList> getDrugs() {
+        String date = "16/3/2022";
+        date = formatCalenderDate(date);
+        return repoInterface.getDrugs(date);
     }
 
     public int getAnswer(Medication medication){
@@ -145,20 +130,17 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
                 break;
         }
     }
-    private void setDays(int duration){
+    private void setDays(int duration) {
         medication = Medication.getInstance();
         String firstDate = medication.getFirstDateDose();
-        days(firstDate,duration);
-          }
+        days(firstDate, duration);
+    }
     public void days(String firstDate,int duration){
-        List<String> days = new ArrayList<>();
         List<MedicationDose> medDose = new ArrayList<>();
-        String dt =firstDate;
-        days.add(firstDate);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = Calendar.getInstance();
-        try {
-            // list for name , hour
+        String date =firstDate;
+        date = formatCalenderDate(date);
+
+        // list for name , hour
             for(int i =0 ;i<medication.getHours().size();i++){
                 MedicationDose med = new MedicationDose();
                 med.setName(medication.getName());
@@ -166,30 +148,36 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
                 medDose.add(med);
             }
 
-            c.setTime(sdf.parse(dt));
-            dt = sdf.format(c.getTime());
-            //repoInterface.addDrug(new MedicationList(dt,medDose));
             // list for date , list (name,hour)
-
             for(int i =0;i<duration;i++){
-                Log.i("TAG", "day: "+dt);
-                repoInterface.addDrug(new MedicationList(dt,medDose));
-                c.setTime(sdf.parse(dt));
-                c.add(Calendar.DAY_OF_MONTH, 1);
-                dt = sdf.format(c.getTime());
-                //if(repoInterface.{connection())
-                //repoInterface.sendDrug(new MedicationList(dt,medDose));
-                //repoInterface.getDurgs(new MedicationList(dt,medDose));
-                //Log.i("TAG", "days: "+m.getDate());
-                //}
-                //else{
-                    //repoInterface.addDrug(new MedicationList(dt,medDose));
-                //}
-
+                repoInterface.addDrug(new MedicationList(date,medDose));
+               date = incrementCalenderDate(date);
             }
+    }
+
+    public String formatCalenderDate(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(date));
+            date = sdf.format(c.getTime());
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        return date;
+    }
+    public String incrementCalenderDate(String date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(date));
+            c.add(Calendar.DAY_OF_MONTH, 1);
+            date = sdf.format(c.getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
     }
 }
