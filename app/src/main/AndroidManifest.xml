@@ -3,6 +3,8 @@
     package="com.example.medicalreminder" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -29,11 +31,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".displaymedication.view.DisplayDrugDetails"/>
 
         <service
             android:name=".addhealthtracker.view.InvitationService"
             android:enabled="true"
             android:exported="true" />
+
+        <receiver
+            android:name=".services.MyReceiver"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

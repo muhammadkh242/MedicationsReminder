@@ -13,6 +13,7 @@ public interface LocalSource {
 
         public void addDrug(MedicationList medDose );
         public LiveData<MedicationList> getDrugs(String date);
+        public MedicationList getDrugsObj(String date);
         public void deleteDate(String date);
         public LiveData<List<MedicationList>> getAllDrugs();
 

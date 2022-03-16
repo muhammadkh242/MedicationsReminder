@@ -21,7 +21,7 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
         public static synchronized MedicationDataBase getInstance(Context context) {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.getApplicationContext(),
-                        MedicationDataBase.class, "drug")
+                        MedicationDataBase.class, "d")
                         .build();
             }
             return instance;

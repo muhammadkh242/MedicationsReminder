@@ -20,6 +20,9 @@ public interface MedicationDao {
     @Query("SELECT * FROM drug WHERE date LIKE :datee ")
     LiveData<MedicationList>getDrugs(String datee);
 
+    @Query("SELECT * FROM drug WHERE date LIKE :datee ")
+    MedicationList getDrugsObj(String datee);
+
 
     @Query("SELECT DISTINCT * FROM drug ")
     LiveData<List<MedicationList>> getAllDrugs();

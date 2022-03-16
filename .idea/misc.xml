@@ -26,13 +26,28 @@
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/duration_of_drug_question_screen.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/form_med_question_screen.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/fragment_add_medication.xml" value="0.1" />
-        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/medication_reminder_dialog.xml" value="0.14" />
+        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/medication_reminder_dialog.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/name_drug_question_screen.xml" value="0.14637305699481865" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/number_of_days_question_screen.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/number_of_taked_day_question_screen.xml" value="0.16032608695652173" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/recyclerview_add_med.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/startdate_drug_question_screen.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/starttime_dose_question_screen.xml" value="0.1" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_display_drug_details.xml" value="0.13722826086956522" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_home.xml" value="0.18" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/cardview_instructions.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/cardview_reminder_times.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/cardview_schedule.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/fragment_add_medication.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/fragment_second_user.xml" value="0.13722826086956522" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/healthtracker_header.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/home_adapter.xml" value="0.33" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/medication_reminder_dialog.xml" value="0.22" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/medication_row.xml" value="0.5" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/medications_header.xml" value="0.13722826086956522" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/drawable-mdpi/ic_baseline_person_add_24.xml" value="0.1195" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/drawable/top_corner_card.xml" value="0.1195" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/layout/activity_home.xml" value="0.1" />

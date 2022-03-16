@@ -30,7 +30,7 @@
                 android:layout_marginStart="10dp"
                 android:src="@drawable/information"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></ImageView>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <ImageView
                 android:id="@+id/imgDelete"
@@ -41,7 +41,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.1"
                 app:layout_constraintTop_toTopOf="@id/imgInfo"
-                app:layout_constraintWidth_percent="0.2"></ImageView>
+                app:layout_constraintWidth_percent="0.2"/>
 
             <ImageView
                 android:id="@+id/imgEdit"
@@ -53,7 +53,7 @@
                 app:layout_constraintHeight_percent="0.1"
                 app:layout_constraintStart_toEndOf="@id/imgDelete"
                 app:layout_constraintTop_toTopOf="@id/imgDelete"
-                app:layout_constraintWidth_percent="0.2"></ImageView>
+                app:layout_constraintWidth_percent="0.2"/>
 
             <ImageView
                 android:id="@+id/imgDrug"
@@ -66,7 +66,7 @@
                 app:layout_constraintHorizontal_bias="0.719"
                 app:layout_constraintStart_toEndOf="@id/imgInfo"
                 app:layout_constraintTop_toTopOf="@id/imgInfo"
-                app:layout_constraintWidth_percent="0.1"></ImageView>
+                app:layout_constraintWidth_percent="0.1"/>
 
             <TextView
                 android:id="@+id/txtDrugName"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/drug_name"
                 app:layout_constraintStart_toStartOf="@id/imgDrug"
-                app:layout_constraintTop_toBottomOf="@id/imgDrug"></TextView>
+                app:layout_constraintTop_toBottomOf="@id/imgDrug"/>
 
             <ImageView
                 android:id="@+id/imgSchedule"
@@ -100,7 +100,7 @@
                 app:layout_constraintEnd_toStartOf="@id/txtDetailsDrug"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/imgSchedule"
-                app:layout_constraintTop_toBottomOf="@id/imgSchedule"></ImageView>
+                app:layout_constraintTop_toBottomOf="@id/imgSchedule"/>
 
             <ImageView
                 android:id="@+id/imgTime"
@@ -111,7 +111,7 @@
                 app:layout_constraintEnd_toStartOf="@id/txtTime"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/imgSchedule"
-                app:layout_constraintTop_toBottomOf="@id/imgDetailsDrug"></ImageView>
+                app:layout_constraintTop_toBottomOf="@id/imgDetailsDrug"/>
 
             <TextView
                 android:id="@+id/txtSchedule"
@@ -131,7 +131,7 @@
                 android:text="@string/edit_drug"
                 app:layout_constraintStart_toEndOf="@id/imgDetailsDrug"
                 app:layout_constraintStart_toStartOf="@id/txtSchedule"
-                app:layout_constraintTop_toTopOf="@id/imgDetailsDrug"></TextView>
+                app:layout_constraintTop_toTopOf="@id/imgDetailsDrug"/>
 
             <TextView
                 android:id="@+id/txtTime"
@@ -167,7 +167,7 @@
                 android:src="@drawable/check_true"
                 app:civ_circle_background_color="#3B7ADA"
                 app:layout_constraintStart_toEndOf="@id/imgClose"
-                app:layout_constraintTop_toBottomOf="@id/txtTime"></de.hdodenhof.circleimageview.CircleImageView>
+                app:layout_constraintTop_toBottomOf="@id/txtTime"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 app:layout_constraintHorizontal_weight="1"

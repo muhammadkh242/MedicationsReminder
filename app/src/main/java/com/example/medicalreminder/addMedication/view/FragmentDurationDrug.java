@@ -69,8 +69,8 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //addMedPreI.calListDay(medication);
-                addInfoMed(medication);
+                addMedPreI.calListDay(medication);
+                //addInfoMed(medication);
             }
         });
 
@@ -97,7 +97,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         drugs.observe(this, new Observer<MedicationList>() {
             @Override
             public void onChanged(MedicationList medicationList) {
-                Log.i("TAG", "onChanged: "+medicationList.getList().get(0).getName());
+                //Log.i("TAG", "onChanged: "+medicationList.getList().get(0).getName());
             }
         });
 

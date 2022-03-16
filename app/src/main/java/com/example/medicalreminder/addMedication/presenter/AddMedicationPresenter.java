@@ -155,12 +155,14 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
             }
     }
 
-    public String formatCalenderDate(String date){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public static String formatCalenderDate(String date){
+        Log.i("TAG", "formatCalenderDate: "+ date);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(sdf.parse(date));
             date = sdf.format(c.getTime());
+            Log.i("TAG", "formatCalenderDate: " + date);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -168,7 +170,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         return date;
     }
     public String incrementCalenderDate(String date){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(sdf.parse(date));

@@ -9,6 +9,11 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.CompletableObserver;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class ConcreteLocalSource implements LocalSource{
 
@@ -49,9 +54,10 @@ public class ConcreteLocalSource implements LocalSource{
         new Thread(new Runnable() {
             @Override
             public void run() {
-                LiveData<MedicationList> list = medDao.getDrugs(medList.getDate());
-                if(list!=null){
-                    List<MedicationDose> listQuery = list.getValue().getList();
+//                LiveData<MedicationList> list = medDao.getDrugs(medList.getDate());
+                MedicationList obj = medDao.getDrugsObj(medList.getDate());
+                if(obj != null){
+                    List<MedicationDose> listQuery = obj.getList();
                     List<MedicationDose> listUser = medList.getList();
                     List<MedicationDose> listMed= new ArrayList<>();
 
@@ -62,7 +68,7 @@ public class ConcreteLocalSource implements LocalSource{
                         listMed.add(listUser.get(i));
                     }
                     medList.setList(listMed);
-                    medDao.deleteDate(list.getValue().getDate());
+                    medDao.deleteDate(obj.getDate());
                 }
                 medDao.insertDrug(medList);
             }
@@ -72,6 +78,11 @@ public class ConcreteLocalSource implements LocalSource{
     @Override
     public LiveData<MedicationList> getDrugs(String date) {
         return medDao.getDrugs(date);
+    }
+
+    @Override
+    public MedicationList getDrugsObj(String date) {
+        return medDao.getDrugsObj(date);
     }
 
 }

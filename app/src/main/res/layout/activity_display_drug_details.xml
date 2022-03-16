@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DisplayDrugDetails">
+    tools:context=".displaymedication.view.DisplayDrugDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
@@ -30,7 +30,7 @@
             app:layout_constraintHeight_percent="0.4"
             app:layout_constraintStart_toStartOf="@id/constraint"
             app:layout_constraintTop_toTopOf="@id/constraint"
-            app:layout_constraintWidth_percent="0.2"></de.hdodenhof.circleimageview.CircleImageView>
+            app:layout_constraintWidth_percent="0.2"/>
 
         <TextView
             android:layout_marginStart="3dp"

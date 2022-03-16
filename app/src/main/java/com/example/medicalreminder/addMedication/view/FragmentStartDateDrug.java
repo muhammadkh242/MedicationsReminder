@@ -41,7 +41,7 @@ public class FragmentStartDateDrug  extends Fragment {
                 int day = datePicker.getDayOfMonth();
                 int month =   (datePicker.getMonth() + 1);
                 int year =  datePicker.getYear();
-                medication.setFirstDateDose(day+"/"+month+"/"+year);
+                medication.setFirstDateDose(day+"-"+month+"-"+year);
 
                 NavController navController= Navigation.findNavController(view);
                 Bundle bundle = new Bundle();

@@ -1,6 +1,9 @@
 package com.example.medicalreminder;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,13 +13,9 @@ import com.example.medicalreminder.addhealthtracker.view.InvitationService;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
-//import com.example.medicalreminder.firebase.healthtracker.HealthTrackersClient;
-//import com.example.medicalreminder.model.healthtracker.HealthTrackerUser;
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.Query;
-//import com.google.firebase.database.ValueEventListener;
+import com.example.medicalreminder.services.MyWorker;
+
+import java.util.concurrent.TimeUnit;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = "TAG";
@@ -26,6 +25,14 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+
+        Data data = new Data.Builder().putString("FIRST", "IN").build();
+        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
+                .setInitialDelay(0, TimeUnit.MINUTES)
+                .setInputData(data)
+                .build();
+        WorkManager.getInstance().enqueue(workRequest);
+
         prefsInterface = new SharedPref(this);
         new Handler().postDelayed(new Runnable() {
             @Override
