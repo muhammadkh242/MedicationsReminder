@@ -3,20 +3,11 @@ package com.example.medicalreminder.model.addmedication;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
-
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.db.LocalSource;
-import com.example.medicalreminder.local.db.MedicationDataBase;
 
-import java.util.List;
-
-import io.reactivex.Single;
 
 public class Repo implements RepoInterface {
 
@@ -25,7 +16,7 @@ public class Repo implements RepoInterface {
     FirestoreInterface firestoreInterface;
     private static Repo repository;
     NetworkInfo activeNetwork;
-    ConnectivityManager cm;
+    ConnectivityManager connectivityManager;
 
     private Repo(Context context, LocalSource localSource){
         this.context = context;
@@ -46,23 +37,13 @@ public class Repo implements RepoInterface {
     }
 
     @Override
-    public void deleteDrug(MedicationList medDose ) {
-        localSource.deleteDrug(medDose);
-    }
-
-    @Override
-    public Single<MedicationList> getDrugs(MedicationList medicationList) {
-        return localSource.getDrugs(medicationList);
+    public MedicationList getDrugs(String date) {
+        return localSource.getDrugs(date);
     }
 
     @Override
     public void deleteDate(String date) {
-
-    }
-
-/*    @Override
-    public List<MedicationList > getDrugs(String date) {
-        return localSource.getDrugs(date);
+        localSource.deleteDate(date);
     }
 
     @Override
@@ -72,8 +53,8 @@ public class Repo implements RepoInterface {
 
     public boolean connection(){
         boolean checkNetwork = false;
-        cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        activeNetwork = cm.getActiveNetworkInfo();
+        connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        activeNetwork = connectivityManager.getActiveNetworkInfo();
         if(activeNetwork!=null){
             checkNetwork = true;
         }
@@ -86,8 +67,4 @@ public class Repo implements RepoInterface {
         return list;
     }
 
-    @Override
-    public void createDocument() {
-    }
-*/
 }

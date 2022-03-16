@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
 import com.example.medicalreminder.model.addmedication.Drug;
@@ -33,6 +34,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
     private static AddMedicationPresenter addMedicationPresenter;
     Medication medication;
     private RepoInterface repoInterface;
+    MutableLiveData<MedicationList> medicationListMutableLiveData;
 
     private AddMedicationPresenter(Context context, RepoInterface repoInterface){
         this.context = context;
@@ -91,7 +93,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         List<String>  hours = new ArrayList<>();
         switch (timeDay){
             case "Once day":
-                hours.add(medication.getFirstDateDose());
+                hours.add(medication.getFirstTimeDose());
                 medication.setHours(hours);
                 break;
             case "Twice day":
@@ -149,7 +151,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
         days(firstDate,duration);
           }
     public void days(String firstDate,int duration){
-
         List<String> days = new ArrayList<>();
         List<MedicationDose> medDose = new ArrayList<>();
         String dt =firstDate;
@@ -169,20 +170,22 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
             dt = sdf.format(c.getTime());
             //repoInterface.addDrug(new MedicationList(dt,medDose));
             // list for date , list (name,hour)
+
             for(int i =0;i<duration;i++){
-                repoInterface.getDrugs(new MedicationList(dt,medDose));
-                //if(repoInterface.connection()){
+                Log.i("TAG", "day: "+dt);
+                repoInterface.addDrug(new MedicationList(dt,medDose));
+                c.setTime(sdf.parse(dt));
+                c.add(Calendar.DAY_OF_MONTH, 1);
+                dt = sdf.format(c.getTime());
+                //if(repoInterface.{connection())
                 //repoInterface.sendDrug(new MedicationList(dt,medDose));
                 //repoInterface.getDurgs(new MedicationList(dt,medDose));
                 //Log.i("TAG", "days: "+m.getDate());
                 //}
                 //else{
                     //repoInterface.addDrug(new MedicationList(dt,medDose));
-
                 //}
-                c.setTime(sdf.parse(dt));
-                c.add(Calendar.DAY_OF_MONTH, 1);
-                dt = sdf.format(c.getTime());
+
             }
 
         } catch (ParseException e) {
