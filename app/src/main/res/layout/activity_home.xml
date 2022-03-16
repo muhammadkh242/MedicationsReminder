@@ -36,4 +36,21 @@
         app:layout_constraintVertical_bias="1.0"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <Button
+        android:id="@+id/btnTake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSnooze"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:text="@string/next"
+        app:layout_constraintStart_toEndOf="@id/btnTake"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
