@@ -24,6 +24,9 @@ public class Firestore implements FirestoreInterface{
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     CollectionReference collectionReference  = firebaseFirestore.collection("Drug");
+    String userID = FirebaseAuth.getInstance().getUid();
+
+
 
     @Override
     public void sendDrugs( MedicationList list) {
@@ -61,7 +64,7 @@ public class Firestore implements FirestoreInterface{
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.i("TAG", "onSuccessssss ");
+                Log.i("TAG", "onSuccess ssss ");
             }
         });
 

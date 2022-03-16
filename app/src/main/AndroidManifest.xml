@@ -16,6 +16,7 @@
         <activity
             android:name=".seconduser.view.SecondUserActivity"
             android:exported="false" />
+        <activity android:name=".dialogmed.DialogActivity"/>
         <activity
             android:name=".invitation.view.InvitationActivity"
             android:exported="false" />

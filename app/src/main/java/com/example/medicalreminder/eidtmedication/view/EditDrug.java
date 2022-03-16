@@ -108,26 +108,5 @@ public class EditDrug extends AppCompatActivity {
         notificationManagerCompat.notify(4, notification.build());
 
     }*/
-    public void showAlertDialogButtonClicked(){
-        AlertDialog.Builder builder
-                = new AlertDialog.Builder(this);
 
-        // set the custom layout
-        final View customLayout
-                = getLayoutInflater()
-                .inflate(
-                        R.layout.medication_reminder_dialog,
-                        null);
-        builder.setView(customLayout);
-        ImageView imageView = customLayout.findViewById(R.id.imgClose);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EditDrug.this, "skip", Toast.LENGTH_SHORT).show();
-            }
-        });
-                AlertDialog dialog
-                = builder.create();
-        dialog.show();
-    }
 }
