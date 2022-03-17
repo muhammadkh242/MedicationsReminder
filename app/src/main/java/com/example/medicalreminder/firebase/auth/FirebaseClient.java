@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FirebaseClient implements FirebaseSource {
 
@@ -52,6 +54,8 @@ public class FirebaseClient implements FirebaseSource {
                     progressDialog.dismiss();
                     Log.i("TAG", "onComplete: success");
                     delegate.onSuccessResult("success");
+                    DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
+                    db.child(FirebaseAuth.getInstance().getUid()).child("attached").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 } else {
                     progressDialog.dismiss();
                     Log.i("TAG", "onComplete: fail");

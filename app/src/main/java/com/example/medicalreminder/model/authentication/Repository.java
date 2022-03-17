@@ -76,6 +76,7 @@ public class Repository implements RepositoryInterface {
             }else
                 firebaseSource.perForAuth(user, delegate);
                 prefsInterface.savePrefs(user);
+
         }else {
             delegate.onFailureResult("No Internet....");
         }
