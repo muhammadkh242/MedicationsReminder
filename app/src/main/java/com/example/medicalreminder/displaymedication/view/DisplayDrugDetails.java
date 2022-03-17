@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.model.UserMed;
 
 public class DisplayDrugDetails extends AppCompatActivity {
 
@@ -24,6 +25,9 @@ public class DisplayDrugDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_drug_details);
         showAlertDialogButtonClicked();
+
+        UserMed userMed = (UserMed) getIntent().getSerializableExtra("userMed");
+        Log.i("TAG", " SERIALIZABLE TEST : " + userMed.getName());
     }
 
     public void showAlertDialogButtonClicked(){

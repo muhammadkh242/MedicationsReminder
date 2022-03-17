@@ -19,6 +19,9 @@ import com.example.medicalreminder.R;
 
 public class AddMedFragment extends Fragment {
 
+    public AddMedFragment() {
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 

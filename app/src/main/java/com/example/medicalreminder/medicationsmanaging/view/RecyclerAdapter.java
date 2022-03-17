@@ -1,5 +1,6 @@
 package com.example.medicalreminder.medicationsmanaging.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.model.Med;
+import com.example.medicalreminder.model.UserMed;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private List<Med> meds = new ArrayList<>();
+    private List<UserMed> meds = new ArrayList<>();
     private final Context context;
-
-    public RecyclerAdapter(Context context) {
+    private OnMedClickListener listener;
+    public RecyclerAdapter(Context context, OnMedClickListener listener) {
+        this.listener = listener;
         this.context = context;
     }
 
@@ -29,21 +31,35 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.medication_row, parent, false);
+        View view = inflater.inflate(R.layout.second_user_med_row, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.getMedTxt().setText(meds.get(position).getName());
-        holder.getTimeTxt().setText(String.valueOf(meds.get(position).getStrength()));
-        holder.getPillsTxt().setText(meds.get(position).getPill());
-        holder.getImageView().setImageResource(meds.get(position).getThumbnail());
+        holder.getFormTxt().setText(meds.get(position).getForm());
+        if(meds.get(position).getForm().equals("pill")){
+            holder.getImageView().setImageResource(R.drawable.pills);
+
+        }
+        else{
+            holder.getImageView().setImageResource(R.drawable.injection);
+        }
+
+        holder.getMedRow().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClick(meds.get(position));
+            }
+        });
+
+
 
     }
 
-    public void setData(List<Med> meds){
+    public void setData(List<UserMed> meds){
         this.meds = meds;
         notifyDataSetChanged();
     }
@@ -58,19 +74,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView medTxt;
-        TextView timeTxt;
-        TextView pillsTxt;
+        TextView formTxt;
         ImageView imageView;
         View medRow;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             medRow = itemView;
-            medTxt = medRow.findViewById(R.id.medTxt);
-            timeTxt = medRow.findViewById(R.id.timeTxt);
-            pillsTxt = medRow.findViewById(R.id.pillsTxt);
-            imageView = medRow.findViewById(R.id.imageView);
-            imageView.setClipToOutline(true);
+            medTxt = medRow.findViewById(R.id.medName);
+            formTxt = medRow.findViewById(R.id.formTxt);
+            imageView = medRow.findViewById(R.id.image);
 
         }
 
@@ -78,16 +91,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             return medTxt;
         }
 
-        public TextView getTimeTxt() {
-            return timeTxt;
-        }
-
-        public TextView getPillsTxt() {
-            return pillsTxt;
+        public TextView getFormTxt() {
+            return formTxt;
         }
 
         public ImageView getImageView() {
             return imageView;
+        }
+
+        public View getMedRow() {
+            return medRow;
         }
     }
 }

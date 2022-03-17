@@ -1,6 +1,9 @@
 package com.example.medicalreminder.model;
 
-public class UserMed {
+
+import java.io.Serializable;
+
+public class UserMed implements Serializable {
     String name;
     String form;
 

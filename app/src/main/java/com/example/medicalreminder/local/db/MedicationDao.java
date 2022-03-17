@@ -24,10 +24,14 @@ public interface MedicationDao {
     MedicationList getDrugsObj(String datee);
 
 
-    @Query("SELECT DISTINCT * FROM drug ")
+    @Query("SELECT DISTINCT list FROM drug ")
     LiveData<List<MedicationList>> getAllDrugs();
 
     @Query("DELETE FROM drug WHERE date LIKE :datee")
     void deleteDate(String datee);
+
+
+
+
 
 }
