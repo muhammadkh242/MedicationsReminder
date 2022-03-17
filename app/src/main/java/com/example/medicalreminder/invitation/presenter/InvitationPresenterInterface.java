@@ -7,5 +7,5 @@ public interface InvitationPresenterInterface {
 
 
     public void accept(String id);
-    public void deny(String email);
+    public void deny();
 }

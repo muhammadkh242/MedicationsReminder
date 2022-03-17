@@ -20,7 +20,7 @@ public class InvitationPresenter implements InvitationPresenterInterface{
     }
 
     @Override
-    public void deny(String email) {
+    public void deny() {
 
     }
 }

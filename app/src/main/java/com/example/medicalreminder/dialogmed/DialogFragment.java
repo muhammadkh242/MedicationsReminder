@@ -41,16 +41,16 @@ public class DialogFragment extends Fragment {
                         R.layout.medication_reminder_dialog,
                         null);
         builder.setView(customLayout);
-        ImageView imgSkip = customLayout.findViewById(R.id.imgSkip);
+//        ImageView imgSkip = customLayout.findViewById(R.id.imgSkip);
         ImageView imgSchedule = customLayout.findViewById(R.id.imgSchedule);
-        ImageView imgSnooze = customLayout.findViewById(R.id.imgSnooze);
-        imgSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "skip", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), HomeActivity.class));
-            }
-        });
+//        ImageView imgSnooze = customLayout.findViewById(R.id.imgSnooze);
+//        imgSkip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getContext(), "skip", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getContext(), HomeActivity.class));
+//            }
+//        });
         imgSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,13 +58,13 @@ public class DialogFragment extends Fragment {
                 startActivity(new Intent(getContext(), HomeActivity.class));
             }
         });
-        imgSnooze.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(), "snooze", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), HomeActivity.class));
-            }
-        });
+//        imgSnooze.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getContext(), "snooze", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getContext(), HomeActivity.class));
+//            }
+//        });
         AlertDialog dialog
                 = builder.create();
         dialog.show();

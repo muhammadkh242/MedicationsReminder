@@ -8,12 +8,16 @@ import androidx.work.WorkManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.medicalreminder.addhealthtracker.view.InvitationService;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
 import com.example.medicalreminder.services.MyWorker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -45,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 3000);
-
+        Log.i(TAG, "onCreate: " + FirebaseAuth.getInstance().getUid());
         //start listening for health tracker invitation
         Intent intent = new Intent(getApplicationContext(), InvitationService.class);
         startService(intent);
@@ -64,6 +68,9 @@ public class SplashActivity extends AppCompatActivity {
 //
 //            }
 //        });
+//
+//        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
+//        db.push().child(FirebaseAuth.getInstance().getUid()).child("attached").push().setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
     }
 }

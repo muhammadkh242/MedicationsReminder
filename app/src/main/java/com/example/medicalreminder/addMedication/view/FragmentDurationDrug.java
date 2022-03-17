@@ -19,8 +19,10 @@ import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapt
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseClient;
 import com.example.medicalreminder.local.db.ConcreteLocalSource;
 
+import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
@@ -38,6 +40,10 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
     LinearLayoutManager layoutManager;
     Medication medication;
     AddMedicationPresenterInterface addMedPreI;
+
+    //_______KHOLIF REFERENCEs TO STORE MED DATA IN REALTIMA DB FIREBASE____
+    SecondUserFirebaseClient userFirebaseClient = new SecondUserFirebaseClient();
+    UserMed userMed;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,10 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
             public void onClick(View view) {
                 addMedPreI.calListDay(medication);
                 //addInfoMed(medication);
+
+                //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
+                userMed = new UserMed(medication.getName(), medication.getForm());
+                storeMed(userMed);
             }
         });
 
@@ -101,6 +111,12 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
             }
         });
 
+    }
+
+    //_______KHOLIF METHOD TO STORE MED DATA IN REALTIMA DB FIREBASE____
+
+    public void storeMed(UserMed userMed){
+        userFirebaseClient.storeMed(userMed);
     }
 }
 

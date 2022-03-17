@@ -18,13 +18,12 @@ import java.util.List;
 
 public class MedicationsFragment extends Fragment {
     RecyclerView activeRecycler;
-    RecyclerView inactiveRecycler;
+
     List<Med> medList = new ArrayList<>();
     RecyclerAdapter activeAdapter;
-    RecyclerAdapter inactiveAdapter;
+
 
     LinearLayoutManager layoutManager;
-    LinearLayoutManager layoutManagerTwo;
 
 
     @Override
@@ -40,31 +39,26 @@ public class MedicationsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.medications_fragment, container, false);
         activeRecycler = view.findViewById(R.id.recycler_one);
-        inactiveRecycler = view.findViewById(R.id.recycler_two);
+
 
         activeRecycler.setHasFixedSize(true);
-        inactiveRecycler.setHasFixedSize(true);
+
 
         activeAdapter = new RecyclerAdapter(getContext());
-        inactiveAdapter = new RecyclerAdapter(getContext());
 
         //bind layout manager to your context that contains the fragment
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        layoutManagerTwo = new LinearLayoutManager(getContext());
-        layoutManagerTwo.setOrientation(LinearLayoutManager.VERTICAL);
+
 
         //bind recyclerview to layout manager
         activeRecycler.setLayoutManager(layoutManager);
-        inactiveRecycler.setLayoutManager(layoutManagerTwo);
 
         //bind recyclerview to adapter
         activeRecycler.setAdapter(activeAdapter);
         activeAdapter.setData(initData());
 
-        inactiveRecycler.setAdapter(inactiveAdapter);
-        inactiveAdapter.setData(initData());
 
         return view;
     }

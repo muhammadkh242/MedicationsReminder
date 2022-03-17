@@ -1,6 +1,7 @@
 package com.example.medicalreminder.seconduser.view;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.model.Med;
+import com.example.medicalreminder.model.UserMed;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder>{
-    private List<Med> meds = new ArrayList<>();
+    private List<UserMed> meds = new ArrayList<>();
     private final Context context;
 
     public SecondAdapter(Context context) {
@@ -29,7 +31,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.medication_row, parent, false);
+        View view = inflater.inflate(R.layout.second_user_med_row, parent, false);
         SecondAdapter.ViewHolder viewHolder = new SecondAdapter.ViewHolder(view);
 
         return viewHolder;
@@ -38,14 +40,16 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.getMedTxt().setText(meds.get(position).getName());
-        holder.getTimeTxt().setText(String.valueOf(meds.get(position).getStrength()));
-        holder.getPillsTxt().setText(meds.get(position).getPill());
-        holder.getImageView().setImageResource(meds.get(position).getThumbnail());
+        holder.getFormTxt().setText(meds.get(position).getForm());
+        holder.getImageView().setImageResource(R.drawable.pills);
     }
 
-    public void setData(List<Med> meds){
+    public void setData(List<UserMed> meds){
         this.meds = meds;
+        Log.i("TAG", "setData: medlist size : " + this.meds.size());
+
         notifyDataSetChanged();
+        Log.i("TAG", "setData: " + this.meds.size());
     }
 
     @Override
@@ -57,19 +61,16 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView medTxt;
-        TextView timeTxt;
-        TextView pillsTxt;
+        TextView formTxt;
         ImageView imageView;
         View medRow;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             medRow = itemView;
-            medTxt = medRow.findViewById(R.id.medTxt);
-            timeTxt = medRow.findViewById(R.id.timeTxt);
-            pillsTxt = medRow.findViewById(R.id.pillsTxt);
-            imageView = medRow.findViewById(R.id.imageView);
-            imageView.setClipToOutline(true);
+            medTxt = medRow.findViewById(R.id.medName);
+            formTxt = medRow.findViewById(R.id.formTxt);
+            imageView = medRow.findViewById(R.id.image);
 
         }
 
@@ -77,12 +78,8 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
             return medTxt;
         }
 
-        public TextView getTimeTxt() {
-            return timeTxt;
-        }
-
-        public TextView getPillsTxt() {
-            return pillsTxt;
+        public TextView getFormTxt() {
+            return formTxt;
         }
 
         public ImageView getImageView() {

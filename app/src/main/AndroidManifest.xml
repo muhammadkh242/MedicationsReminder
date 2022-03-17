@@ -3,8 +3,6 @@
     package="com.example.medicalreminder" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="true"
@@ -13,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder" >
+        <service android:name=".addhealthtracker.view.InvitationService"/>
         <activity
             android:name=".seconduser.view.SecondUserActivity"
             android:exported="false" />
-        <activity android:name=".dialogmed.DialogActivity"/>
         <activity
             android:name=".invitation.view.InvitationActivity"
             android:exported="false" />
@@ -32,17 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".displaymedication.view.DisplayDrugDetails"/>
 
-        <service
-            android:name=".addhealthtracker.view.InvitationService"
-            android:enabled="true"
-            android:exported="true" />
-
-        <receiver
-            android:name=".services.MyReceiver"
-            android:enabled="true"
-            android:exported="true"/>
     </application>
 
 </manifest>
