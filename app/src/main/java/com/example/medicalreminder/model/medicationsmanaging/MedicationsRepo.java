@@ -7,8 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.firebase.medicationsmanaging.MedicationsFirebaseClient;
 import com.example.medicalreminder.firebase.medicationsmanaging.MedicationsFirebaseInterface;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
+import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
@@ -26,7 +27,6 @@ public class MedicationsRepo implements MedicationsRepoInterface{
         this.localSource = localSource;
     }
 
-
     public static MedicationsRepo getMedicationsRepo(Context context, ConcreteLocalSource localSource) {
         if(medicationsRepo == null){
             medicationsRepo = new MedicationsRepo(context, localSource);
@@ -40,7 +40,7 @@ public class MedicationsRepo implements MedicationsRepoInterface{
     }
 
     @Override
-    public LiveData<List<MedicationList>> getAllMeds() {
-        return localSource.getAllDrugs();
+    public LiveData<List<Drug>> getAllMeds() {
+        return localSource.getAllDrugDetails();
     }
 }

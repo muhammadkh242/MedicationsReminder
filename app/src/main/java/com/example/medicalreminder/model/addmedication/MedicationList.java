@@ -9,7 +9,7 @@ import androidx.room.TypeConverters;
 import java.util.List;
 
 @TypeConverters(DataBaseConvert.class)
-@Entity(tableName = "drug")
+@Entity(tableName = "medication")
 public class MedicationList {
 
     @PrimaryKey(autoGenerate = false)

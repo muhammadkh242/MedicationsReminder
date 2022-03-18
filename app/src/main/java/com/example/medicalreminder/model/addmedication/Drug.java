@@ -6,20 +6,23 @@ import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 import androidx.room.TypeConverters;
 
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 
-@Entity(tableName = "dru")
+@Entity(tableName = "drug")
 
-public class Drug {
+public class Drug  implements Serializable {
 
     @PrimaryKey(autoGenerate = false)
     @NonNull
     private String name;
     private  String form;
-    @TypeConverters(DataBaseConvert.class)
-    private List<String> hours;
+    private int totalPills;
+    private int refill;
+    private String timesInDays;
+    private String durationDrug;
     @TypeConverters(DataBaseConvert.class)
     private List<String> days;
 
@@ -42,6 +45,38 @@ public class Drug {
         this.days = days;
     }
 
+    public int getTotalPills() {
+        return totalPills;
+    }
+
+    public void setTotalPills(int totalPills) {
+        this.totalPills = totalPills;
+    }
+
+    public int getRefill() {
+        return refill;
+    }
+
+    public void setRefill(int refill) {
+        this.refill = refill;
+    }
+
+    public String getTimesInDays() {
+        return timesInDays;
+    }
+
+    public void setTimesInDays(String timesInDays) {
+        this.timesInDays = timesInDays;
+    }
+
+    public String getDurationDrug() {
+        return durationDrug;
+    }
+
+    public void setDurationDrug(String durationDrug) {
+        this.durationDrug = durationDrug;
+    }
+
     public void setName(@NonNull String name) {
         this.name = name;
     }
@@ -54,14 +89,6 @@ public class Drug {
         this.form = form;
     }
 
-    @TypeConverter
-    public List<String> getHours() {
-        return hours;
-    }
 
-    @TypeConverter
-    public void setHours(List<String> hours) {
-        this.hours = hours;
-    }
 
 }

@@ -1,4 +1,4 @@
-package com.example.medicalreminder.local.db;
+package com.example.medicalreminder.local.dbmedication;
 
 import android.content.Context;
 
@@ -21,7 +21,7 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
         public static synchronized MedicationDataBase getInstance(Context context) {
             if (instance == null) {
                 instance = Room.databaseBuilder(context.getApplicationContext(),
-                        MedicationDataBase.class, "d")
+                        MedicationDataBase.class, "medications")
                         .build();
             }
             return instance;

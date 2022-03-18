@@ -1,16 +1,13 @@
 package com.example.medicalreminder.addMedication.view;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.medicalreminder.R;
@@ -18,7 +15,7 @@ import com.example.medicalreminder.model.addmedication.Medication;
 import java.io.Serializable;
 
 
-public class FragmentNameDrug  extends Fragment implements AddMedicationViewInterface {
+public class FragmentNameDrug  extends Fragment {
 
     Medication medication;
     EditText edtName;
@@ -39,7 +36,7 @@ public class FragmentNameDrug  extends Fragment implements AddMedicationViewInte
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addInfoMed(medication);
+                medication.setName(edtName.getText().toString());
                 NavController navController= Navigation.findNavController(view);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("object", (Serializable) medication);
@@ -48,11 +45,5 @@ public class FragmentNameDrug  extends Fragment implements AddMedicationViewInte
         });
         return view;
 
-    }
-
-
-    @Override
-    public void addInfoMed(Medication med) {
-        medication.setName(edtName.getText().toString());
     }
 }

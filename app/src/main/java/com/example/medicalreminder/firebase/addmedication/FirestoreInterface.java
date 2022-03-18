@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface FirestoreInterface {
 
-    public void sendDrugs(MedicationList list);
-    public MedicationList getDrugs(MedicationList list);
+    public void addDrugs(MedicationList list);
+    public void getDrugs(String date);
 }

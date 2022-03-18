@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
@@ -14,43 +15,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.databinding.ActivityDisplayDrugDetailsBinding;
+import com.example.medicalreminder.databinding.ActivityInvitationBinding;
+import com.example.medicalreminder.eidtmedication.view.EditDrug;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 
 public class DisplayDrugDetails extends AppCompatActivity {
 
-
+    private ActivityDisplayDrugDetailsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_drug_details);
-        showAlertDialogButtonClicked();
 
-        UserMed userMed = (UserMed) getIntent().getSerializableExtra("userMed");
-        Log.i("TAG", " SERIALIZABLE TEST : " + userMed.getName());
-    }
+        binding = ActivityDisplayDrugDetailsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        Drug drug = (Drug) getIntent().getSerializableExtra("userMed");
 
-    public void showAlertDialogButtonClicked(){
-        AlertDialog.Builder builder
-                = new AlertDialog.Builder(this);
+        binding.txtNameDrug.setText(drug.getName());
+        binding.txtQuantityDrug.setText(drug.getForm());
+        binding.txtReminderDetails.setText(drug.getTimesInDays());
+        binding.txtReminderTime.setText(drug.getDurationDrug());
+        binding.txtRefill.setText(String.valueOf(drug.getRefill()));
 
-        // set the custom layout
-        final View customLayout
-                = getLayoutInflater()
-                .inflate(
-                        R.layout.medication_reminder_dialog,
-                        null);
-        builder.setView(customLayout);
-        ImageView imageView = customLayout.findViewById(R.id.imgClose);
-        imageView.setOnClickListener(new View.OnClickListener() {
+        binding.imagEditDrug.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(EditDrug.this, "skip", Toast.LENGTH_SHORT).show();
-                Log.i("TAG", "onClick: ");
+                Intent intent = new Intent(DisplayDrugDetails.this, EditDrug.class);
+                startActivity(intent);
             }
         });
-        AlertDialog dialog
-                = builder.create();
-        dialog.show();
     }
 }

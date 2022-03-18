@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
-import com.example.medicalreminder.local.db.LocalSource;
+import com.example.medicalreminder.local.dbmedication.LocalSource;
 
 import java.util.List;
 
@@ -34,9 +34,9 @@ public class Repo implements RepoInterface {
         return repository;
     }
 
-    //room
+    //medication
     @Override
-    public void addDrug(MedicationList medDose ) {
+    public void addDrug(MedicationList medDose  ) {
      localSource.addDrug(medDose);
     }
     @Override
@@ -44,22 +44,31 @@ public class Repo implements RepoInterface {
         return localSource.getDrugs(date);
     }
     @Override
-    public LiveData<List<MedicationList>>  getAllDrugs() {
-        return localSource.getAllDrugs();
-    }
-    @Override
     public void deleteDate(String date) {
         localSource.deleteDate(date);
     }
 
+    //Drug
     @Override
-    public void sendDrug( MedicationList list) {
-        firestoreInterface.sendDrugs(list);
+    public void insertDrugDetails(Drug drug) {
+        localSource.insertDrugDetails(drug);
     }
     @Override
-    public MedicationList getDurgs(MedicationList list) {
-        firestoreInterface.getDrugs(list);
-        return list;
+    public LiveData<List<Drug>> getAllDrugDetails() {
+        return localSource.getAllDrugDetails();
+    }
+
+
+
+    //firestore
+    @Override
+    public void sendDrug( MedicationList list) {
+        firestoreInterface.addDrugs(list);
+    }
+    @Override
+    public void getDurgs(String date) {
+        firestoreInterface.getDrugs(date);
+
     }
 
     public boolean connection(){
@@ -71,7 +80,5 @@ public class Repo implements RepoInterface {
         }
         return  checkNetwork;
     }
-
-
 
 }

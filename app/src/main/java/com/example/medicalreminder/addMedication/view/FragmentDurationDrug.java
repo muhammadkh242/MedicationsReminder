@@ -1,15 +1,11 @@
 package com.example.medicalreminder.addMedication.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,19 +16,18 @@ import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListn
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseClient;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
+import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.MedicationDose;
-import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.addmedication.Repo;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickListner,AddMedicationViewInterface{
+public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickListner {
 
     RecyclerView recyclerView;
     AddMedicationAdapter addMedicationAdapter;
@@ -40,6 +35,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
     LinearLayoutManager layoutManager;
     Medication medication;
     AddMedicationPresenterInterface addMedPreI;
+    Drug drug;
 
     //_______KHOLIF REFERENCEs TO STORE MED DATA IN REALTIMA DB FIREBASE____
     SecondUserFirebaseClient userFirebaseClient = new SecondUserFirebaseClient();
@@ -58,7 +54,6 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         View view = inflater.inflate(R.layout.duration_of_drug_question_screen, container, false);
         getInti();
         medication = (Medication) getArguments().getSerializable("object");
-        Log.i("TAG", "onCreateView: "+medication.getTimesInday()+medication.getHours().get(0)+medication.getFirstTimeDose());
 
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(layoutManager);
@@ -75,9 +70,13 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                drug.setName(medication.getName());
+                drug.setForm(medication.getForm());
+                drug.setDurationDrug(medication.getDurationDrug());
+                drug.setTimesInDays(medication.getTimesInday());
                 addMedPreI.calListDay(medication);
-                //addInfoMed(medication);
-
+                drug.setDays(medication.getDays());
+                addMedPreI.insertDrugDetails(drug);
                 //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
                 userMed = new UserMed(medication.getName(), medication.getForm());
                 storeMed(userMed);
@@ -92,6 +91,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
      medication.setDurationDrug(txt);
     }
     public void getInti(){
+        drug = new Drug();
         list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         layoutManager = new LinearLayoutManager(getContext());
@@ -100,21 +100,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
                 Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
 
     }
-
-    @Override
-    public void addInfoMed(Medication med) {
-        LiveData<MedicationList>   drugs= addMedPreI.getDrugs();
-        drugs.observe(this, new Observer<MedicationList>() {
-            @Override
-            public void onChanged(MedicationList medicationList) {
-                //Log.i("TAG", "onChanged: "+medicationList.getList().get(0).getName());
-            }
-        });
-
-    }
-
     //_______KHOLIF METHOD TO STORE MED DATA IN REALTIMA DB FIREBASE____
-
     public void storeMed(UserMed userMed){
         userFirebaseClient.storeMed(userMed);
     }

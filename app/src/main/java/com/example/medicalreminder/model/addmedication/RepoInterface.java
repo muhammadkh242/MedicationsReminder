@@ -11,15 +11,18 @@ public interface RepoInterface {
 
     //room
     public void addDrug(MedicationList medDose );
+    public void insertDrugDetails(Drug drug );
     public void deleteDate(String date );
     public LiveData<MedicationList> getDrugs(String date);
-    public LiveData<List<MedicationList>>  getAllDrugs();
+    public  LiveData<List<Drug>>getAllDrugDetails();
+
+
 
 
 
     //firestore
     public void sendDrug(MedicationList list);
-    public MedicationList getDurgs(MedicationList list);
+    public void getDurgs(String date);
     //connection Network
     public boolean connection();
 

@@ -6,13 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
 import androidx.work.WorkRequest;
 
 import com.example.medicalreminder.home.view.HomeFragmentViewInterface;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.addmedication.RepoInterface;
@@ -46,14 +43,14 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
         view.showMed(list);
         callWork(list);
 
-        Data data1 = new Data.Builder().putString("FIRST", "OUT").build();
+        /*Data data1 = new Data.Builder().putString("FIRST", "OUT").build();
 
         List<WorkRequest> requests = new ArrayList<>();
         OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .setInitialDelay(10, TimeUnit.SECONDS)
                 .setInputData(data1)
                 .build();
-        WorkManager.getInstance().enqueue(workRequest);
+        WorkManager.getInstance().enqueue(workRequest);*/
 //        OneTimeWorkRequest workRequest2 = new OneTimeWorkRequest.Builder(MyWorker.class)
 //                .setInitialDelay(30, TimeUnit.SECONDS)
 //                .setInputData(data1)

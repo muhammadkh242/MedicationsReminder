@@ -48,18 +48,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
 
     }
 
-    @Override
-    public LiveData<List<MedicationList>> getAllDrugs() {
-        return repoInterface.getAllDrugs();
-    }
-
-    @Override
-    public LiveData<MedicationList> getDrugs() {
-        String date = "16/3/2022";
-        date = formatCalenderDate(date);
-        return repoInterface.getDrugs(date);
-    }
-
     public int getAnswer(Medication medication){
         this.medication = medication;
         int answer =0 ;
@@ -130,12 +118,19 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
                 break;
         }
     }
+
+    @Override
+    public void insertDrugDetails(Drug drug) {
+        repoInterface.insertDrugDetails(drug);
+    }
+
     private void setDays(int duration) {
         medication = Medication.getInstance();
         String firstDate = medication.getFirstDateDose();
         days(firstDate, duration);
     }
     public void days(String firstDate,int duration){
+        List<String> days = new ArrayList<>();
         List<MedicationDose> medDose = new ArrayList<>();
         String date =firstDate;
         date = formatCalenderDate(date);
@@ -147,23 +142,28 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface{
                 med.setHour(medication.getHours().get(i));
                 medDose.add(med);
             }
-
-            // list for date , list (name,hour)
+            //repoInterface.getDurgs(date);
+        // list for date , list (name,hour)
             for(int i =0;i<duration;i++){
+                days.add(date);
+                if(repoInterface.connection()) {
+                    //repoInterface.sendDrug(new MedicationList(date, medDose));
+                }
+                    else{
+                        //repoInterface.addDrug(new MedicationList(date,medDose));
+                    }
                 repoInterface.addDrug(new MedicationList(date,medDose));
-               date = incrementCalenderDate(date);
+                date = incrementCalenderDate(date);
             }
-    }
+            medication.setDays(days);
 
+    }
     public static String formatCalenderDate(String date){
-        Log.i("TAG", "formatCalenderDate: "+ date);
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(sdf.parse(date));
             date = sdf.format(c.getTime());
-            Log.i("TAG", "formatCalenderDate: " + date);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }

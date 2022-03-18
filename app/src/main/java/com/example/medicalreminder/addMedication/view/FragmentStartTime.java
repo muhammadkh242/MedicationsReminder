@@ -16,7 +16,7 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
+import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.Repo;

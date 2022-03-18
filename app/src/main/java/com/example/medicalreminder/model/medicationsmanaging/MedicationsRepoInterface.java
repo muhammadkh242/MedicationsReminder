@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
 
 public interface MedicationsRepoInterface {
+
     public MutableLiveData<List<UserMed>> getMeds();
-    public LiveData<List<MedicationList>> getAllMeds();
+    public LiveData<List<Drug>> getAllMeds();
 }

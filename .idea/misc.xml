@@ -28,7 +28,11 @@
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/name_drug_question_screen.xml" value="0.16145833333333334" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/second_user_med_row.xml" value="0.18072916666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14010416666666667" />
+        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/drawable-anydpi/edit.xml" value="0.1665" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/drawable-mdpi/shape_line.xml" value="0.127" />
+        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1665" />
+        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/activity_display_drug_details.xml" value="0.22" />
+        <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/activity_edit_drug.xml" value="0.25" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/choose_days_question_screen.xml" value="0.1" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/layout/duration_of_drug_question_screen.xml" value="0.1" />

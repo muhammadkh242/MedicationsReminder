@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private List<UserMed> meds = new ArrayList<>();
+    private List<Drug> meds = new ArrayList<>();
     private final Context context;
     private OnMedClickListener listener;
     public RecyclerAdapter(Context context, OnMedClickListener listener) {
@@ -54,12 +55,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 listener.onClick(meds.get(position));
             }
         });
-
-
-
     }
 
-    public void setData(List<UserMed> meds){
+    public void setData(List<Drug> meds){
         this.meds = meds;
         notifyDataSetChanged();
     }

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +18,7 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
+import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.Repo;
 
@@ -51,7 +50,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
         medication = (Medication) getArguments().getSerializable("object");
         Log.i("TAG", "onCreateView: "+medication.getName()+ medication.getForm());
 
-
         recyclerView = view.findViewById(R.id.recycler);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(addMedicationAdapter);
@@ -82,7 +80,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
         });
 
         return view;
-
     }
 
     public void getInti(){

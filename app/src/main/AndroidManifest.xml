@@ -25,6 +25,8 @@
         <activity android:name=".medicationsmanaging.view.MedicationsActivity" />
         <activity android:name=".authentication.register.view.RegisterActivity" />
         <activity android:name=".displaymedication.view.DisplayDrugDetails" />
+        <activity android:name=".eidtmedication.view.EditDrug" />
+
 
         <activity
             android:name=".SplashActivity"

@@ -42,7 +42,6 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
         getInti();
 
         medication = (Medication) getArguments().getSerializable("object");
-        Log.i("TAG", "onCreateView: "+medication.getName()+ medication.getForm()+medication.getEveryDayOr());
 
 
         recyclerView = view.findViewById(R.id.recycler);
