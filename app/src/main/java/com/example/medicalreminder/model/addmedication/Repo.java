@@ -66,9 +66,8 @@ public class Repo implements RepoInterface {
         firestoreInterface.addDrugs(list);
     }
     @Override
-    public void getDurgs(String date) {
-        firestoreInterface.getDrugs(date);
-
+    public List<MedicationList> getDurgs(String date) {
+        return firestoreInterface.getDrugs(date);
     }
 
     public boolean connection(){

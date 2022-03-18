@@ -22,7 +22,7 @@ public interface RepoInterface {
 
     //firestore
     public void sendDrug(MedicationList list);
-    public void getDurgs(String date);
+    public List<MedicationList> getDurgs(String date);
     //connection Network
     public boolean connection();
 

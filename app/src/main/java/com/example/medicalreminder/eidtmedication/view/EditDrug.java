@@ -11,13 +11,22 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.databinding.ActivityDisplayDrugDetailsBinding;
+import com.example.medicalreminder.databinding.ActivityEditDrugBinding;
+import com.example.medicalreminder.model.addmedication.Drug;
+import com.example.medicalreminder.model.addmedication.Medication;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -26,33 +35,73 @@ import java.util.concurrent.TimeUnit;
 public class EditDrug extends AppCompatActivity {
 
 
-    ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    ActivityEditDrugBinding binding;
+    Medication medication;
+    Drug drug;
+    ArrayList<String> times;
+    ArrayAdapter adapter;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_drug);
+        binding = ActivityEditDrugBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        medication = Medication.getInstance();
+        drug = new Drug();
 
-        CharSequence name = getString(R.string.date);
-        String description = getString(R.string.days);
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel("1", name, importance);
-        channel.setDescription(description);
+        times = new ArrayList<>();
+        times.add("Once day");
+        times.add("Twice day");
+        times.add("3 times in day");
+        times.add("4 times in day");
+        times.add("Once week");
+        times.add("Twice week");
+        times.add("3 times in week");
+        times.add("4 times in week");
 
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-        //showNotif();
-        /*scheduler.scheduleWithFixedDelay(new Runnable() {
-            @Override
-            public void run() {
-                showNotif();
 
-            }
-        }, 3, 3, TimeUnit.SECONDS);*/
+//        binding.cardviewMedicationName.cardviewReminderTimes.imgCardviewReminderTimesShow.
+//                setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if( binding.cardviewMedicationName.cardviewReminderTimes.cardvieReminderTimesGroup.getVisibility()
+//                        == View.VISIBLE){
+//                    TransitionManager.beginDelayedTransition(
+//                            binding.cardviewMedicationName.cardviewReminderTimes
+//                            , new AutoTransition());
+//                    binding.cardviewMedicationName.cardviewMedicationNameGroup.setVisibility(View.GONE);
+//                    binding.cardviewMedicationName.txtMedicationName.setVisibility(View.VISIBLE);
+//                    binding.cardviewMedicationName.imgCardviewMedicationTimes.setImageResource(android.R.drawable.arrow_down_float);
+//                }
+//                else {
+//                    TransitionManager.beginDelayedTransition(binding.cardviewMedicationName.medicationTimesCardview,
+//                            new AutoTransition());
+//                    binding.cardviewMedicationName.txtMedicationName.setVisibility(View.GONE);
+//                    binding.cardviewMedicationName.cardviewMedicationNameGroup.setVisibility(View.VISIBLE);
+//                    binding.cardviewMedicationName.imgCardviewMedicationTimes.setImageResource(android.R.drawable.arrow_up_float);
+//                }
+//            }
+//        });
 
-    }
-         //showAlertDialogButtonClicked();
+//        medication.setName(binding.cardviewMedicationName.edtDrugName.getText().toString());
+//
+//        ArrayAdapter aa = new ArrayAdapter(this,android.R.layout.simple_spinner_item,times);
+//        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        binding.cardviewMedicationName.cardviewReminderTimes.spinner.setAdapter(aa);
+//        binding.cardviewMedicationName.cardviewReminderTimes.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
+//    }
+
 
 //       arrow.setOnClickListener(view -> {
 //            if(hiddenGroup.getVisibility() == View.VISIBLE){
@@ -108,5 +157,5 @@ public class EditDrug extends AppCompatActivity {
         notificationManagerCompat.notify(4, notification.build());
 
     }*/
-
+    }
 }

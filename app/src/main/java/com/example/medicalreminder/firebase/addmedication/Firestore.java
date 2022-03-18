@@ -34,6 +34,7 @@ public class Firestore implements FirestoreInterface{
 
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
     String userID = FirebaseAuth.getInstance().getUid();
+    List<MedicationList> medication = new ArrayList<>();
 
     @Override
     public void addDrugs(MedicationList med) {
@@ -45,22 +46,18 @@ public class Firestore implements FirestoreInterface{
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
-                            Map<String ,Object> doseMap = new HashMap<>();
-                            doseMap.put(med.getDate(),med);
                             firebaseFirestore.
                                     document(userID)
                                     .collection(med.getDate())
                                    .document(med.getList().get(0).getName())
-                                    .set(doseMap);
+                                    .set(med);
                             }
                         else{
-                            Map<String ,Object> doseMap = new HashMap<>();
-                            doseMap.put(med.getDate(),med);
                             firebaseFirestore
                                     .document(userID)
                                     .collection(med.getDate())
                                     .document(med.getList().get(0).getName())
-                                    .set(doseMap);
+                                    .set(med);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -71,7 +68,7 @@ public class Firestore implements FirestoreInterface{
      }
 
     @Override
-    public void getDrugs(String date) {
+    public List<MedicationList> getDrugs(String date) {
         firebaseFirestore.document("mrlHTT3zrgXXiTHPUtvoZr4bt6x2")
                 .collection(date)
                 .get()
@@ -79,20 +76,12 @@ public class Firestore implements FirestoreInterface{
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            Log.i("TAG", "s: " + task.getResult().size());
-                            Map<String, Object> med = document.getData();
-                            Log.i("TAG", "onComplete: " + med.size());
-                            for (Map.Entry<String, Object> entry : med.entrySet()) {
-                                String key = entry.getKey();
-                                Log.i("TAG", "ff: " + key);
-                                Object value = entry.getValue();
-                                Log.i("TAG", "date " + key);
-                                Log.i("TAG", "obj " + value.toString());
-
-                            }
+                            MedicationList medicationList = document.toObject(MedicationList.class);
+                            medication.add(medicationList);
                         }
                     }
                 });
+        return medication;
     }
 
     }

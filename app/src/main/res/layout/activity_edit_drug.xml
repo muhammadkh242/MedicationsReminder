@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EditDrug">
+    tools:context=".eidtmedication.view.EditDrug">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
@@ -62,14 +62,85 @@
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <include layout="@layout/cardview_edit_drug"
-            android:id="@+id/cardview_medicationName"
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/txtmedname"
+            android:text="@string/medication_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/constraint2"
-            app:layout_constraintStart_toStartOf="@id/constraint2">
+            app:layout_constraintStart_toStartOf="@id/constraint2"
+            >
+        </TextView>
+        <EditText
+            android:id="@+id/edtmedname"
+            app:layout_constraintTop_toBottomOf="@id/txtmedname"
+            app:layout_constraintStart_toStartOf="@id/txtmedname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        </include>
+        </EditText>
+        <TextView
+            android:text="@string/duration"
+            android:id="@+id/txtduration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/edtmedname"
+            app:layout_constraintStart_toStartOf="@id/txtmedname"
+            >
 
+        </TextView>
+        <RadioButton
+            android:id="@+id/radioday"
+            app:layout_constraintTop_toBottomOf="@id/txtduration"
+            app:layout_constraintStart_toStartOf="@id/txtduration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </RadioButton>
 
+        <TextView
+            android:id="@+id/txtday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/days"
+            app:layout_constraintTop_toTopOf="@id/radioday"
+            app:layout_constraintStart_toEndOf="@id/radioday"
+            app:layout_constraintTop_toBottomOf="@id/txtduration">
+
+        </TextView>
+
+        <RadioButton
+            android:id="@+id/radioweek"
+            app:layout_constraintTop_toBottomOf="@id/radioday"
+            app:layout_constraintStart_toStartOf="@id/radioday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </RadioButton>
+
+        <TextView
+            android:id="@+id/txtweek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:text="week"
+            app:layout_constraintTop_toTopOf="@id/radioweek"
+            app:layout_constraintStart_toEndOf="@id/radioweek"
+            app:layout_constraintTop_toBottomOf="@id/txtduration">
+
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
+            app:layout_constraintTop_toBottomOf="@id/radioweek"
+            app:layout_constraintStart_toStartOf="@id/txtduration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

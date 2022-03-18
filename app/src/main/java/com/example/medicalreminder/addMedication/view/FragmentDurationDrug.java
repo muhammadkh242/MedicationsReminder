@@ -76,7 +76,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
                 drug.setTimesInDays(medication.getTimesInday());
                 addMedPreI.calListDay(medication);
                 drug.setDays(medication.getDays());
-                addMedPreI.insertDrugDetails(drug);
+                //addMedPreI.insertDrugDetails(drug);
                 //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
                 userMed = new UserMed(medication.getName(), medication.getForm());
                 storeMed(userMed);

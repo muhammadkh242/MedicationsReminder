@@ -37,6 +37,7 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
         this.repo = repo;
     }
 
+
     @Override
     public void getMedHome(String date) {
         LiveData<MedicationList> list = repo.getDrugs(date);
