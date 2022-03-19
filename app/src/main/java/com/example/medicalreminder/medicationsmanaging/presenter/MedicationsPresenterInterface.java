@@ -8,7 +8,10 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
 import java.util.List;
 
 public interface MedicationsPresenterInterface {
+    //remote
     public void getMeds();
+
+    //local
     public void getAllMeds();
 }
 

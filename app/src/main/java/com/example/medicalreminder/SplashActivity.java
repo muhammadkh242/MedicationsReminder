@@ -1,5 +1,6 @@
 package com.example.medicalreminder;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
@@ -12,12 +13,20 @@ import android.util.Log;
 
 import com.example.medicalreminder.addhealthtracker.view.InvitationService;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
+import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
+import com.example.medicalreminder.model.Invitation;
 import com.example.medicalreminder.services.MyWorker;
+import com.example.medicalreminder.services.Notification;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,26 +53,29 @@ public class SplashActivity extends AppCompatActivity {
         }, 3000);
         Log.i(TAG, "onCreate: " + FirebaseAuth.getInstance().getUid());
         //start listening for health tracker invitation
-        Intent intent = new Intent(getApplicationContext(), InvitationService.class);
-        startService(intent);
-//
-        //DatabaseReference db = FirebaseDatabase.getInstance().getReference("request_users");
-        //RequestUser user = new RequestUser(FirebaseAuth.getInstance().getUid(), FirebaseAuth.getInstance().getCurrentUser().getEmail(), "NULL",false);
-        //db.push().setValue(user);
 
-        //test fire store
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        DocumentReference reference = db.collection("Drug").document("5MR2seN1CDl5XK5r6JfE");
+        Intent intent = new Intent(getApplicationContext(), Notification.class);
+        startService(intent);
+
+
+//    Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail()
+//    , "null",false);
 //
-//        reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
+//            db.push().setValue(invitation);
+
+//        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+//        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail())
+//                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//
+//                    Invitation invitation1 =  task.getResult().toObject(Invitation.class);
+//                Log.i(TAG, "onComplete: " + invitation1.isInvitaion());
+//                Log.i(TAG, "onComplete: " + invitation1.getEmail());
 //            }
 //        });
-//
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
-//        db.push().child(FirebaseAuth.getInstance().getUid()).child("attached").push().setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+
+
 
     }
 }

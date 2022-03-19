@@ -14,12 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.MedicationDose;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder>{
-    private List<UserMed> meds = new ArrayList<>();
+    private List<MedicationDose> meds = new ArrayList<>();
     private final Context context;
 
     public SecondAdapter(Context context) {
@@ -31,7 +32,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.second_user_med_row, parent, false);
+        View view = inflater.inflate(R.layout.home_adapter, parent, false);
         SecondAdapter.ViewHolder viewHolder = new SecondAdapter.ViewHolder(view);
 
         return viewHolder;
@@ -39,12 +40,11 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.getMedTxt().setText(meds.get(position).getName());
-        holder.getFormTxt().setText(meds.get(position).getForm());
-        holder.getImageView().setImageResource(R.drawable.pills);
+        holder.getNameTxt().setText(meds.get(position).getName());
+        holder.getTimeTxt().setText(meds.get(position).getHour());
     }
 
-    public void setData(List<UserMed> meds){
+    public void setData(List<MedicationDose> meds){
         this.meds = meds;
         Log.i("TAG", "setData: medlist size : " + this.meds.size());
 
@@ -60,30 +60,29 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
 
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView medTxt;
-        TextView formTxt;
-        ImageView imageView;
-        View medRow;
+        TextView nameTxt;
+        TextView timeTxt;
+        TextView pillTxt;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            medRow = itemView;
-            medTxt = medRow.findViewById(R.id.medName);
-            formTxt = medRow.findViewById(R.id.formTxt);
-            imageView = medRow.findViewById(R.id.image);
+            nameTxt = itemView.findViewById(R.id.name_med_txt);
+            timeTxt = itemView.findViewById(R.id.time_txt_home);
+            pillTxt = itemView.findViewById(R.id.pillsTxt_home);
 
         }
 
-        public TextView getMedTxt() {
-            return medTxt;
+        public TextView getNameTxt() {
+            return nameTxt;
         }
 
-        public TextView getFormTxt() {
-            return formTxt;
+        public TextView getTimeTxt() {
+            return timeTxt;
         }
 
-        public ImageView getImageView() {
-            return imageView;
+        public TextView getPillTxt() {
+            return pillTxt;
         }
     }
 }

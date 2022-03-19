@@ -26,12 +26,13 @@ public class InvitationRepo implements InvitationRepoInterface{
     }
 
     @Override
-    public void accept(String id) {
-        invitationFirebaseSource.accept(id);
+    public void accept() {
+        invitationFirebaseSource.accept();
     }
 
     @Override
-    public void deny(String email) {
+    public void deny() {
+        invitationFirebaseSource.deny();
 
     }
 }

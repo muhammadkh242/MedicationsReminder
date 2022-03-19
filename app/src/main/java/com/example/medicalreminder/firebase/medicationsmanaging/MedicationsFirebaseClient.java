@@ -20,10 +20,14 @@ import java.util.List;
 
 
 public class MedicationsFirebaseClient implements MedicationsFirebaseInterface{
-    List<UserMed> list = new ArrayList<>();
-    MutableLiveData<List<UserMed>> medList = new MutableLiveData<>();
+//    List<UserMed> list = new ArrayList<>();
+
+//    MutableLiveData<List<UserMed>> medList = new MutableLiveData<>();
     @Override
     public MutableLiveData<List<UserMed>> getMeds() {
+        MutableLiveData<List<UserMed>> medList = new MutableLiveData<>();
+        List<UserMed> list = new ArrayList<>();
+
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
         Query query = db.child(FirebaseAuth.getInstance().getUid()).orderByKey();
         query.addValueEventListener(new ValueEventListener() {
@@ -34,14 +38,14 @@ public class MedicationsFirebaseClient implements MedicationsFirebaseInterface{
                     Log.i("TAG", "form: " + userMed.getForm());
                     Log.i("TAG", "name: " + userMed.getName());
                     Log.i("TAG", "___________________________");
-
                     list.add(userMed);
-//                    Log.i("TAG", "onDataChange: " + medList.size());
+                    Log.i("TAG", "onDataChange: list size" + list.size());
 
                 }
                 medList.setValue(list);
-//                activeAdapter.setData(medList);
+
             }
+
 
 
             @Override

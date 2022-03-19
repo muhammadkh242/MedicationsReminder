@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.medicalreminder.model.Invitation;
 import com.example.medicalreminder.model.authentication.User;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class FirebaseClient implements FirebaseSource {
 
@@ -54,6 +57,13 @@ public class FirebaseClient implements FirebaseSource {
                     progressDialog.dismiss();
                     Log.i("TAG", "onComplete: success");
                     delegate.onSuccessResult("success");
+
+
+                    Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                            null, false);
+                    CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+                    reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
+
                     DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
                     db.child(FirebaseAuth.getInstance().getUid()).child("attached").setValue(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                 } else {

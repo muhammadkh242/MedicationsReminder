@@ -14,13 +14,13 @@ public class InvitationPresenter implements InvitationPresenterInterface{
     }
 
     @Override
-    public void accept(String id) {
-        invitationRepo.accept(id);
+    public void accept() {
+        invitationRepo.accept();
 
     }
 
     @Override
     public void deny() {
-
+        invitationRepo.deny();
     }
 }

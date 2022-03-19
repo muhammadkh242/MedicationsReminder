@@ -18,6 +18,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.invitation.view.InvitationActivity;
+import com.example.medicalreminder.model.Invitation;
 import com.example.medicalreminder.model.healthtracker.RequestUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -50,31 +51,36 @@ public class InvitationService extends Service {
                 this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
         );
 
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                readData(notifyPendingIntent);
 
-        readData(notifyPendingIntent);
-
+            }
+        };
+        Thread th = new Thread(r);
+        th.start();
 
         return super.onStartCommand(intent, flags, startId);
     }
 
     //Read Data From Firebase DataBase
     public void readData(PendingIntent intent){
-        Log.i(TAG, "readData: ");
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
-        Query query = db.orderByKey().equalTo(FirebaseAuth.getInstance().getUid());
-
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        Query query = databaseReference.orderByChild("id").equalTo(FirebaseAuth.getInstance().getUid());
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Log.i(TAG, "onDataChange: " + "before if");
-                    if(!(db.child(dataSnapshot.getKey()).child("attached").equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()))){
-                        Log.i(TAG, "onDataChange: inside if");
-                        showNotification(intent);
+                if(snapshot.exists()){
+                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Invitation invitation = dataSnapshot.getValue(Invitation.class);
+                        if(invitation.getId() != "null"){
+                            showNotification(intent);
 
-                    }
-                    else{
-                        Log.i(TAG, "onDataChange: else  no request");
+                        }
+                        else{
+                            Log.i(TAG, "onDataChange: no request");
+                        }
                     }
                 }
             }
@@ -84,35 +90,6 @@ public class InvitationService extends Service {
 
             }
         });
-
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference("request_users");
-//        Query query = db.orderByChild("userID").equalTo(FirebaseAuth.getInstance().getUid());
-//        query.addValueEventListener(new ValueEventListener() {
-//            @RequiresApi(api = Build.VERSION_CODES.S)
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        RequestUser user = dataSnapshot.getValue(RequestUser.class);
-//                        Log.i(TAG, "onDataChange: " + user.isRequest() + " : " + user.getUserID());
-//                        if(user.isRequest() == true){
-//
-//                            showNotification(intent);
-//
-//                        }
-//                        else{
-//                            Log.i(TAG, "onDataChange: no request");
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
 
     }
 
@@ -131,7 +108,7 @@ public class InvitationService extends Service {
         Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Invitation")
-                .setContentText( "invitation to be a HealthTracker")
+                .setContentText( getInviter() + " invite you to be a HealthTracker")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(intent)
                 .setAutoCancel(true).build();
@@ -139,4 +116,25 @@ public class InvitationService extends Service {
         managerCompat.notify(999, notification);
     }
 
+    public String getInviter(){
+        final String[] inviter = {""};
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
+        Query query = db.orderByKey().equalTo(FirebaseAuth.getInstance().getUid());
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    inviter[0] = dataSnapshot.child("inviter").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return inviter[0];
+    }
 }

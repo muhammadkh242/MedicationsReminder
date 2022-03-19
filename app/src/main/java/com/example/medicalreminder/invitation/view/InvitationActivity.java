@@ -60,13 +60,15 @@ public class InvitationActivity extends AppCompatActivity implements InvitationV
                     }
                 });
         builder.show();
-
+    presenter = new InvitationPresenter(InvitationRepo.getInstance(InvitationFirebaseClient.getClient(this),
+            this), this);
 
     }
 
 
     @Override
     public void accept() {
+        presenter.accept();
     }
 
     @Override

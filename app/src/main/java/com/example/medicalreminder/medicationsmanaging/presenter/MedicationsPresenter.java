@@ -13,11 +13,15 @@ public class MedicationsPresenter implements MedicationsPresenterInterface{
         this.viewInterface = viewInterface;
     }
 
+
+    //remote
     @Override
     public void getMeds() {
         viewInterface.showMeds(repo.getMeds());
     }
 
+
+    //room
     @Override
     public void getAllMeds() {
         viewInterface.showAllMeds(repo.getAllMeds());

@@ -6,6 +6,6 @@ import com.example.medicalreminder.model.invitation.InvitationRepoInterface;
 public interface InvitationPresenterInterface {
 
 
-    public void accept(String id);
+    public void accept();
     public void deny();
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +16,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.MedicationList;
+import com.example.medicalreminder.model.seconduser.SecondUserRepo;
+import com.example.medicalreminder.seconduser.presenter.SecondUserPresenter;
 import com.example.medicalreminder.seconduser.presenter.SecondUserPresenterInterface;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,8 +34,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import in.akshit.horizontalcalendar.HorizontalCalendarView;
+import in.akshit.horizontalcalendar.Tools;
 
 public class SecondUserFragment extends Fragment implements SecondUserViewInterface{
 
@@ -37,9 +49,14 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
     List<UserMed> medList = new ArrayList<>();
     SecondAdapter adapter;
     LinearLayoutManager layoutManager;
-    Handler handler;
+    HorizontalCalendarView calendarView;
+
+    Calendar start;
+    Calendar end;
+    ArrayList<String> dates = new ArrayList<>();
 
     SecondUserPresenterInterface presenter;
+    Calendar calendar;
     public SecondUserFragment() {
         // Required empty public constructor
     }
@@ -58,63 +75,51 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
         View view =inflater.inflate(R.layout.fragment_second_user, container, false);
         secondRecycler = view.findViewById(R.id.recycler_second);
         secondRecycler.setHasFixedSize(true);
-
         adapter = new SecondAdapter(getContext());
         layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         secondRecycler.setLayoutManager(layoutManager);
-
         secondRecycler.setAdapter(adapter);
 
+        start = Calendar.getInstance();
+        end = Calendar.getInstance();
+
+        calendarView = view.findViewById(R.id.calendar_second);
+
+        displayCalendar();
+        calendarView.setUpCalendar(start.getTimeInMillis(), end.getTimeInMillis(), dates, new HorizontalCalendarView.OnCalendarListener() {
+            @Override
+            public void onDateSelected(String date) {
+                Log.i("TAG", "onDateSelected: " + date);
+            }
+        });
+
+        presenter = new SecondUserPresenter(this, SecondUserRepo.getRepo(getContext()));
+        //go fetch data
         getMeds();
 
         return view;
     }
 
-    //static data to test
-//    private List<Med> initData(){
-//        medList.add(new Med("one",30,"3 pills left", R.drawable.one));
-//        medList.add(new Med("two",40,"4 pills left", R.drawable.two));
-//        medList.add(new Med("three",50,"5 pills left", R.drawable.three));
-//        medList.add(new Med("four",60,"6 pills left", R.drawable.four));
-//        medList.add(new Med("five",70,"7 pills left", R.drawable.five));
-//        medList.add(new Med("six",80,"8 pills left", R.drawable.six));
-//        return medList;
-//    }
+    private void displayCalendar(){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = new Date();
+        start.add(Calendar.MONTH, -6);
+        end.add(Calendar.MONTH, 6);
+        dates.add(Tools.getFormattedDateToday());
+//        getMed(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
+    }
+
 
     @Override
-    public void showData(List<Med> meds) {
+    public void showData(MutableLiveData<List<MedicationList>> medList) {
+        //this method will be called from presenter
+        //observe data here
+
 
     }
 
-    //test to get data from firebase
     public void getMeds(){
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-        Query query = db.child(FirebaseAuth.getInstance().getUid()).orderByKey();
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    UserMed userMed = dataSnapshot.getValue(UserMed.class);
-                    Log.i("TAG", "form: " + userMed.getForm());
-                    Log.i("TAG", "name: " + userMed.getName());
-                    Log.i("TAG", "___________________________");
-
-                    medList.add(userMed);
-//                    Log.i("TAG", "onDataChange: " + medList.size());
-
-                }
-                Log.i("TAG", "onDataChange: list size : " + medList.size());
-                adapter.setData(medList);
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        presenter.getMeds();
     }
 }

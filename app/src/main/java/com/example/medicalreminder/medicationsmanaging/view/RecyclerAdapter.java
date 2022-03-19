@@ -42,7 +42,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.getMedTxt().setText(meds.get(position).getName());
         holder.getFormTxt().setText(meds.get(position).getForm());
         if(meds.get(position).getForm().equals("pill")){
-            holder.getImageView().setImageResource(R.drawable.pills);
+            holder.getImageView().setImageResource(R.drawable.drug);
 
         }
         else{
@@ -59,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public void setData(List<Drug> meds){
         this.meds = meds;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
