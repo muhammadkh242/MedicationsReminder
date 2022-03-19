@@ -31,12 +31,12 @@
         <activity android:name=".dialogmed.DialogActivity" />
         <activity android:name=".authentication.register.view.RegisterActivity" />
         <activity android:name=".displaymedication.view.DisplayDrugDetails" />
-        <activity android:name=".eidtmedication.view.EditDrug" />
+        <activity android:name=".SplashActivity" />
 
 
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".eidtmedication.view.EditDrug"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

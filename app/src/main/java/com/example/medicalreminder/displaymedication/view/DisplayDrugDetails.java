@@ -1,24 +1,15 @@
 package com.example.medicalreminder.displaymedication.view;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.transition.AutoTransition;
-import android.transition.TransitionManager;
-import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.databinding.ActivityDisplayDrugDetailsBinding;
-import com.example.medicalreminder.databinding.ActivityInvitationBinding;
 import com.example.medicalreminder.eidtmedication.view.EditDrug;
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Drug;
 
 public class DisplayDrugDetails extends AppCompatActivity {
