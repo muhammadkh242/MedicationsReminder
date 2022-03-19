@@ -62,7 +62,9 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
         //bind recyclerview to layout manager
         activeRecycler.setLayoutManager(layoutManager);
         //bind recyclerview to adapter
-        presenter = new MedicationsPresenter(MedicationsRepo.getMedicationsRepo(getContext(), ConcreteLocalSource.getInstance(getContext())), this);
+        presenter = new MedicationsPresenter
+                (MedicationsRepo.getMedicationsRepo(getContext(),
+                        ConcreteLocalSource.getInstance(getContext())), this);
 
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +72,6 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
                 //go to add med
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
-
             }
         });
 

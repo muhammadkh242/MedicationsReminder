@@ -3,6 +3,7 @@ package com.example.medicalreminder.firebase.addmedication;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
@@ -34,7 +35,8 @@ public class Firestore implements FirestoreInterface{
 
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
     String userID = FirebaseAuth.getInstance().getUid();
-    List<MedicationList> medication = new ArrayList<>();
+    List<MedicationList> list = new ArrayList<>();
+    MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
 
     @Override
     public void addDrugs(MedicationList med) {
@@ -68,7 +70,7 @@ public class Firestore implements FirestoreInterface{
      }
 
     @Override
-    public List<MedicationList> getDrugs(String date) {
+    public MutableLiveData<List<MedicationList>> getDrugs(String date) {
         firebaseFirestore.document("mrlHTT3zrgXXiTHPUtvoZr4bt6x2")
                 .collection(date)
                 .get()
@@ -77,8 +79,11 @@ public class Firestore implements FirestoreInterface{
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             MedicationList medicationList = document.toObject(MedicationList.class);
-                            medication.add(medicationList);
+                            Log.i("TAG", "onComplete: " + medicationList.getList().size());
+                            list.add(medicationList);
                         }
+                        medication.setValue(list);
+                        list = new ArrayList<>();
                     }
                 });
         return medication;

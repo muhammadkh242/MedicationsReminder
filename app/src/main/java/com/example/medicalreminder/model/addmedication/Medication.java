@@ -5,10 +5,10 @@ import java.io.Serializable;
 import java.util.List;
 
 
-public class Medication  implements Serializable {
+public class Medication implements Serializable {
 
     private String name;
-    private  String form;
+    private String form;
     private List<String> hours;
     private List<String> days;
     private String firstTimeDose;
@@ -17,11 +17,20 @@ public class Medication  implements Serializable {
     private String everyDayOr;
     private String timesInday;
     private String durationDrug;
+    private String timesInWeeks;
 
-    private static  Medication medication;
+    private static Medication medication;
 
-    private Medication(){
+    private Medication() {
 
+    }
+
+    public String getTimesInWeeks() {
+        return timesInWeeks;
+    }
+
+    public void setTimesInWeeks(String timesInWeeks) {
+        this.timesInWeeks = timesInWeeks;
     }
 
     public String getFirstTimeDose() {
@@ -40,11 +49,11 @@ public class Medication  implements Serializable {
         this.days = days;
     }
 
-    public static  Medication getInstance(){
-        if(medication==null){
+    public static Medication getInstance() {
+        if (medication == null) {
             medication = new Medication();
         }
-        return  medication;
+        return medication;
     }
 
     public String getFirstDateDose() {

@@ -9,6 +9,11 @@ public class MedicationDose {
     public MedicationDose() {
     }
 
+    public MedicationDose(String name, String hour) {
+        this.name = name;
+        this.hour = hour;
+    }
+
     public String getName() {
         return name;
     }

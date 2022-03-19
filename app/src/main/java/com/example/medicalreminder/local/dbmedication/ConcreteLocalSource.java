@@ -1,6 +1,7 @@
 package com.example.medicalreminder.local.dbmedication;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -64,6 +65,7 @@ public class ConcreteLocalSource implements LocalSource{
     }
     @Override
     public LiveData<MedicationList> getDrugs(String date) {
+        Log.i("TAG", "getDrugs: local");
         return medDao.getDrugs(date);
     }
     @Override

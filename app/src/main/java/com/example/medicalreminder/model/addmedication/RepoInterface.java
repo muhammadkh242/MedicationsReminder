@@ -2,6 +2,8 @@ package com.example.medicalreminder.model.addmedication;
 
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
@@ -22,7 +24,7 @@ public interface RepoInterface {
 
     //firestore
     public void sendDrug(MedicationList list);
-    public List<MedicationList> getDurgs(String date);
+    public MutableLiveData<List<MedicationList>> getDurgs(String date);
     //connection Network
     public boolean connection();
 

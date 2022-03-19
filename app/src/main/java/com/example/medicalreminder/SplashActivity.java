@@ -30,13 +30,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        Data data = new Data.Builder().putString("FIRST", "IN").build();
-        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
-                .setInitialDelay(0, TimeUnit.MINUTES)
-                .setInputData(data)
-                .build();
-        WorkManager.getInstance().enqueue(workRequest);
-
         prefsInterface = new SharedPref(this);
         new Handler().postDelayed(new Runnable() {
             @Override

@@ -97,7 +97,8 @@
     <string name="take_as_needed">Take as needed</string>
     <string name="one_day">One daily</string>
     <string name="time">12:00</string>
-    <string name="take">Take 1 Stick(s)</string>
+    <string name="take">Take</string>
+    <string name="takePills">Take 1 Stick(s)</string>
 
     <string name="schedule">Schedule</string>
     <string name="take_schedule">Every day, take for 4 days</string>
@@ -126,4 +127,7 @@
 
     <string name="channel_desc">My Channel Desc</string>
     <string name="create_new_account">Create new account.</string>
+    <string name="skip">Skip</string>
+    <string name="snooze">Snooze</string>
+    <string name="how_many_pill_s_do_you_have_left">how many pill(s) do you have left?</string>
 </resources>

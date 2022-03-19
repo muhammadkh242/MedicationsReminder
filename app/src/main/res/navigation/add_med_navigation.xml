@@ -69,24 +69,9 @@
         >
 
         <action
-            android:id="@+id/chooseDaysAct"
-            app:destination="@id/chooseDays"
-            >
-
-        </action>
-    </fragment>
-
-    <fragment
-        android:name="com.example.medicalreminder.addMedication.view.FragmentChooseDays"
-        android:id="@+id/chooseDays"
-        tools:layout="@layout/choose_days_question_screen"
-        >
-
-        <action
             android:id="@+id/startdateDrugAct"
             app:destination="@id/startdateDrugQue"
             >
-
         </action>
     </fragment>
 

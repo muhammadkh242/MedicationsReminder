@@ -6,15 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".medicationsmanaging.view.MedicationsActivity">
 
-
-    <androidx.fragment.app.FragmentContainerView
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/fragmentContainerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="153dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

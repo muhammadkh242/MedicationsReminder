@@ -22,10 +22,11 @@
             android:exported="false" />
         <activity android:name=".authentication.login.view.LoginActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".medicationsmanaging.view.MedicationsActivity" />
+        <activity android:name=".dialogmed.DialogActivity" />
         <activity android:name=".authentication.register.view.RegisterActivity" />
         <activity android:name=".displaymedication.view.DisplayDrugDetails" />
         <activity android:name=".eidtmedication.view.EditDrug" />
+
 
 
         <activity

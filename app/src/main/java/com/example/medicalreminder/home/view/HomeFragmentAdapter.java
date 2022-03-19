@@ -43,12 +43,9 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(myListData.getHour());
+                listener.onClick(myListData);
             }
         });
-
-
-
     }
 
     @Override

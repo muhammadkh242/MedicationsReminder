@@ -38,7 +38,7 @@
             android:text="@string/edit_drug"
             android:textColor="@color/white"
             app:layout_constraintStart_toEndOf="@id/imagClose"
-            app:layout_constraintTop_toTopOf="@id/imagClose"></TextView>
+            app:layout_constraintTop_toTopOf="@id/imagClose"/>
 
         <TextView
             android:id="@+id/done"
@@ -49,7 +49,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toEndOf="@id/edit_drug"
-            app:layout_constraintTop_toTopOf="@id/edit_drug"></TextView>
+            app:layout_constraintTop_toTopOf="@id/edit_drug"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

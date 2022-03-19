@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.firebase.addmedication.Firestore;
 import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
@@ -66,7 +67,7 @@ public class Repo implements RepoInterface {
         firestoreInterface.addDrugs(list);
     }
     @Override
-    public List<MedicationList> getDurgs(String date) {
+    public MutableLiveData<List<MedicationList>> getDurgs(String date) {
         return firestoreInterface.getDrugs(date);
     }
 

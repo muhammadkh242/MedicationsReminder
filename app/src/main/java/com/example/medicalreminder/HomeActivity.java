@@ -1,11 +1,8 @@
 package com.example.medicalreminder;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import com.example.medicalreminder.databinding.ActivityHomeBinding;
-import com.example.medicalreminder.services.MyWorker;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +10,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 
 public class HomeActivity extends AppCompatActivity {

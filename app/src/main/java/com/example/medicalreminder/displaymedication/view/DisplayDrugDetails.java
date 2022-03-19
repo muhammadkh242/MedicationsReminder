@@ -28,6 +28,10 @@ public class DisplayDrugDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_display_drug_details);
+
+
+
 
         binding = ActivityDisplayDrugDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

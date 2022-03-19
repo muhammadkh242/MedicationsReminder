@@ -96,22 +96,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/note"
-                app:layout_constraintBottom_toTopOf="@id/imgTime"
                 app:layout_constraintEnd_toStartOf="@id/txtDetailsDrug"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/imgSchedule"
                 app:layout_constraintTop_toBottomOf="@id/imgSchedule"/>
-
-            <ImageView
-                android:id="@+id/imgTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/clock"
-                app:layout_constraintEnd_toStartOf="@id/txtTime"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/imgSchedule"
-                app:layout_constraintTop_toBottomOf="@id/imgDetailsDrug"/>
 
             <TextView
                 android:id="@+id/txtSchedule"
@@ -133,27 +121,17 @@
                 app:layout_constraintStart_toStartOf="@id/txtSchedule"
                 app:layout_constraintTop_toTopOf="@id/imgDetailsDrug"/>
 
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edit_drug"
-                app:layout_constraintStart_toEndOf="@id/imgTime"
-                app:layout_constraintStart_toStartOf="@id/txtDetailsDrug"
-                app:layout_constraintTop_toTopOf="@id/imgTime">
-
-            </TextView>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 app:layout_constraintHorizontal_weight="1"
-                android:id="@+id/imgClose"
+                android:id="@+id/imgSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:src="@drawable/close"
                 app:civ_circle_background_color="#B3A3A3"
-                app:layout_constraintStart_toStartOf="@id/txtTime"
-                app:layout_constraintTop_toBottomOf="@id/txtTime">
+                app:layout_constraintStart_toStartOf="@id/txtDetailsDrug"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug">
 
             </de.hdodenhof.circleimageview.CircleImageView>
 
@@ -166,12 +144,12 @@
                 android:layout_marginTop="16dp"
                 android:src="@drawable/check_true"
                 app:civ_circle_background_color="#3B7ADA"
-                app:layout_constraintStart_toEndOf="@id/imgClose"
-                app:layout_constraintTop_toBottomOf="@id/txtTime"/>
+                app:layout_constraintStart_toEndOf="@id/imgSkip"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 app:layout_constraintHorizontal_weight="1"
-                android:id="@+id/imgAlaram"
+                android:id="@+id/imgSnooze"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintWidth_percent="0.1"
@@ -182,23 +160,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.235"
                 app:layout_constraintStart_toEndOf="@id/imgCheckTake"
-                app:layout_constraintTop_toBottomOf="@id/txtTime">
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug">
 
             </de.hdodenhof.circleimageview.CircleImageView>
 
             <TextView
-                android:text="@string/drug_name"
+                android:text="@string/skip"
                 android:id="@+id/txtSkip"
-                app:layout_constraintEnd_toEndOf="@id/imgClose"
-                app:layout_constraintTop_toBottomOf="@id/imgClose"
-                app:layout_constraintStart_toStartOf="@id/imgClose"
+                app:layout_constraintEnd_toEndOf="@id/imgSkip"
+                app:layout_constraintTop_toBottomOf="@id/imgSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 >
 
             </TextView>
             <TextView
-                android:text="@string/drug_name"
+                android:text="@string/take"
                 android:id="@+id/txtTake"
                 app:layout_constraintEnd_toEndOf="@id/imgCheckTake"
                 app:layout_constraintTop_toBottomOf="@id/imgCheckTake"
@@ -208,15 +185,14 @@
                 >
 
             </TextView>
+
             <TextView
-                android:text="@string/drug_name"
                 android:id="@+id/txtReschedule"
-                app:layout_constraintEnd_toEndOf="@id/imgAlaram"
-                app:layout_constraintTop_toBottomOf="@id/imgAlaram"
-                app:layout_constraintStart_toStartOf="@id/imgAlaram"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:text="@string/snooze"
+                app:layout_constraintEnd_toEndOf="@id/imgSnooze"
+                app:layout_constraintTop_toBottomOf="@id/imgSnooze">
 
             </TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>

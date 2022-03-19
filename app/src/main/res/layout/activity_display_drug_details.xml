@@ -67,7 +67,7 @@
             android:src="@drawable/delete"
             app:layout_constraintEnd_toStartOf="@id/imagEditDrug"
             app:layout_constraintStart_toEndOf="@id/txtNameDrug"
-            app:layout_constraintTop_toTopOf="parent"></ImageView>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/imagEditDrug"
@@ -76,7 +76,7 @@
             android:src="@drawable/edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imagDeleteDrug"
-            app:layout_constraintTop_toTopOf="@id/imagDeleteDrug"></ImageView>
+            app:layout_constraintTop_toTopOf="@id/imagDeleteDrug"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,36 +84,12 @@
         android:id="@+id/constraint2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/constraint"
         app:layout_constraintTop_toBottomOf="@id/constraint">
 
-        <TextView
-            android:id="@+id/txtLastTaken"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/drug_lastTaken"
-            android:textColor="#778383"
-            android:textSize="10sp"
-            app:layout_constraintBottom_toTopOf="@id/txtDay"
-            app:layout_constraintStart_toStartOf="@id/constraint2"
-            app:layout_constraintTop_toTopOf="@id/constraint2">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/txtDay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/drug_day"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/txtReminders"
-            app:layout_constraintStart_toStartOf="@id/txtLastTaken"
-            app:layout_constraintTop_toBottomOf="@id/txtLastTaken">
-
-        </TextView>
 
         <TextView
             android:id="@+id/txtReminders"
@@ -121,13 +97,11 @@
             android:layout_height="wrap_content"
             android:text="@string/drug_reminders"
             android:textColor="#778383"
-            android:textSize="10sp"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/txtReminder_details"
             app:layout_constraintStart_toStartOf="@id/constraint2"
-            app:layout_constraintTop_toBottomOf="@id/txtDay">
-
-        </TextView>
-
+            />
         <Button
             android:id="@+id/btnSuspend"
             android:layout_width="79dp"
@@ -148,8 +122,8 @@
             android:layout_height="wrap_content"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="@id/txtLastTaken"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@id/txtReminders"
             app:layout_constraintTop_toBottomOf="@id/btnSuspend">
 
         </TextView>
@@ -160,7 +134,7 @@
             android:layout_height="wrap_content"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toTopOf="@id/txtPrescription"
             app:layout_constraintStart_toStartOf="@id/txtReminder_details"
             app:layout_constraintTop_toBottomOf="@id/txtReminder_details">
@@ -174,7 +148,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/drug_reminders"
             android:textColor="#778383"
-            android:textSize="10sp"
+            android:textStyle="bold"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/txtReminders"
             app:layout_constraintTop_toBottomOf="@id/txtReminder_Time">
 
@@ -200,7 +175,7 @@
             android:layout_height="wrap_content"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="12sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/txtPrescription"
             app:layout_constraintTop_toBottomOf="@id/btnRefill">
