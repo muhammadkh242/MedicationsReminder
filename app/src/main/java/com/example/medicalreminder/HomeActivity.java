@@ -1,8 +1,10 @@
 package com.example.medicalreminder;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.medicalreminder.databinding.ActivityHomeBinding;
+import com.example.medicalreminder.services.Notification;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +38,8 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
+        Intent intent = new Intent(getApplicationContext(), Notification.class);
+        startService(intent);
     }
 
 

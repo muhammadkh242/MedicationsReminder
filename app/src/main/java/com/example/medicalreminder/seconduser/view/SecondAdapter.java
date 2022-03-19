@@ -15,6 +15,7 @@ import com.example.medicalreminder.R;
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
+import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,6 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
         this.meds = meds;
         Log.i("TAG", "setData: medlist size : " + this.meds.size());
 
-        notifyDataSetChanged();
         Log.i("TAG", "setData: " + this.meds.size());
     }
 

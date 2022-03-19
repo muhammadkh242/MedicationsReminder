@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 
@@ -12,8 +13,8 @@ import java.util.List;
 public interface SecondUserFirebaseInterface {
 
     //fire store
-    public  MutableLiveData<List<MedicationList>> getMeds();
+    public  MutableLiveData<List<MedicationList>> getMeds(String date);
 
     //real time
-    public void storeMed(UserMed userMed);
+    public void storeMed(Drug drug);
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,9 +25,9 @@ public class MedicationsFirebaseClient implements MedicationsFirebaseInterface{
 
 //    MutableLiveData<List<UserMed>> medList = new MutableLiveData<>();
     @Override
-    public MutableLiveData<List<UserMed>> getMeds() {
-        MutableLiveData<List<UserMed>> medList = new MutableLiveData<>();
-        List<UserMed> list = new ArrayList<>();
+    public MutableLiveData<List<Drug>> getMeds() {
+        MutableLiveData<List<Drug>> medList = new MutableLiveData<>();
+        List<Drug> list = new ArrayList<>();
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
         Query query = db.child(FirebaseAuth.getInstance().getUid()).orderByKey();
@@ -34,11 +35,9 @@ public class MedicationsFirebaseClient implements MedicationsFirebaseInterface{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    UserMed userMed = dataSnapshot.getValue(UserMed.class);
-                    Log.i("TAG", "form: " + userMed.getForm());
-                    Log.i("TAG", "name: " + userMed.getName());
-                    Log.i("TAG", "___________________________");
-                    list.add(userMed);
+                    Drug drug = dataSnapshot.getValue(Drug.class);
+
+                    list.add(drug);
                     Log.i("TAG", "onDataChange: list size" + list.size());
 
                 }

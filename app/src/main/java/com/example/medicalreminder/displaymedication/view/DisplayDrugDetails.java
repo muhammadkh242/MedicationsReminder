@@ -26,7 +26,7 @@ public class DisplayDrugDetails extends AppCompatActivity {
 
         binding = ActivityDisplayDrugDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        Drug drug = (Drug) getIntent().getSerializableExtra("userMed");
+        Drug drug = (Drug) getIntent().getSerializableExtra("drug");
 
         binding.txtNameDrug.setText(drug.getName());
         binding.txtQuantityDrug.setText(drug.getForm());

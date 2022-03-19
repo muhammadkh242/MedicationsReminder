@@ -175,7 +175,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
             med.setHour(medication.getHours().get(i));
             medDose.add(med);
         }
-        repoInterface.getDurgs(date);
+//        repoInterface.getDurgs(date);
         // list for date , list (name,hour)
         for (int i = 0; i < duration; i++) {
             days.add(date);

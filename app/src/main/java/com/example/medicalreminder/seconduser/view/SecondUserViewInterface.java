@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface SecondUserViewInterface {
     public void showData(MutableLiveData<List<MedicationList>> medList);
-    public void getMeds();
+    public void getMeds(String date);
 
 }

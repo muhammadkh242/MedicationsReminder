@@ -5,7 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +22,11 @@ import android.widget.CalendarView;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
+import com.example.medicalreminder.databinding.FragmentHomeBinding;
+import com.example.medicalreminder.databinding.FragmentSecondUserBinding;
 import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.UserMed;
+import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.seconduser.SecondUserRepo;
 import com.example.medicalreminder.seconduser.presenter.SecondUserPresenter;
@@ -37,6 +42,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -45,18 +52,18 @@ import in.akshit.horizontalcalendar.Tools;
 
 public class SecondUserFragment extends Fragment implements SecondUserViewInterface{
 
-    RecyclerView secondRecycler;
+    FragmentSecondUserBinding binding;
+
     List<UserMed> medList = new ArrayList<>();
     SecondAdapter adapter;
     LinearLayoutManager layoutManager;
-    HorizontalCalendarView calendarView;
 
     Calendar start;
     Calendar end;
     ArrayList<String> dates = new ArrayList<>();
 
     SecondUserPresenterInterface presenter;
-    Calendar calendar;
+
     public SecondUserFragment() {
         // Required empty public constructor
     }
@@ -71,55 +78,73 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = FragmentSecondUserBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        View view =inflater.inflate(R.layout.fragment_second_user, container, false);
-        secondRecycler = view.findViewById(R.id.recycler_second);
-        secondRecycler.setHasFixedSize(true);
-        adapter = new SecondAdapter(getContext());
         layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        secondRecycler.setLayoutManager(layoutManager);
-        secondRecycler.setAdapter(adapter);
+        adapter = new SecondAdapter(getContext());
+
+        presenter = new SecondUserPresenter(this, SecondUserRepo.getRepo(getContext()));
+        binding.recyclerSecond.setLayoutManager(layoutManager);
+        binding.recyclerSecond.setAdapter(adapter);
 
         start = Calendar.getInstance();
         end = Calendar.getInstance();
-
-        calendarView = view.findViewById(R.id.calendar_second);
-
         displayCalendar();
-        calendarView.setUpCalendar(start.getTimeInMillis(), end.getTimeInMillis(), dates, new HorizontalCalendarView.OnCalendarListener() {
+
+
+        binding.calendarSecond.setUpCalendar(start.getTimeInMillis(), end.getTimeInMillis(), dates, new HorizontalCalendarView.OnCalendarListener() {
             @Override
             public void onDateSelected(String date) {
                 Log.i("TAG", "onDateSelected: " + date);
+                getMeds(AddMedicationPresenter.formatCalenderDate(date));
+
             }
         });
 
-        presenter = new SecondUserPresenter(this, SecondUserRepo.getRepo(getContext()));
-        //go fetch data
-        getMeds();
 
-        return view;
+
+        return root;
     }
 
     private void displayCalendar(){
+        Log.i("TAG", "displayCalendar: SECOND ONE");
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
         start.add(Calendar.MONTH, -6);
         end.add(Calendar.MONTH, 6);
         dates.add(Tools.getFormattedDateToday());
-//        getMed(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
+        getMeds(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
     }
 
 
     @Override
     public void showData(MutableLiveData<List<MedicationList>> medList) {
-        //this method will be called from presenter
-        //observe data here
+        medList.observe((LifecycleOwner) getContext(), new Observer<List<MedicationList>>() {
+            @Override
+            public void onChanged(List<MedicationList> medicationLists) {
+                if (medicationLists.size() != 0) {
+                    List<MedicationDose> list = new ArrayList<>();
 
-
+                    MedicationDose dose = new MedicationDose();
+                    List<MedicationDose> doseList = new ArrayList<>();
+                    for (int i = 0; i < medicationLists.size(); i++) {
+                        doseList = medicationLists.get(i).getList();
+                        for (int j = 0; j < doseList.size(); j++) {
+                            dose = doseList.get(j);
+                            list.add(dose);
+                        }
+                    }
+                    Comparator<MedicationDose> doseComparator = Comparator.comparing(MedicationDose::getHour);
+                    Collections.sort(list, doseComparator);
+                    adapter.setData(list);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
-    public void getMeds(){
-        presenter.getMeds();
+    public void getMeds(String date){
+        presenter.getMeds(date);
     }
 }

@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface MedicationsRepoInterface {
 
-    public MutableLiveData<List<UserMed>> getMeds();
+    public MutableLiveData<List<Drug>> getMeds();
     public LiveData<List<Drug>> getAllMeds();
 }

@@ -35,7 +35,7 @@ public class MedicationsRepo implements MedicationsRepoInterface{
     }
 
     @Override
-    public MutableLiveData<List<UserMed>> getMeds() {
+    public MutableLiveData<List<Drug>> getMeds() {
         return firebaseInterface.getMeds();
     }
 

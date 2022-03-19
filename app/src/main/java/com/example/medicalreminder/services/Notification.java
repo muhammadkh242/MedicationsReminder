@@ -70,7 +70,6 @@ public class Notification extends Service {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 if(value.get("invitaion").equals(true)){
-                    Invitation invitation = value.toObject(Invitation.class);
                     String inviter = (String) value.get("email");
                     showNotification(intent, inviter);
 

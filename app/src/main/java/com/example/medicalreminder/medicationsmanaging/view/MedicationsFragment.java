@@ -25,7 +25,7 @@ import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.view.AddMedFragment;
 import com.example.medicalreminder.displaymedication.view.DisplayDrugDetails;
-import com.example.medicalreminder.local.db.ConcreteLocalSource;
+import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenter;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenterInterface;
 import com.example.medicalreminder.model.Med;
@@ -105,69 +105,28 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
             }
         });
 
-        /*if(Repo.getInstance(getContext(),ConcreteLocalSource.getInstance(getContext())).connection()){
+        if(Repo.getInstance(getContext(),ConcreteLocalSource.getInstance(getContext())).connection()){
             getMeds();
 
         }
         else{
             getAllMeds();
-        }*/
-        getAllMeds();
+        }
+
         return view;
     }
 
 
-//
-//    public void getMeds(){
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-//        Query query = db.child(FirebaseAuth.getInstance().getUid()).orderByKey();
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                    UserMed userMed = dataSnapshot.getValue(UserMed.class);
-//                    Log.i("TAG", "form: " + userMed.getForm());
-//                    Log.i("TAG", "name: " + userMed.getName());
-//                    Log.i("TAG", "___________________________");
-//
-//                    medList.add(userMed);
-////                    Log.i("TAG", "onDataChange: " + medList.size());
-//
-//                }
-//                Log.i("TAG", "onDataChange: list size : " + medList.size());
-//                activeAdapter.setData(medList);
-//            }
-//
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//    }
-
-    /*@Override
-    public void onClick(UserMed userMed) {
-        Intent intent = new Intent(getContext(), DisplayDrugDetails.class);
-        intent.putExtra("userMed", (Serializable) userMed);
-        startActivity(intent);
-    }*/
-
-    /*@Override
-    public void showMeds(MutableLiveData<List<UserMed>> meds) {
-//        Log.i("TAG", "showMeds: " + meds.size());
-        meds.observe((LifecycleOwner) getContext(), new Observer<List<UserMed>>() {
+    //FROM REMOTE
+    @Override
+    public void showMeds(MutableLiveData<List<Drug>> meds) {
+        meds.observe((LifecycleOwner) getContext(), new Observer<List<Drug>>() {
             @Override
-            public void onChanged(List<UserMed> userMeds) {
-                activeAdapter.setData(userMeds);
+            public void onChanged(List<Drug> drugs) {
+                activeAdapter.setData(drugs);
                 activeRecycler.setAdapter(activeAdapter);
             }
         });
-    }*/
-
-    @Override
-    public void showMeds(MutableLiveData<List<UserMed>> meds) {
 
     }
 
@@ -176,6 +135,7 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
         presenter.getMeds();
     }
 
+    //FROM ROOM
     @Override
     public void showAllMeds(LiveData<List<Drug>> list) {
         list.observe((LifecycleOwner) getContext(), new Observer<List<Drug>>() {
@@ -183,7 +143,6 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
             public void onChanged(List<Drug> drugs) {
                 activeAdapter.setData(drugs);
                 activeRecycler.setAdapter(activeAdapter);
-
             }
         });
     }
@@ -197,7 +156,7 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
     @Override
     public void onClick(Drug drug) {
         Intent intent = new Intent(getContext(), DisplayDrugDetails.class);
-        intent.putExtra("userMed", (Serializable) drug);
+        intent.putExtra("drug", (Serializable) drug);
         startActivity(intent);
     }
 }

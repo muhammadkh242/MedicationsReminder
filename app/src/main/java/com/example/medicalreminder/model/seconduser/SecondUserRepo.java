@@ -33,7 +33,7 @@ public class SecondUserRepo implements SecondUserRepoInterface{
 
 
     @Override
-    public MutableLiveData<List<MedicationList>> getMeds() {
-        return firebaseInterface.getMeds();
+    public MutableLiveData<List<MedicationList>> getMeds(String date) {
+        return firebaseInterface.getMeds(date);
     }
 }

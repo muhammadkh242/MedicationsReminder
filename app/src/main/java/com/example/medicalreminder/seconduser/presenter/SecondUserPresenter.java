@@ -15,8 +15,8 @@ public class SecondUserPresenter implements SecondUserPresenterInterface{
     }
 
     @Override
-    public void getMeds() {
-        viewInterface.showData(repoInterface.getMeds());
+    public void getMeds(String date) {
+        viewInterface.showData(repoInterface.getMeds(date));
 
     }
 }

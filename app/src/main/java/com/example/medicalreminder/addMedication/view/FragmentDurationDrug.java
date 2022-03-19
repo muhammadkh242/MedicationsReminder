@@ -76,16 +76,15 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
                 drug.setTimesInDays(medication.getTimesInday());
                 addMedPreI.calListDay(medication);
                 drug.setDays(medication.getDays());
-                //addMedPreI.insertDrugDetails(drug);
+                addMedPreI.insertDrugDetails(drug);
                 //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
-                userMed = new UserMed(medication.getName(), medication.getForm());
-                storeMed(userMed);
+                storeMed(drug);
             }
         });
 
         return view;
-    }
 
+    }
     @Override
     public void onClick(String txt) {
      medication.setDurationDrug(txt);
@@ -101,8 +100,8 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
 
     }
     //_______KHOLIF METHOD TO STORE MED DATA IN REALTIMA DB FIREBASE____
-    public void storeMed(UserMed userMed){
-        userFirebaseClient.storeMed(userMed);
+    public void storeMed(Drug drug){
+        userFirebaseClient.storeMed(drug);
     }
 }
 
