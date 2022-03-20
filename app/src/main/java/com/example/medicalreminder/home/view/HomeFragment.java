@@ -18,6 +18,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
@@ -25,11 +27,14 @@ import com.example.medicalreminder.databinding.FragmentHomeBinding;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenter;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenterInterface;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.addmedication.Repo;
 import com.example.medicalreminder.model.addmedication.RepoInterface;
+import com.example.medicalreminder.model.home.RepoHome;
 import com.example.medicalreminder.model.meddialog.RepoDialog;
+import com.example.medicalreminder.services.MyNewWorker;
 import com.example.medicalreminder.services.MyWorker;
 
 import java.text.ParseException;
@@ -54,6 +59,7 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
     private HomeFragmentPresenterInterface presenter;
     private Calendar startTime = Calendar.getInstance();
     private Calendar endTime = Calendar.getInstance();
+    private AlertDialog dialog;
     private ArrayList datesToBeColored = new ArrayList();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -66,7 +72,9 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
         adapter = new HomeFragmentAdapter(getContext(), this);
         presenter = new HomeFragmentPresenter
                 (getContext(), this, Repo.getInstance(getContext(),
-                        ConcreteLocalSource.getInstance(getContext())), RepoDialog.getInstance(getContext()));
+                        ConcreteLocalSource.getInstance(getContext())),
+                        RepoDialog.getInstance(getContext()),
+                        RepoHome.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
         binding.recycleViewHome.setLayoutManager(manager);
         binding.recycleViewHome.setAdapter(adapter);
 
@@ -82,13 +90,22 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
                         getMed(AddMedicationPresenter.formatCalenderDate(date));
                     }
                 });
+        OneTimeWorkRequest newRequest = new OneTimeWorkRequest.Builder(MyNewWorker.class)
+                .setInitialDelay(10, TimeUnit.SECONDS)
+                .build();
+        WorkManager.getInstance(getContext()).enqueue(newRequest);
+        OneTimeWorkRequest newRequest1 = new OneTimeWorkRequest.Builder(MyNewWorker.class)
+                .setInitialDelay(20, TimeUnit.SECONDS)
+                .build();
+        WorkManager.getInstance(getContext()).enqueue(newRequest1);
+
         return root;
     }
 
     private void displayCalendar() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
-        startTime.add(Calendar.MONTH, -6);
+        startTime.add(Calendar.MONTH, -1);
         endTime.add(Calendar.MONTH, 6);
         datesToBeColored.add(Tools.getFormattedDateToday());
         getMed(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
@@ -151,21 +168,23 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
         });
     }
 
-
     @Override
     public void getMed(String date) {
         presenter.getMedHome(date);
     }
 
     @Override
+    public void getDrugRealTime(String name) {
+        presenter.getDrugRealTime(name);
+    }
+    @Override
     public void onClick(MedicationDose dose) {
-        //showAlertDialogButtonClicked(dose);
+        showAlertDialogButtonClicked(dose);
     }
 
     public void showAlertDialogButtonClicked(MedicationDose dose) {
         AlertDialog.Builder builder
                 = new AlertDialog.Builder(getContext());
-
         // set the custom layout
         final View customLayout
                 = getLayoutInflater()
@@ -186,12 +205,15 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
                 Log.i("TAG", "onClick: ");
             }
         });
-        ImageView imgTake = customLayout.findViewById(R.id.imgSchedule);
+        ImageView imgTake = customLayout.findViewById(R.id.imgCheckTake);
         imgTake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Take", Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onClick: ");
+                getDrugRealTime(dose.getName());
+                dialog.cancel();
+
             }
         });
         ImageView imgSnooze = customLayout.findViewById(R.id.imgSnooze);
@@ -202,8 +224,8 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
                 Log.i("TAG", "onClick: ");
             }
         });
-        AlertDialog dialog
-                = builder.create();
+        dialog = builder.create();
+
         dialog.show();
     }
 }

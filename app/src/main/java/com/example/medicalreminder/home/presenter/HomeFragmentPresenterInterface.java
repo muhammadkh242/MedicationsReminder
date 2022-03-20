@@ -1,10 +1,13 @@
 package com.example.medicalreminder.home.presenter;
 
-import androidx.lifecycle.LiveData;
 
-import com.example.medicalreminder.model.addmedication.MedicationList;
+import com.example.medicalreminder.model.addmedication.Drug;
 
 public interface HomeFragmentPresenterInterface {
 
     public void getMedHome(String date);
+
+    //realTime
+    public void getDrugRealTime(String name);
+    public void updateDrugRealTime(Drug drug);
 }

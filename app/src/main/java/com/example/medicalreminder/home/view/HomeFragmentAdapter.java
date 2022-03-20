@@ -39,7 +39,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
         MedicationDose myListData = mList.get(position);
         holder.nameTxt.setText(myListData.getName());
         holder.timeTxt.setText(myListData.getHour());
-        //holder.takeTxt.setText("Take " + myListData.getPills() + " Pill");
+        holder.takeTxt.setText("Take (1) Pill");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

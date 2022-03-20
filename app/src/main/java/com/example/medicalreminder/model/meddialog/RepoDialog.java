@@ -58,22 +58,19 @@ public class RepoDialog implements RepoDialogInterface {
                         Log.i("TAG", "onChanged: " +
                                 medicationList.getList().get(i).getHour() + " " +
                                 medicationList.getList().get(i).getName() + " ");
-                       // delay = calcDelay(medicationList.getList().get(i).getHour());
+                        delay = calcDelay(medicationList.getList().get(i).getHour());
                         Data data = new Data.Builder().putString("FIRST",
                                 String.valueOf(medicationList.getList().get(i).getName())).build();
-//                        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
-//                                .setInitialDelay(delay, TimeUnit.MINUTES)
-//                                .setInputData(data)
-//                                .build();
-//                        requests.add(workRequest);
+                        OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class)
+                                .setInitialDelay(delay, TimeUnit.MINUTES)
+                                .setInputData(data)
+                                .build();
+                        requests.add(workRequest);
                     }
                     Log.i("TAG", "onChanged: listDB" + medicationList.getList().size());
                     Log.i("TAG", "onChanged: listWork" + requests.size());
-//                    WorkManager.getInstance().enqueue(requests);
-                    OneTimeWorkRequest newRequest = new OneTimeWorkRequest.Builder(MyNewWorker.class)
-                            .setInitialDelay(10, TimeUnit.SECONDS)
-                            .build();
-                    WorkManager.getInstance(context).enqueue(newRequest);
+                    WorkManager.getInstance().enqueue(requests);
+
                 }
             }
         });

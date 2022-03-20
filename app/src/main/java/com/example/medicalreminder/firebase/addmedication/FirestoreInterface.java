@@ -3,6 +3,7 @@ package com.example.medicalreminder.firebase.addmedication;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 
@@ -15,7 +16,11 @@ public interface FirestoreInterface {
     public MutableLiveData<List<MedicationList>> getDrugs(String date);
     public void deleteDrugFireStore(List<String> days, Medication medication);
 
+    //realTime
     public List<String> getDrugsDaysRealtime(String name);
     public void deleteDrugRealtime(String date);
+
+    public Drug getDataRealTime(String name);
+    public void updateRealTime(Drug drug);
 
 }

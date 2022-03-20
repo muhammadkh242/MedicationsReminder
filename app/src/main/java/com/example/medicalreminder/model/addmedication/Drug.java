@@ -23,11 +23,20 @@ public class Drug  implements Serializable {
     private int refill;
     private String timesInDays;
     private String durationDrug;
+    private String statusDrug;
     @TypeConverters(DataBaseConvert.class)
     private List<String> days;
 
 
     public Drug() {
+    }
+
+    public String getStatusDrug() {
+        return statusDrug;
+    }
+
+    public void setStatusDrug(String statusDrug) {
+        this.statusDrug = statusDrug;
     }
 
     @NonNull

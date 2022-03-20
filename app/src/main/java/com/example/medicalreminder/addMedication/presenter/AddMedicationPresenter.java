@@ -1,13 +1,7 @@
 package com.example.medicalreminder.addMedication.presenter;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
@@ -15,18 +9,12 @@ import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.model.addmedication.RepoInterface;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+
 
 public class AddMedicationPresenter implements AddMedicationPresenterInterface {
 
@@ -51,6 +39,7 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
     //insert room drug
     @Override
     public void insertDrugDetails(Drug drug) {
+        Log.i("TAG", "insertDrugDetails: ");
         repoInterface.insertDrugDetails(drug);
     }
     public int getAnswer(Medication medication) {
@@ -164,10 +153,9 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
             days.add(date);
             if (repoInterface.connection()) {
                 repoInterface.sendDrug(new MedicationList(date, medDose));
-                //repoInterface.addDrug(new MedicationList(date,medDose));
-            } else {
                 repoInterface.addDrug(new MedicationList(date,medDose));
             }
+//            repoInterface.addDrug(new MedicationList(date, medDose));
             date = incrementCalenderDate(date);
         }
         medication.setDays(days);

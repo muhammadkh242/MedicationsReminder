@@ -54,7 +54,7 @@
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/menu/spinner.xml" value="0.20416666666666666" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_display_drug_details.xml" value="0.3402777777777778" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_edit_drug.xml" value="0.1453804347826087" />
-        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_home.xml" value="0.18" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_invitation.xml" value="0.1" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/cardview_instructions.xml" value="0.20416666666666666" />
@@ -77,6 +77,7 @@
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/sisthquestion_screen.xml" value="0.20416666666666666" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/layout/startdate_drug_question_screen.xml" value="0.14266304347826086" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/ITI/ITI_labs/Android/MedicatalReminder/app/src/main/res/menu/home.xml" value="0.20416666666666666" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/drawable-mdpi/ic_baseline_person_add_24.xml" value="0.1195" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/drawable/top_corner_card.xml" value="0.1195" />
         <entry key="..\:/ITI/ITI_labs/Android/MedicationsReminder/app/src/main/res/layout/activity_home.xml" value="0.1" />

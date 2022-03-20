@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Drug;
 
 import java.util.ArrayList;

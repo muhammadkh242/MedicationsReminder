@@ -3,9 +3,7 @@ package com.example.medicalreminder.medicationsmanaging.view;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
 

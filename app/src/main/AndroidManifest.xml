@@ -6,6 +6,8 @@
     package="com.example.medicalreminder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:allowBackup="false"
@@ -15,10 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder"
         tools:replace="android:allowBackup">
-<!--        <service-->
-<!--            android:name=".services.Notification"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"></service>-->
+
+        <service
+            android:name=".services.Notification"
+            android:enabled="true"
+            android:exported="true"/>
+
+
+        <receiver
+            android:name=".services.MyReceiver"
+            android:enabled="true"
+            android:exported="true"/>
 
         <activity
             android:name=".seconduser.view.SecondUserActivity"
@@ -28,7 +37,8 @@
             android:exported="false" />
         <activity android:name=".authentication.login.view.LoginActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".dialogmed.DialogActivity" />
+        <activity android:name=".dialogmed.DialogActivity"
+            android:theme="@style/TransparentCompat"/>
         <activity android:name=".authentication.register.view.RegisterActivity" />
         <activity android:name=".displaymedication.view.DisplayDrugDetails" />
         <activity android:name=".eidtmedication.view.EditDrug" />

@@ -43,6 +43,8 @@ public class LoginPresenter implements LoginPresenterInterface, FirebaseDelegate
     public void onSuccessResult(String success) {
         Toast.makeText(context, success, Toast.LENGTH_SHORT).show();
         Log.i("TAG", "onFailureResult: " + success);
-        context.startActivity(new Intent(context, HomeActivity.class));
+        Intent intent = new Intent(context, HomeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
     }
 }

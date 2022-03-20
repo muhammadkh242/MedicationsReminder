@@ -62,4 +62,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
     public void saveUserData(String email, String password) {
             presenterInt.checkDataReg(email, password);
     }
+
+
 }

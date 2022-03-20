@@ -15,7 +15,13 @@ import com.example.medicalreminder.model.addmedication.Repo;
 import com.example.medicalreminder.model.meddialog.RepoDialog;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public class MyNewWorker extends Worker {
     public MyNewWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
@@ -34,9 +40,38 @@ public class MyNewWorker extends Worker {
         LiveData<MedicationList> list = Repo.getInstance
                 (getApplicationContext(),
                         ConcreteLocalSource.getInstance(getApplicationContext())).getDrugs(newDate);
-        Log.i("TAG", "doWork: " + list.getValue().getDate());
-        Log.i("TAG", "doWork: list"  );
-        RepoDialog.getInstance(getApplicationContext()).calcWork(list);
+        if(list.getValue() != null) {
+            Log.i("TAG", "doWork: if");
+           Observable.fromIterable(Arrays.asList(list))
+                   .observeOn(AndroidSchedulers.mainThread())
+                   .subscribe(new Observer<LiveData<MedicationList>>() {
+                       @Override
+                       public void onSubscribe(@NonNull Disposable d) {
+
+                       }
+
+                       @Override
+                       public void onNext(@NonNull LiveData<MedicationList> listLiveData) {
+                           if(listLiveData != null){
+                               Log.i("TAG", "onNext: " + listLiveData.getValue().getList().size());
+                               RepoDialog.getInstance(getApplicationContext()).calcWork(list);
+                           }
+
+                       }
+
+                       @Override
+                       public void onError(@io.reactivex.rxjava3.annotations.NonNull Throwable e) {
+
+                       }
+
+                       @Override
+                       public void onComplete() {
+
+                       }
+                   });
+       }else{
+           Log.i("TAG", "doWork: else" );
+       }
         return Result.success();
     }
 

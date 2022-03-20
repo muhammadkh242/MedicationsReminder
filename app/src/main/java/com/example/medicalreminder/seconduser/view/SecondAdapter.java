@@ -5,17 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.model.Med;
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
-import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,9 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.medicalreminder.firebase.medicationsmanaging.MedicationsFirebaseClient;
 import com.example.medicalreminder.firebase.medicationsmanaging.MedicationsFirebaseInterface;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
 

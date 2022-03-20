@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseClient;
 import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseInterface;
-import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;

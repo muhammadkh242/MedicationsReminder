@@ -18,7 +18,6 @@ import com.example.medicalreminder.R;
 import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseClient;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
-import com.example.medicalreminder.model.UserMed;
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.Repo;
@@ -39,7 +38,6 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
 
     //_______KHOLIF REFERENCEs TO STORE MED DATA IN REALTIMA DB FIREBASE____
     SecondUserFirebaseClient userFirebaseClient = new SecondUserFirebaseClient();
-    UserMed userMed;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,8 +72,10 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
                 drug.setForm(medication.getForm());
                 drug.setDurationDrug(medication.getDurationDrug());
                 drug.setTimesInDays(medication.getTimesInday());
+                drug.setStatusDrug("no");
                 addMedPreI.calDuration(medication);
                 drug.setDays(medication.getDays());
+                addMedPreI.insertDrugDetails(drug);
                 //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
                 storeMed(drug);
             }

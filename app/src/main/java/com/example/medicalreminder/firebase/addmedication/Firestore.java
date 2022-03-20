@@ -5,12 +5,10 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.medicalreminder.model.Med;
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.model.healthtracker.RequestUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,31 +21,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Firestore implements FirestoreInterface {
 
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
-    String userID = FirebaseAuth.getInstance().getUid();
     List<MedicationList> list = new ArrayList<>();
     List<String> days = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
     String userId = FirebaseAuth.getInstance().getUid();
+    Drug drug = new Drug();
 
     @Override
     public void addDrugs(MedicationList med) {
@@ -114,7 +102,7 @@ public class Firestore implements FirestoreInterface {
                     });
         }
 
-        for(int i =0 ; i<medication.getDays().size(); i++){
+        for (int i = 0; i < medication.getDays().size(); i++) {
             MedicationList medicationList = new MedicationList();
             List<MedicationDose> medicationDoses = new ArrayList<>();
             for (int j = 0; j < medication.getHours().size(); j++) {
@@ -154,6 +142,7 @@ public class Firestore implements FirestoreInterface {
         });
         return days;
     }
+
     public void deleteDrugRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds");
         reference.child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2").get()
@@ -169,5 +158,46 @@ public class Firestore implements FirestoreInterface {
                         }
                     }
                 });
+    }
+
+    @Override
+    public Drug getDataRealTime(String name) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
+                .child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2");
+        Query query = reference.orderByChild("name").equalTo(name);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    drug = dataSnapshot.getValue(Drug.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return drug;
+    }
+
+    @Override
+    public void updateRealTime(Drug drug) {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
+                .child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2");
+        Query query = reference.orderByChild("name").equalTo(drug.getName());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    Drug drug1 = dataSnapshot.getValue(Drug.class);
+                    drug1 = drug;
+                    reference.child(dataSnapshot.getKey())
+                            .setValue(drug1);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }

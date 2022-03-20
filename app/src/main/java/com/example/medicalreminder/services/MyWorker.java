@@ -26,11 +26,6 @@ public class MyWorker extends Worker{
     public Result doWork() {
         Data inputData = getInputData();
        startBroadCast(inputData.getString("DETAIL"));
-//        if(!inputData.getString("FIRST").equals("IN") || !inputData.getString("HOUR").equals("")){
-//            Log.i("TAG", "doWork: "+ inputData.getString("FIRST"));
-//            Log.i("TAG", "doWork: "+ inputData.getString("HOUR"));
-//            startBroadCast(inputData.getStringArray("FIRST"));
-//        }
         Log.i("TAG", "doWork: ");
         return Result.success();
     }
