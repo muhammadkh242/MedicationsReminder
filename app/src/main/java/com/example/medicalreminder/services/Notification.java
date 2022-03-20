@@ -35,7 +35,6 @@ public class Notification extends Service {
     public static  final String CHANNEL_ID = "my_id";
 
 
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -51,9 +50,6 @@ public class Notification extends Service {
 
         listen(notifyPendingIntent);
 
-
-
-
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -65,7 +61,6 @@ public class Notification extends Service {
     public void listen(PendingIntent intent){
         Log.i("TAG", "listen: ");
         CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
-
         reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -76,7 +71,6 @@ public class Notification extends Service {
                 }
             }
         });
-
     }
 
     public void showNotification(PendingIntent intent, String inviter){

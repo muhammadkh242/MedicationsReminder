@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder"
         tools:replace="android:allowBackup">
-        <service
-            android:name=".services.Notification"
-            android:enabled="true"
-            android:exported="true"></service>
+<!--        <service-->
+<!--            android:name=".services.Notification"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"></service>-->
 
         <activity
             android:name=".seconduser.view.SecondUserActivity"

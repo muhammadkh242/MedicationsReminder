@@ -11,7 +11,6 @@ import java.util.List;
 public class DataBaseConvert implements Serializable {
 
         static Gson gson = new Gson();
-
         //List MedicationDose
         @androidx.room.TypeConverter
         public  List<MedicationDose> stringMedToObjectList(String data) {
@@ -24,7 +23,6 @@ public class DataBaseConvert implements Serializable {
 
             return gson.fromJson(data, listType);
         }
-
         @androidx.room.TypeConverter
         public  String objectMedListToString(List<MedicationDose> data) {
             if (data == null) {
@@ -80,7 +78,7 @@ public class DataBaseConvert implements Serializable {
             return (null);
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<List<MedicationDose>>() {
+        Type type = new TypeToken<List<Drug>>() {
         }.getType();
         String json = gson.toJson(data, type);
         return json;
@@ -107,7 +105,7 @@ public class DataBaseConvert implements Serializable {
             return (null);
         }
         Gson gson = new Gson();
-        Type type = new TypeToken<String>() {
+        Type type = new TypeToken<List<String>>() {
         }.getType();
         String json = gson.toJson(data, type);
         return json;

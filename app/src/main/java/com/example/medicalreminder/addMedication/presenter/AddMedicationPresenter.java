@@ -48,13 +48,11 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
 
     }
 
-
     //insert room drug
     @Override
     public void insertDrugDetails(Drug drug) {
         repoInterface.insertDrugDetails(drug);
     }
-
     public int getAnswer(Medication medication) {
         this.medication = medication;
         int answer = 0;
@@ -87,27 +85,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
                 break;
         }
     }
-
-    //    public  void calListWeeks(Medication medication){
-//        this.medication = medication;
-//        String timeWeek = medication.getTimesInWeeks();
-//        List<String> hours = new ArrayList<>();
-//        switch (timeWeek){
-//            case "Once week":
-//                hours.add(medication.getFirstTimeDose());
-//                medication.setHours(hours);
-//                break;
-//            case "Twice week":
-//                addMedicationPresenter.setWeeks(  );
-//                break;
-//            case "3 times in week":
-//                addMedicationPresenter.setWeeks(  );
-//                break;
-//            case "4 times in week":
-//                addMedicationPresenter.setWeeks(  );
-//                break;
-//        }
-//    }
     private void setListHour(int times, int eachHour) {
         List<String> hours = new ArrayList<>();
         medication = Medication.getInstance();
@@ -128,37 +105,50 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
         }
         medication.setHours(hours);
     }
-
-    public void calListDay(Medication medication) {
+    public void calDuration(Medication medication) {
         this.medication = medication;
         String duration = medication.getDurationDrug();
         switch (duration) {
             case "30 days":
-                addMedicationPresenter.setDays(30);
+                addMedicationPresenter.days(30);
                 break;
             case "1 week":
-                addMedicationPresenter.setDays(7);
+                addMedicationPresenter.days(7);
                 break;
             case "10 days":
-                addMedicationPresenter.setDays(10);
+                addMedicationPresenter.days(10);
                 break;
             case "5 days":
-                addMedicationPresenter.setDays(5);
+                addMedicationPresenter.days(5);
                 break;
         }
     }
 
-
-    private void setDays(int duration) {
-        medication = Medication.getInstance();
-        String firstDate = medication.getFirstDateDose();
-        days(firstDate, duration);
+    //times in week
+    public  void calListWeeks(Medication medication){
+        String timeWeek = medication.getTimesInWeeks();
+        List<String> hours = new ArrayList<>();
+        switch (timeWeek){
+            case "Once week":
+                hours.add(medication.getFirstTimeDose());
+                medication.setHours(hours);
+                break;
+            case "Twice week":
+                addMedicationPresenter.dayOfWeeks( 2);
+                break;
+            case "3 times in week":
+                addMedicationPresenter.dayOfWeeks( 3 );
+                break;
+            case "4 times in week":
+                addMedicationPresenter.dayOfWeeks( 4 );
+                break;
+        }
     }
-
-    public void days(String firstDate, int duration) {
+    public void days(int duration) {
+        medication = Medication.getInstance();
+        String date = medication.getFirstDateDose();
         List<String> days = new ArrayList<>();
         List<MedicationDose> medDose = new ArrayList<>();
-        String date = firstDate;
         date = formatCalenderDate(date);
 
         // list for name , hour
@@ -168,50 +158,26 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
             med.setHour(medication.getHours().get(i));
             medDose.add(med);
         }
-        //repoInterface.getDurgs(date);
-        for (int i = 0; i < medication.getHours().size(); i++) {
-            MedicationDose med = new MedicationDose();
-            med.setName(medication.getName());
-            med.setHour(medication.getHours().get(i));
-            medDose.add(med);
-        }
-//        repoInterface.getDurgs(date);
+
         // list for date , list (name,hour)
         for (int i = 0; i < duration; i++) {
             days.add(date);
             if (repoInterface.connection()) {
-                //repoInterface.sendDrug(new MedicationList(date, medDose));
-            } else {
+                repoInterface.sendDrug(new MedicationList(date, medDose));
                 //repoInterface.addDrug(new MedicationList(date,medDose));
-            }
-            repoInterface.addDrug(new MedicationList(date, medDose));
-            date = incrementCalenderDate(date);
-        }
-        medication.setDays(days);
-        for (int i = 0; i < duration; i++) {
-            days.add(date);
-            if (repoInterface.connection()) {
-                //repoInterface.sendDrug(new MedicationList(date, medDose));
             } else {
-                //repoInterface.addDrug(new MedicationList(date,medDose));
+                repoInterface.addDrug(new MedicationList(date,medDose));
             }
-            //repoInterface.sendDrug(new MedicationList(date, medDose));
             date = incrementCalenderDate(date);
         }
         medication.setDays(days);
 
     }
-
-    private void setWeeks(int duration, int noDays) {
+    public void dayOfWeeks( int times) {
         medication = Medication.getInstance();
-        String firstDate = medication.getFirstDateDose();
-        dayOfWeeks(firstDate, duration, noDays);
-    }
-
-    public void dayOfWeeks(String firstDate, int duration, int noDays) {
+        String date = medication.getFirstDateDose();
         List<String> weeks = new ArrayList<>();
         List<MedicationDose> medDose = new ArrayList<>();
-        String date = firstDate;
         date = formatCalenderDate(date);
 
         // list for name , hour
@@ -221,20 +187,18 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
             med.setHour(medication.getHours().get(i));
             medDose.add(med);
         }
-        //repoInterface.getDurgs(date);
         // list for date , list (name,hour)
-        for (int i = 0; i < duration; i++) {
+        for (int i = 0; i < Integer.valueOf(medication.getDurationDrug()); i++) {
             weeks.add(date);
             if (repoInterface.connection()) {
                 //repoInterface.sendDrug(new MedicationList(date, medDose));
             } else {
                 //repoInterface.addDrug(new MedicationList(date,medDose));
             }
-            repoInterface.addDrug(new MedicationList(date, medDose));
+            //repoInterface.addDrug(new MedicationList(date, medDose));
             date = incrementCalenderDate(date);
         }
         medication.setDays(weeks);
-
     }
 
     public static String formatCalenderDate(String date) {
@@ -248,7 +212,6 @@ public class AddMedicationPresenter implements AddMedicationPresenterInterface {
         }
         return date;
     }
-
     public static String incrementCalenderDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();

@@ -18,13 +18,11 @@ public interface RepoInterface {
     public LiveData<MedicationList> getDrugs(String date);
     public  LiveData<List<Drug>>getAllDrugDetails();
 
-
-
-
-
     //firestore
     public void sendDrug(MedicationList list);
     public MutableLiveData<List<MedicationList>> getDurgs(String date);
+
+
     //connection Network
     public boolean connection();
 

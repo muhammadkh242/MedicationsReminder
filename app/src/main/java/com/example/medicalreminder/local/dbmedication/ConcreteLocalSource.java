@@ -37,7 +37,6 @@ public class ConcreteLocalSource implements LocalSource{
     }
 
 
-
     //medication
     @Override
     public void addDrug(MedicationList medList ) {

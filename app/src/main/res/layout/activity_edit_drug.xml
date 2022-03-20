@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@id/txtduration">
 
             <RadioButton
-                android:id="@+id/radioMale"
+                android:id="@+id/radioDay"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -106,7 +106,7 @@
                 android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/radioFemale"
+                android:id="@+id/radioWeek"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:checked="false"

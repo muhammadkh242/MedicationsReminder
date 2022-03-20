@@ -74,7 +74,7 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
     @Override
     public void storeMed(Drug drug) {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-        db.child(FirebaseAuth.getInstance().getUid()).push().setValue(drug);
+        db.child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2").push().setValue(drug);
 
     }
 
