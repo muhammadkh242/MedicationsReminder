@@ -1,6 +1,8 @@
 package com.example.medicalreminder.model.seconduser;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -33,6 +35,10 @@ public class SecondUserRepo implements SecondUserRepoInterface{
 
     @Override
     public MutableLiveData<List<MedicationList>> getMeds(String date) {
+        if(firebaseInterface.getMeds(date) == null){
+            Log.i("TAG", "getMeds: no tracked users");
+            Toast.makeText(context.getApplicationContext(), "No tracked users", Toast.LENGTH_SHORT).show();
+        }
         return firebaseInterface.getMeds(date);
     }
 }

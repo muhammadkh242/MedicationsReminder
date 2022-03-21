@@ -34,13 +34,13 @@ public class Firestore implements FirestoreInterface {
     List<MedicationList> list = new ArrayList<>();
     List<String> days = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
-    String userId = FirebaseAuth.getInstance().getUid();
+    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     Drug drug = new Drug();
 
     @Override
     public void addDrugs(MedicationList med) {
         firebaseFirestore
-                .document("mrlHTT3zrgXXiTHPUtvoZr4bt6x2")
+                .document(userId)
                 .collection(med.getDate())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -70,7 +70,7 @@ public class Firestore implements FirestoreInterface {
 
     @Override
     public MutableLiveData<List<MedicationList>> getDrugs(String date) {
-        firebaseFirestore.document("mrlHTT3zrgXXiTHPUtvoZr4bt6x2")
+        firebaseFirestore.document(userId)
                 .collection(date)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -91,7 +91,7 @@ public class Firestore implements FirestoreInterface {
     @Override
     public void deleteDrugFireStore(List<String> days, Medication medication) {
         for (int i = 0; i < days.size(); i++) {
-            firebaseFirestore.document("mrlHTT3zrgXXiTHPUtvoZr4bt6x2")
+            firebaseFirestore.document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .collection(days.get(i))
                     .document(medication.getName())
                     .delete()
@@ -122,7 +122,7 @@ public class Firestore implements FirestoreInterface {
     @Override
     public List<String> getDrugsDaysRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child(FirebaseAuth.getInstance().getUid());
+                .child(userId);
         Query query = reference
                 .orderByChild("name").equalTo(name);
         query.addValueEventListener(new ValueEventListener() {
@@ -145,14 +145,14 @@ public class Firestore implements FirestoreInterface {
 
     public void deleteDrugRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds");
-        reference.child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2").get()
+        reference.child(userId).get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
                         for (DataSnapshot snapshot : task.getResult().getChildren()) {
                             Drug drug = snapshot.getValue(Drug.class);
                             if (drug.getName().equals(name)) {
-                                reference.child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2").
+                                reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).
                                         child(snapshot.getKey()).removeValue();
                             }
                         }
@@ -163,7 +163,7 @@ public class Firestore implements FirestoreInterface {
     @Override
     public Drug getDataRealTime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2");
+                .child(userId);
         Query query = reference.orderByChild("name").equalTo(name);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -183,7 +183,7 @@ public class Firestore implements FirestoreInterface {
     @Override
     public void updateRealTime(Drug drug) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2");
+                .child(userId);
         Query query = reference.orderByChild("name").equalTo(drug.getName());
         query.addValueEventListener(new ValueEventListener() {
             @Override

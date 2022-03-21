@@ -47,6 +47,7 @@ public class AddHealthTrackerFragment extends Fragment implements TrackerViewInt
                 Log.i(TAG, "onCreateView: " + email);
                 Log.i(TAG, "onClick: " + inviteBtn.getText().toString());
                 sendInvitation(email);
+                trackerEdit.getText().clear();
             }
         });
         return view;

@@ -20,15 +20,20 @@
         <entry key="..\:/Android Project/MedicalReminder/app/src/main/res/layout/sisthquestion_screen.xml" value="0.1" />
         <entry key="..\:/Android Project/MedicalReminder/app/src/main/res/layout/splash_screen.xml" value="0.22" />
         <entry key="..\:/Android Project/MedicalReminder/app/src/main/res/layout/thirdquestion_screen.xml" value="0.25" />
+        <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/activity_invitation.xml" value="0.17916666666666667" />
+        <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/activity_refill_dialog.xml" value="0.13177083333333334" />
+        <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/content_refill_dialog.xml" value="0.33" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/fragment_add_medication.xml" value="0.165625" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/fragment_home.xml" value="0.19635416666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/fragment_medication.xml" value="0.17552083333333332" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/fragment_my_meds.xml" value="0.18072916666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/fragment_second_user.xml" value="0.17552083333333332" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/home_adapter.xml" value="0.33723196881091616" />
+        <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/medication_reminder_dialog.xml" value="0.33" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/medication_row.xml" value="0.18072916666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/medications_fragment.xml" value="0.18072916666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/name_drug_question_screen.xml" value="0.16145833333333334" />
+        <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/refill_dialog.xml" value="0.33" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/layout/second_user_med_row.xml" value="0.18072916666666666" />
         <entry key="..\:/COURSES/Android/PROJECT/MedicalReminder/app/src/main/res/menu/bottom_nav_menu.xml" value="0.14010416666666667" />
         <entry key="..\:/ITI/Android/labs/final project/MedicationsReminder/app/src/main/res/drawable-mdpi/shape_line.xml" value="0.127" />

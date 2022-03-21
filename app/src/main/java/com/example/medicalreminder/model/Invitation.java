@@ -4,14 +4,16 @@ public class Invitation {
     String email;
     String id;
     boolean invitaion;
+    String reply;
 
     public Invitation() {
     }
 
-    public Invitation(String email, String id, boolean invitaion) {
+    public Invitation(String email, String id, boolean invitaion, String reply) {
         this.email = email;
         this.id = id;
         this.invitaion = invitaion;
+        this.reply = reply;
     }
 
     public String getEmail() {
@@ -26,12 +28,20 @@ public class Invitation {
         return id;
     }
 
+    public void setReply(String reply) {
+        this.reply = reply;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
 
     public void setInvitaion(boolean invitaion) {
         this.invitaion = invitaion;
+    }
+
+    public String getReply() {
+        return reply;
     }
 
     public boolean isInvitaion() {

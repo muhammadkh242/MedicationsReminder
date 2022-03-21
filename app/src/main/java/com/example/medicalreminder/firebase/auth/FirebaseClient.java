@@ -60,7 +60,7 @@ public class FirebaseClient implements FirebaseSource {
 
 
                     Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                            null, false);
+                            null, false, null);
                     CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
                     reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
 

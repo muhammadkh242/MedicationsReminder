@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class TrackerFirebaseClient implements TrackerFirebaseSource{
@@ -38,32 +39,25 @@ public class TrackerFirebaseClient implements TrackerFirebaseSource{
 
     @Override
     public void sendInvitation(String email) {
-        Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                FirebaseAuth.getInstance().getUid(), true);
         CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
-        reference.document(email).set(invitation);
+        reference.document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
 
-
-//        DatabaseReference db = FirebaseDatabase.getInstance().getReference("users");
-//        Query query = db.orderByChild("email").equalTo(email);
-//
-//        query.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-//                        Log.i(TAG, "onDataChange: " + db.child(dataSnapshot.getKey()));
-//                        db.child(dataSnapshot.getKey()).child("id").setValue(FirebaseAuth.getInstance().getUid());
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                String id = (String) task.getResult().get("id");
+                Log.i(TAG, "onComplete: " + id);
+                if(id != null){
+                    Toast.makeText(context, email + " is tracking someone else", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                    FirebaseAuth.getInstance().getUid(), true, null);
+                    CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+                    reference.document(email).set(invitation);
+                    Toast.makeText(context, "Request has been sent", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 

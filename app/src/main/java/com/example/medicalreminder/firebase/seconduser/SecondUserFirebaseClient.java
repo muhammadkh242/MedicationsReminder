@@ -1,6 +1,7 @@
 package com.example.medicalreminder.firebase.seconduser;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -61,7 +62,12 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 Invitation invitation = task.getResult().toObject(Invitation.class);
                 String id = invitation.getId();
-                medList = getData(date, id);
+                if(id == null){
+                    medList = null;
+                }
+                else{
+                    medList = getData(date, id);
+                }
                 Log.i("TAG", "ID FOR THE SECOND ONE: " + id);
             }
         });
@@ -71,7 +77,7 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
     @Override
     public void storeMed(Drug drug) {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-        db.child("mrlHTT3zrgXXiTHPUtvoZr4bt6x2").push().setValue(drug);
+        db.child(FirebaseAuth.getInstance().getUid()).push().setValue(drug);
 
     }
 
