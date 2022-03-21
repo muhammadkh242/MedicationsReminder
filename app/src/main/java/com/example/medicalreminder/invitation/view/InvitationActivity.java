@@ -1,6 +1,5 @@
 package com.example.medicalreminder.invitation.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,18 +10,10 @@ import android.util.Log;
 
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.firebase.invitation.InvitationFirebaseClient;
+import com.example.medicalreminder.remote.firebase.invitation.InvitationFirebaseClient;
 import com.example.medicalreminder.invitation.presenter.InvitationPresenter;
 import com.example.medicalreminder.invitation.presenter.InvitationPresenterInterface;
-import com.example.medicalreminder.model.healthtracker.RequestUser;
 import com.example.medicalreminder.model.invitation.InvitationRepo;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 
 public class InvitationActivity extends AppCompatActivity implements InvitationViewInterface{
 

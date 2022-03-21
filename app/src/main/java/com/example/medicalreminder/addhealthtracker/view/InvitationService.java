@@ -12,14 +12,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.invitation.view.InvitationActivity;
-import com.example.medicalreminder.model.Invitation;
-import com.example.medicalreminder.model.healthtracker.RequestUser;
+import com.example.medicalreminder.model.invitation.Invitation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

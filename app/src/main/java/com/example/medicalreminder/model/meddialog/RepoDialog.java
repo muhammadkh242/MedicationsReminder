@@ -13,8 +13,7 @@ import androidx.work.WorkRequest;
 
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.services.MyNewWorker;
-import com.example.medicalreminder.services.MyWorker;
+import com.example.medicalreminder.services.worker.MyWorker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -24,11 +24,10 @@ import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenter;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenterInterface;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 import com.example.medicalreminder.model.medicationsmanaging.MedicationsRepo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MedicationsFragment extends Fragment implements OnMedClickListener, MedicationsViewInterface{

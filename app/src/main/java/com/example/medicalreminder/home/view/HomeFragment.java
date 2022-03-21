@@ -23,23 +23,19 @@ import androidx.work.WorkManager;
 
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
+import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.FragmentHomeBinding;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenter;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenterInterface;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
-import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.model.addmedication.Repo;
-import com.example.medicalreminder.model.addmedication.RepoInterface;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 import com.example.medicalreminder.model.home.RepoHome;
 import com.example.medicalreminder.model.meddialog.RepoDialog;
-import com.example.medicalreminder.services.MyNewWorker;
-import com.example.medicalreminder.services.MyWorker;
+import com.example.medicalreminder.services.worker.MyNewWorker;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -87,7 +83,7 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
                     public void onDateSelected(String date) {
                         Log.i("TAG", "onDateSelected: " + date);
 
-                        getMed(AddMedicationPresenter.formatCalenderDate(date));
+                        getMed(CalculationMedication.formatCalenderDate(date));
                     }
                 });
         OneTimeWorkRequest newRequest = new OneTimeWorkRequest.Builder(MyNewWorker.class)
@@ -108,7 +104,7 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
         startTime.add(Calendar.MONTH, -1);
         endTime.add(Calendar.MONTH, 6);
         datesToBeColored.add(Tools.getFormattedDateToday());
-        getMed(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
+        getMed(CalculationMedication.formatCalenderDate(formatter.format(date)));
     }
 
     @Override
@@ -194,7 +190,6 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
         builder.setView(customLayout);
         TextView txtName = customLayout.findViewById(R.id.txtDrugName);
         TextView txtTime = customLayout.findViewById(R.id.txtSchedule);
-        TextView txtTake = customLayout.findViewById(R.id.txtDetailsDrug);
         txtName.setText(dose.getName());
         txtTime.setText(dose.getHour());
         ImageView imgSkip = customLayout.findViewById(R.id.imgSkip);

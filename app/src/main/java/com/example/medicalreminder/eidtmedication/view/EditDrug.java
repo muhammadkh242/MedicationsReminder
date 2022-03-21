@@ -15,14 +15,12 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.databinding.ActivityEditDrugBinding;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenter;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenterInterface;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 import com.example.medicalreminder.model.editmedication.RepoEdit;
 
 import java.util.ArrayList;

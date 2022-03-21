@@ -12,10 +12,10 @@ import java.util.List;
 public interface LocalSource {
 
         //medication
-        public void addDrug(MedicationList medDose );
-        public LiveData<MedicationList> getDrugs(String date);
-        public MedicationList getDrugsObj(String date);
-        public void deleteDate(String date);
+        public void insertDrugsOffline(MedicationList medDose );
+        public LiveData<MedicationList> getDrugsOffline(String date);
+        public MedicationList getDrugsObjOffline(String date);
+        public void deleteDateOffline(String date);
 
 
         //drug

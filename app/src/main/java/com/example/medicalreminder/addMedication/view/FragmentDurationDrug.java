@@ -7,20 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 
-import com.example.medicalreminder.R;
-import com.example.medicalreminder.firebase.seconduser.SecondUserFirebaseClient;
+import com.example.medicalreminder.calculation.CalculationMedication;
+import com.example.medicalreminder.databinding.DurationOfDrugQuestionScreenBinding;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.remote.firebase.seconduser.SecondUserFirebaseClient;
 
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.List;
 
 public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickListner {
 
-    RecyclerView recyclerView;
+    DurationOfDrugQuestionScreenBinding binding;
     AddMedicationAdapter addMedicationAdapter;
     List<String> list;
     LinearLayoutManager layoutManager;
@@ -42,20 +42,19 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.duration_of_drug_question_screen, container, false);
+        binding = DurationOfDrugQuestionScreenBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
         getInti();
         medication = (Medication) getArguments().getSerializable("object");
 
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addMedicationAdapter);
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.setAdapter(addMedicationAdapter);
 
         list.add("30 days");
         list.add("1 week");
@@ -65,7 +64,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         addMedicationAdapter.setList(list);
         addMedicationAdapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drug.setName(medication.getName());
@@ -73,18 +72,23 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
                 drug.setDurationDrug(medication.getDurationDrug());
                 drug.setTimesInDays(medication.getTimesInday());
                 drug.setStatusDrug("no");
-                addMedPreI.calDuration(medication);
+                CalculationMedication.calDuration();
                 drug.setDays(medication.getDays());
-                addMedPreI.insertDrugDetails(drug);
-                //_______KHOLIF CMETHOD CALLING TO STORE MED DATA IN REALTIMA DB FIREBASE____
+                //room drug
+                addMedPreI.insertDrugOffline(drug);
+                // room medication
+                addMedPreI.insertMedicationOffline(CalculationMedication.medDose);
+                // firestore
+                addMedPreI.insertMedicationFirestore(CalculationMedication.medDose);
+                //realtime
                 storeMed(drug);
             }
         });
-        return view;
+        return root;
     }
     @Override
     public void onClick(String txt) {
-     medication.setDurationDrug(txt);
+        medication.setDurationDrug(txt);
     }
     public void getInti(){
         drug = new Drug();
@@ -94,9 +98,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
         medication = Medication.getInstance();
         addMedPreI = AddMedicationPresenter.getInstance(getContext(),
                 Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
-
     }
-    //_______KHOLIF METHOD TO STORE MED DATA IN REALTIMA DB FIREBASE____
     public void storeMed(Drug drug){
         userFirebaseClient.storeMed(drug);
     }

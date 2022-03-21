@@ -39,7 +39,7 @@ public class ConcreteLocalSource implements LocalSource{
 
     //medication
     @Override
-    public void addDrug(MedicationList medList ) {
+    public void insertDrugsOffline(MedicationList medList ) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -63,16 +63,16 @@ public class ConcreteLocalSource implements LocalSource{
         }).start();
     }
     @Override
-    public LiveData<MedicationList> getDrugs(String date) {
+    public LiveData<MedicationList> getDrugsOffline(String date) {
         Log.i("TAG", "getDrugs: local");
         return medDao.getDrugs(date);
     }
     @Override
-    public MedicationList getDrugsObj(String date) {
+    public MedicationList getDrugsObjOffline(String date) {
         return medDao.getDrugsObj(date);
     }
     @Override
-    public void deleteDate(String date) {
+    public void deleteDateOffline(String date) {
      new Thread(new Runnable() {
          @Override
          public void run() {

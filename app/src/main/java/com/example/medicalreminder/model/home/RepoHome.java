@@ -1,22 +1,18 @@
 package com.example.medicalreminder.model.home;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 
 import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import com.example.medicalreminder.firebase.addmedication.Firestore;
-import com.example.medicalreminder.firebase.addmedication.FirestoreInterface;
+import com.example.medicalreminder.remote.firebase.addmedication.Firestore;
+import com.example.medicalreminder.remote.firebase.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.dbmedication.LocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.Repo;
-import com.example.medicalreminder.services.MyWorker;
-import com.example.medicalreminder.services.RefillWorker;
-
-import java.util.concurrent.TimeUnit;
+import com.example.medicalreminder.remote.realtimedb.RealTimeDB;
+import com.example.medicalreminder.remote.realtimedb.RealTimeDBInterface;
+import com.example.medicalreminder.services.worker.RefillWorker;
 
 public class RepoHome implements RepoHomeInterface{
 
@@ -24,11 +20,13 @@ public class RepoHome implements RepoHomeInterface{
     LocalSource localSource;
     private static RepoHome repo;
     FirestoreInterface firestoreInterface;
+    RealTimeDBInterface realTimeDBInterface;
 
     private RepoHome(Context context, LocalSource localSource){
         this.context = context;
         this.localSource = localSource;
         firestoreInterface = new Firestore();
+        realTimeDBInterface = new RealTimeDB();
     }
 
     public  static RepoHome getInstance(Context context, LocalSource localSource){
@@ -50,11 +48,11 @@ public class RepoHome implements RepoHomeInterface{
                     .build();
             WorkManager.getInstance(context).enqueue(request);
         }
-        firestoreInterface.updateRealTime(drug);
+        realTimeDBInterface.updateRealTime(drug);
     }
 
     @Override
     public Drug getDrugRealTime(String name) {
-        return firestoreInterface.getDataRealTime(name);
+        return realTimeDBInterface.getDataRealTime(name);
     }
 }

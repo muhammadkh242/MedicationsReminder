@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MedicalReminder"
         tools:replace="android:allowBackup">
         <service
-            android:name=".services.Reply"
+            android:name=".services.service.Reply"
             android:enabled="true"
             android:exported="true"></service>
 
@@ -26,11 +26,11 @@
             android:exported="false"
             android:label="@string/title_activity_refill_dialog"
             android:theme="@style/Theme.MedicalReminder.NoActionBar" />
-        <service android:name=".services.Reply"
+        <service android:name=".services.service.Reply"
             android:enabled="true"
             android:exported="true"/>
         <service
-            android:name=".services.Notification"
+            android:name=".services.service.Notification"
             android:enabled="true"
             android:exported="true" /> <!-- <service -->
         <!-- android:name=".services.Notification" -->
@@ -38,13 +38,13 @@
         <!-- android:exported="true"></service> -->
 
         <service
-            android:name=".services.Notification"
+            android:name=".services.service.Notification"
             android:enabled="true"
             android:exported="true"/>
 
 
         <receiver
-            android:name=".services.MyReceiver"
+            android:name=".services.boardcast.MyReceiver"
             android:enabled="true"
             android:exported="true"/>
 
