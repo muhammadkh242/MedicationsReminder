@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.firebase.seconduser;
+package com.example.medicalreminder.remote.firestore.seconduser;
 
 import android.util.Log;
 

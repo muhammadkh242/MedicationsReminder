@@ -16,32 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder"
         tools:replace="android:allowBackup">
-        <service
-            android:name=".services.service.Reply"
-            android:enabled="true"
-            android:exported="true"></service>
 
         <activity
             android:name=".refillreminder.RefillDialog"
             android:exported="false"
             android:label="@string/title_activity_refill_dialog"
             android:theme="@style/Theme.MedicalReminder.NoActionBar" />
-        <service android:name=".services.service.Reply"
-            android:enabled="true"
-            android:exported="true"/>
-        <service
-            android:name=".services.service.Notification"
-            android:enabled="true"
-            android:exported="true" /> <!-- <service -->
-        <!-- android:name=".services.Notification" -->
-        <!-- android:enabled="true" -->
-        <!-- android:exported="true"></service> -->
 
-        <service
-            android:name=".services.service.Notification"
-            android:enabled="true"
-            android:exported="true"/>
+<!--        <service android:name=".services.service.Reply"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"/>-->
 
+<!--        <service-->
+<!--            android:name=".services.service.Notification"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"/>-->
 
         <receiver
             android:name=".services.boardcast.MyReceiver"

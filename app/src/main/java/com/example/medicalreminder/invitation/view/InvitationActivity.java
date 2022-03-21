@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.remote.firebase.invitation.InvitationFirebaseClient;
+import com.example.medicalreminder.remote.firestore.invitation.InvitationFirebaseClient;
 import com.example.medicalreminder.invitation.presenter.InvitationPresenter;
 import com.example.medicalreminder.invitation.presenter.InvitationPresenterInterface;
 import com.example.medicalreminder.model.invitation.InvitationRepo;

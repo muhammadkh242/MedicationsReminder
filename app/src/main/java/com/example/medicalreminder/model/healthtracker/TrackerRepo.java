@@ -1,9 +1,7 @@
 package com.example.medicalreminder.model.healthtracker;
 
 import android.content.Context;
-
-import com.example.medicalreminder.firebase.addhealthtracker.TrackerFirebaseClient;
-import com.example.medicalreminder.firebase.addhealthtracker.TrackerFirebaseSource;
+import com.example.medicalreminder.remote.firestore.addhealthtracker.TrackerFirebaseSource;
 
 public class TrackerRepo implements TrackerRepoInterface{
     TrackerFirebaseSource trackerFirebaseSource;

@@ -1,5 +1,6 @@
 package com.example.medicalreminder.seconduser.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,13 +9,14 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.FragmentSecondUserBinding;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
@@ -24,6 +26,12 @@ import com.example.medicalreminder.seconduser.presenter.SecondUserPresenterInter
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -92,9 +100,7 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
                     binding.calendarSecond.setUpCalendar(start.getTimeInMillis(), end.getTimeInMillis(), dates, new HorizontalCalendarView.OnCalendarListener() {
                         @Override
                         public void onDateSelected(String date) {
-                            Log.i("TAG", "onDateSelected: " + date);
-                            getMeds(AddMedicationPresenter.formatCalenderDate(date));
-
+                            getMeds(CalculationMedication.formatCalenderDate(date));
                         }
                     });
 
@@ -113,7 +119,7 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
         start.add(Calendar.MONTH, -6);
         end.add(Calendar.MONTH, 6);
         dates.add(Tools.getFormattedDateToday());
-        getMeds(AddMedicationPresenter.formatCalenderDate(formatter.format(date)));
+        getMeds(CalculationMedication.formatCalenderDate(formatter.format(date)));
     }
 
 

@@ -22,6 +22,7 @@ public class Drug  implements Serializable {
     private int totalPills;
     private int refill;
     private String timesInDays;
+    private String timesInWeeks;
     private String durationDrug;
     private String statusDrug;
     @TypeConverters(DataBaseConvert.class)
@@ -56,6 +57,14 @@ public class Drug  implements Serializable {
 
     public int getTotalPills() {
         return totalPills;
+    }
+
+    public String getTimesInWeeks() {
+        return timesInWeeks;
+    }
+
+    public void setTimesInWeeks(String timesInWeeks) {
+        this.timesInWeeks = timesInWeeks;
     }
 
     public void setTotalPills(int totalPills) {

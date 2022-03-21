@@ -35,10 +35,10 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
         if (repo.connection()) {
             Log.i("TAG", "getMedHome: online");
             view.showMedOnline(repo.getDrugsOnline(date));
-            LiveData<MedicationList> list = repo.getDrugs(date);
+            LiveData<MedicationList> list = repo.getDrugsOffline(date);
             repoDialog.calcWork(list);
         } else {
-            LiveData<MedicationList> list = repo.getDrugs(date);
+            LiveData<MedicationList> list = repo.getDrugsOffline(date);
             view.showMed(list);
             repoDialog.calcWork(list);
             Log.i("TAG", "getMedHome: offline");
@@ -57,7 +57,6 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
     public void updateDrugRealTime(Drug drug) {
         Log.i("TAG", "updateDrugRealTime1111111111: " + drug.getTotalPills());
         drug.setTotalPills(drug.getTotalPills() - 1);
-        Log.i("TAG", "updateDrugRealTime: " + drug.getTotalPills());
         repoHomeInterface.updateDrugRealTime(drug);
     }
 

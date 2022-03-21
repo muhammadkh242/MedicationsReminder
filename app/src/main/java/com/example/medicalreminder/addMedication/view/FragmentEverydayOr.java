@@ -1,7 +1,6 @@
 package com.example.medicalreminder.addMedication.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,12 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
+import com.example.medicalreminder.calculation.CalculationMedication;
+import com.example.medicalreminder.databinding.EverydayOrQuestionScreenBinding;
+import com.example.medicalreminder.databinding.NameDrugQuestionScreenBinding;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,8 +32,8 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
 
     AddMedicationPresenterInterface addMedPI;
     Medication medication;
-    RecyclerView recyclerView;
     AddMedicationAdapter addMedicationAdapter;
+    EverydayOrQuestionScreenBinding binding;
     List<String> list;
     LinearLayoutManager layoutManager;
 
@@ -44,28 +46,28 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.everyday_or_question_screen, container, false);
+
+        binding = EverydayOrQuestionScreenBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
         getInti();
 
         medication = (Medication) getArguments().getSerializable("object");
-        Log.i("TAG", "onCreateView: "+medication.getName()+ medication.getForm());
 
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addMedicationAdapter);
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.setAdapter(addMedicationAdapter);
 
         list.add("Yes");
         list.add("No");
         addMedicationAdapter.setList(list);
         addMedicationAdapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavController navController= Navigation.findNavController(view);
                 Bundle bundle = new Bundle();
 
-                int answer = addMedPI.getAnswer(medication);
+                int answer = CalculationMedication.getAnswer();
                 if(answer ==1){
                     bundle.putSerializable("object", (Serializable) medication);
                     navController.navigate(R.id.numberTakeDayAct,bundle);
@@ -79,7 +81,7 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
             }
         });
 
-        return view;
+        return root;
     }
 
     public void getInti(){

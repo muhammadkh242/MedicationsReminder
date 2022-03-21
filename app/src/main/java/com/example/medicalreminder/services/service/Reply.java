@@ -38,7 +38,6 @@ public class Reply extends Service {
     }
 
 
-
     public void listenToReply(){
         CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
         reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {

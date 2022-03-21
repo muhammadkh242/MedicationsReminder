@@ -6,12 +6,12 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import com.example.medicalreminder.remote.firebase.addmedication.Firestore;
-import com.example.medicalreminder.remote.firebase.addmedication.FirestoreInterface;
+import com.example.medicalreminder.remote.firestore.addmedication.Firestore;
+import com.example.medicalreminder.remote.firestore.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.dbmedication.LocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDB;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDBInterface;
+import com.example.medicalreminder.remote.realtime.RealTime;
+import com.example.medicalreminder.remote.realtime.RealTimeInterface;
 import com.example.medicalreminder.services.worker.RefillWorker;
 
 public class RepoHome implements RepoHomeInterface{
@@ -20,13 +20,13 @@ public class RepoHome implements RepoHomeInterface{
     LocalSource localSource;
     private static RepoHome repo;
     FirestoreInterface firestoreInterface;
-    RealTimeDBInterface realTimeDBInterface;
+    RealTimeInterface realTimeDBInterface;
 
     private RepoHome(Context context, LocalSource localSource){
         this.context = context;
         this.localSource = localSource;
         firestoreInterface = new Firestore();
-        realTimeDBInterface = new RealTimeDB();
+        realTimeDBInterface = new RealTime();
     }
 
     public  static RepoHome getInstance(Context context, LocalSource localSource){

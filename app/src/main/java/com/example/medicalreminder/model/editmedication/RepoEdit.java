@@ -2,12 +2,12 @@ package com.example.medicalreminder.model.editmedication;
 
 import android.content.Context;
 
-import com.example.medicalreminder.remote.firebase.addmedication.Firestore;
-import com.example.medicalreminder.remote.firebase.addmedication.FirestoreInterface;
+import com.example.medicalreminder.remote.firestore.addmedication.Firestore;
+import com.example.medicalreminder.remote.firestore.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.dbmedication.LocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDB;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDBInterface;
+import com.example.medicalreminder.remote.realtime.RealTime;
+import com.example.medicalreminder.remote.realtime.RealTimeInterface;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public class RepoEdit implements RepoEditInterface {
     LocalSource localSource;
     FirestoreInterface firestoreInterface;
     private static RepoEdit repository = null;
-    RealTimeDBInterface realTimeDBInterface;
+    RealTimeInterface realTimeDBInterface;
 
 
     private RepoEdit(Context context, LocalSource localSource){
         this.context = context;
         this.localSource = localSource;
         firestoreInterface = new Firestore();
-        realTimeDBInterface = new RealTimeDB();
+        realTimeDBInterface = new RealTime();
     }
 
     public  static RepoEdit getInstance(Context context, LocalSource localSource){

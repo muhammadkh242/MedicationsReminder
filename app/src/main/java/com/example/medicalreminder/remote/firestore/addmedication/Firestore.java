@@ -1,27 +1,20 @@
-package com.example.medicalreminder.remote.firebase.addmedication;
+package com.example.medicalreminder.remote.firestore.addmedication;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDB;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDBInterface;
+import com.example.medicalreminder.remote.realtime.RealTime;
+import com.example.medicalreminder.remote.realtime.RealTimeInterface;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,7 +29,7 @@ public class Firestore implements FirestoreInterface {
     List<MedicationList> list = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    RealTimeDBInterface realTimeDBInterface = new RealTimeDB();
+    RealTimeInterface realTimeDBInterface = new RealTime();
 
     @Override
     public void insertDrugsOnline(MedicationList med) {
@@ -118,6 +111,4 @@ public class Firestore implements FirestoreInterface {
         }
         realTimeDBInterface.deleteDrugRealtime(medication.getName());
     }
-
-
 }

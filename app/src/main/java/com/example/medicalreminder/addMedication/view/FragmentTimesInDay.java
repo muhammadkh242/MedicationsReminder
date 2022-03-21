@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.databinding.NameDrugQuestionScreenBinding;
+import com.example.medicalreminder.databinding.NumberOfTakedDayQuestionScreenBinding;
 import com.example.medicalreminder.model.addmedication.Medication;
 
 import java.io.Serializable;
@@ -23,7 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListner {
-    RecyclerView recyclerView;
+
+    NumberOfTakedDayQuestionScreenBinding binding;
     AddMedicationAdapter addMedicationAdapter;
     List<String> list;
     LinearLayoutManager layoutManager;
@@ -38,15 +41,13 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.number_of_taked_day_question_screen, container, false);
+        binding = NumberOfTakedDayQuestionScreenBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
         getInti();
-
         medication = (Medication) getArguments().getSerializable("object");
 
-
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addMedicationAdapter);
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.setAdapter(addMedicationAdapter);
 
         list.add("Once day");
         list.add("Twice day");
@@ -56,17 +57,17 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
         addMedicationAdapter.setList(list);
         addMedicationAdapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                NavController navController= Navigation.findNavController(view);
+                NavController navController= Navigation.findNavController(root);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("object", (Serializable) medication);
                 navController.navigate(R.id.startdateDrugAct,bundle);
             }
         });
-        return view;
+        return root;
 
     }
 
@@ -75,12 +76,10 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
     public void onClick(String txt) {
         medication.setTimesInday(txt);
     }
-
     public void getInti(){
         list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         layoutManager = new LinearLayoutManager(getContext());
-        medication = Medication.getInstance();
 
     }
 }

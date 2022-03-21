@@ -1,5 +1,7 @@
 package com.example.medicalreminder.calculation;
 
+import android.util.Log;
+
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 
@@ -30,6 +32,7 @@ public class CalculationMedication {
             increament = 1;
             String timeDay = medication.getTimesInday();
             List<String> hours = new ArrayList<>();
+            Log.i("TAG", "day: " + increament);
             switch (timeDay) {
                 case "Once day":
                     hours.add(medication.getFirstTimeDose());
@@ -46,7 +49,7 @@ public class CalculationMedication {
                     break;
             }
         } else {
-            String timeWeek= medication.getTimesInWeeks();
+            String timeWeek = medication.getTimesInWeeks();
             List<String> hours = new ArrayList<>();
             hours.add(medication.getFirstTimeDose());
             medication.setHours(hours);
@@ -104,7 +107,7 @@ public class CalculationMedication {
         }
     }
 
-    public static void days(int duration ) {
+    public static void days(int duration) {
         String date = medication.getFirstDateDose();
         List<String> days = new ArrayList<>();
         date = formatCalenderDate(date);
@@ -120,7 +123,9 @@ public class CalculationMedication {
         // list for date , list (name,hour)
         for (int i = 0; i < duration; i++) {
             days.add(date);
-            incrementCalenderDate(date);
+            Log.i("TAG", "duration: " + duration);
+            Log.i("TAG", "days: " + date);
+            date = incrementCalenderDate(date);
         }
         medication.setDays(days);
     }
@@ -136,16 +141,18 @@ public class CalculationMedication {
         }
         return date;
     }
-    public static String incrementCalenderDate(String date ) {
+
+    public static String incrementCalenderDate(String date) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(sdf.parse(date));
             c.add(Calendar.DAY_OF_MONTH, increament);
             date = sdf.format(c.getTime());
+            Log.i("TAG", "incrementCalenderDate: " + date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return date;
     }
-    }
+}

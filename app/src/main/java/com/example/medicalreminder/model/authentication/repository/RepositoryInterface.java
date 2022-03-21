@@ -2,7 +2,7 @@ package com.example.medicalreminder.model.authentication.repository;
 
 
 import com.example.medicalreminder.model.authentication.User;
-import com.example.medicalreminder.remote.firebase.auth.FirebaseDelegate;
+import com.example.medicalreminder.remote.firestore.auth.FirebaseDelegate;
 
 public interface RepositoryInterface {
 

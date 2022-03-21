@@ -14,7 +14,7 @@ import android.widget.EditText;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.addhealthtracker.presenter.TrackerPresenter;
 import com.example.medicalreminder.addhealthtracker.presenter.TrackerPresenterInterface;
-import com.example.medicalreminder.remote.firebase.addhealthtracker.TrackerFirebaseClient;
+import com.example.medicalreminder.remote.firestore.addhealthtracker.TrackerFirebaseClient;
 import com.example.medicalreminder.model.healthtracker.TrackerRepo;
 
 

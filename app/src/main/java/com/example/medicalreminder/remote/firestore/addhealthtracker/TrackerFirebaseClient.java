@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.firebase.addhealthtracker;
+package com.example.medicalreminder.remote.firestore.addhealthtracker;
 
 import android.content.Context;
 import android.util.Log;

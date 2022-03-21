@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.firebase.auth;
+package com.example.medicalreminder.remote.firestore.auth;
 
 import com.example.medicalreminder.model.authentication.User;
 

@@ -13,9 +13,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.services.MyWorker;
+import com.example.medicalreminder.services.worker.MyWorker;
 
 import java.util.concurrent.TimeUnit;
 

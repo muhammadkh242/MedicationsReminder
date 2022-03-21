@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.realtimedb;
+package com.example.medicalreminder.remote.realtime;
 
 import android.util.Log;
 
@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,13 +15,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RealTimeDB implements RealTimeDBInterface{
+public class RealTime implements RealTimeInterface {
 
     List<String> days = new ArrayList<>();
     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -136,6 +133,5 @@ public class RealTimeDB implements RealTimeDBInterface{
         });
         return medList;
     }
-    
     
 }

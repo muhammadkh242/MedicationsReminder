@@ -63,7 +63,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.medicalreminder.addMedication.view.FragmentNumberOfDays"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentTimesInWeek"
         android:id="@+id/numberDaysQue"
         tools:layout="@layout/number_of_days_question_screen"
         >
@@ -76,7 +76,7 @@
     </fragment>
 
     <fragment
-        android:name="com.example.medicalreminder.addMedication.view.FragmentStartDateDrug"
+        android:name="com.example.medicalreminder.addMedication.view.FragmentStartDate"
         android:id="@+id/startdateDrugQue"
         tools:layout="@layout/startdate_drug_question_screen"
         >
@@ -92,6 +92,12 @@
         android:id="@+id/durationDrugQue"
         tools:layout="@layout/duration_of_drug_question_screen"
         >
+
+        <action
+            android:id="@+id/refillAct"
+            app:destination="@id/refill"
+            >
+        </action>
     </fragment>
     <fragment
         android:name="com.example.medicalreminder.addMedication.view.FragmentStartTime"
@@ -103,6 +109,15 @@
             app:destination="@id/durationDrugQue"
             >
         </action>
+
+    </fragment>
+
+    <fragment
+        android:name="com.example.medicalreminder.addMedication.view.FragmentRefillReminder"
+        android:id="@+id/refill"
+        tools:layout="@layout/refill_reminder_screen"
+        >
+
 
     </fragment>
 </navigation>

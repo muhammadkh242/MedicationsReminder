@@ -16,10 +16,12 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.calculation.CalculationMedication;
+import com.example.medicalreminder.databinding.StarttimeDoseQuestionScreenBinding;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 
 import java.io.Serializable;
 
@@ -27,8 +29,7 @@ public class FragmentStartTime extends Fragment{
 
     Medication medication;
     AddMedicationPresenterInterface addMedPreI;
-    TimePicker timePicker;
-
+    StarttimeDoseQuestionScreenBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,35 +40,30 @@ public class FragmentStartTime extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.starttime_dose_question_screen, container, false);
-        medication = Medication.getInstance();
+        binding = StarttimeDoseQuestionScreenBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
         addMedPreI = AddMedicationPresenter.getInstance(getContext(), Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
-        timePicker = view.findViewById(R.id.date);
-        timePicker.setIs24HourView(true);
-
-
+        binding.date.setIs24HourView(true);
         medication = (Medication) getArguments().getSerializable("object");
-        Log.i("TAG", "onCreateView: "+medication.getName()+ medication.getForm()+medication.getTimesInday()+medication.getFirstDateDose());
 
-
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 int hour, minute;
-                hour = timePicker.getHour();
-                minute = timePicker.getMinute();
+                hour = binding.date.getHour();
+                minute = binding.date.getMinute();
 
                 medication.setFirstTimeDose(hour+":"+minute);
-                addMedPreI.calListHour(medication);
-                NavController navController= Navigation.findNavController(view);
+                CalculationMedication.calListHour();
+                NavController navController= Navigation.findNavController(root);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("object", (Serializable) medication);
                 navController.navigate(R.id.durationDrugAct,bundle);
             }
         });
 
-        return view;
+        return root;
     }
 
 }

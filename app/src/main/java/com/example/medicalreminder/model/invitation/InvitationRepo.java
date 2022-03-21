@@ -2,8 +2,7 @@ package com.example.medicalreminder.model.invitation;
 
 import android.content.Context;
 
-import com.example.medicalreminder.remote.firebase.addhealthtracker.TrackerFirebaseSource;
-import com.example.medicalreminder.remote.firebase.invitation.InvitationFirebaseSource;
+import com.example.medicalreminder.remote.firestore.invitation.InvitationFirebaseSource;
 
 public class InvitationRepo implements InvitationRepoInterface{
 

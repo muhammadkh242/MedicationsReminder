@@ -9,8 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.remote.firebase.addmedication.Firestore;
-import com.example.medicalreminder.remote.firebase.addmedication.FirestoreInterface;
+import com.example.medicalreminder.remote.firestore.addmedication.Firestore;
+import com.example.medicalreminder.remote.firestore.addmedication.FirestoreInterface;
 import com.example.medicalreminder.local.dbmedication.LocalSource;
 
 import java.util.List;
@@ -40,8 +40,8 @@ public class Repo implements RepoInterface {
     // ---------------------------------------ROOM
     //medication
     @Override
-    public void insertDrugOffline(MedicationList medDose) {
-     localSource.insertDrugsOffline(medDose);
+    public void insertMedicatinOffline(MedicationList medDose) {
+     localSource.insertMedicationOffline(medDose);
     }
     @Override
     public LiveData<MedicationList> getDrugsOffline(String date) {
@@ -54,8 +54,8 @@ public class Repo implements RepoInterface {
 
     //Drug
     @Override
-    public void insertDrugDetailsOffline(Drug drug) {
-        localSource.insertDrugDetails(drug);
+    public void insertDrugOffline(Drug drug) {
+        localSource.insertDrugOffline(drug);
     }
     @Override
     public LiveData<List<Drug>> getAllDrugDetailsOffline() {
@@ -66,7 +66,7 @@ public class Repo implements RepoInterface {
 
     //----------------------------------FIRESTORE
     @Override
-    public void insertDrugOnline( MedicationList list) {
+    public void insertMedicationFirestore(MedicationList list) {
         firestoreInterface.insertDrugsOnline(list);
     }
     @Override

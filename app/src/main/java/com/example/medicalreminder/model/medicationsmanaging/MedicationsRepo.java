@@ -4,29 +4,24 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
-import com.example.medicalreminder.remote.firebase.medicationsmanaging.MedicationsFirebaseClient;
-import com.example.medicalreminder.remote.firebase.medicationsmanaging.MedicationsFirebaseInterface;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDB;
-import com.example.medicalreminder.remote.realtimedb.RealTimeDBInterface;
+import com.example.medicalreminder.remote.realtime.RealTime;
+import com.example.medicalreminder.remote.realtime.RealTimeInterface;
 
 import java.util.List;
 
 public class MedicationsRepo implements MedicationsRepoInterface{
 
-    private MedicationsFirebaseInterface firebaseInterface;
     private Context context;
     private static MedicationsRepo medicationsRepo = null;
     private ConcreteLocalSource localSource;
-    private RealTimeDBInterface realTimeDBInterface;
+    private RealTimeInterface realTimeDBInterface;
 
     private MedicationsRepo(Context context, ConcreteLocalSource localSource) {
-        firebaseInterface = new MedicationsFirebaseClient();
         this.context = context;
         this.localSource = localSource;
-        realTimeDBInterface = new RealTimeDB();
+        realTimeDBInterface = new RealTime();
     }
 
     public static MedicationsRepo getMedicationsRepo(Context context, ConcreteLocalSource localSource) {

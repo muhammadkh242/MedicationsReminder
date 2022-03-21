@@ -74,7 +74,6 @@ public class RepoDialog implements RepoDialogInterface {
             }
         });
 
-
     }
 
     @Override

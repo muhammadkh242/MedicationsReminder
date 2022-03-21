@@ -17,6 +17,7 @@ import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapt
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.databinding.FormMedQuestionScreenBinding;
 import com.example.medicalreminder.model.addmedication.Medication;
 
 import java.io.Serializable;
@@ -25,11 +26,11 @@ import java.util.List;
 
 public class FragmentFormDrug  extends Fragment implements OnAddMedClickListner {
 
-    RecyclerView recyclerView;
     AddMedicationAdapter addMedicationAdapter;
     List<String> list;
     LinearLayoutManager layoutManager;
     Medication medication;
+    FormMedQuestionScreenBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,30 +41,29 @@ public class FragmentFormDrug  extends Fragment implements OnAddMedClickListner 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view= inflater.inflate(R.layout.form_med_question_screen, container, false);
+        binding = FormMedQuestionScreenBinding.inflate(inflater,container, false);
+        View root = binding.getRoot();
         getInti();
         medication = (Medication) getArguments().getSerializable("object");
-        Log.i("TAG", "onCreateView: "+medication.getName());
 
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addMedicationAdapter);
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.setAdapter(addMedicationAdapter);
 
         list.add("pill");
         list.add("injection");
         addMedicationAdapter.setList(list);
         addMedicationAdapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+       binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavController navController= Navigation.findNavController(view);
+                NavController navController= Navigation.findNavController(root);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("object", (Serializable) medication);
                 navController.navigate(R.id.everydayOrAct,bundle);
             }
         });
-        return view;
+        return root;
 
     }
 
@@ -75,7 +75,6 @@ public class FragmentFormDrug  extends Fragment implements OnAddMedClickListner 
         list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         layoutManager = new LinearLayoutManager(getContext());
-        medication = Medication.getInstance();
 
     }
 }

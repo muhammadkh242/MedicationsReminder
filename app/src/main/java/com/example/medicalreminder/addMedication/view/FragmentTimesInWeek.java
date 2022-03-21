@@ -17,20 +17,22 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
+import com.example.medicalreminder.databinding.NumberOfDaysQuestionScreenBinding;
 import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentNumberOfDays  extends Fragment implements OnAddMedClickListner {
+public class FragmentTimesInWeek extends Fragment implements OnAddMedClickListner {
 
-    RecyclerView recyclerView;
     AddMedicationAdapter addMedicationAdapter;
     AddMedicationPresenterInterface addMedPI;
     List<String> list;
     LinearLayoutManager layoutManager;
+    NumberOfDaysQuestionScreenBinding binding;
     Medication medication;
 
     @Override
@@ -43,13 +45,13 @@ public class FragmentNumberOfDays  extends Fragment implements OnAddMedClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.number_of_days_question_screen, container, false);
-
-        recyclerView = view.findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(addMedicationAdapter);
-
+        binding = NumberOfDaysQuestionScreenBinding.inflate(inflater,container,false);
+        View root = binding.getRoot();
         getInti();
+
+        binding.recycler.setLayoutManager(layoutManager);
+        binding.recycler.setAdapter(addMedicationAdapter);
+
         list.add("Once week");
         list.add("Twice week");
         list.add("3 times in week");
@@ -58,17 +60,17 @@ public class FragmentNumberOfDays  extends Fragment implements OnAddMedClickList
         addMedicationAdapter.setList(list);
         addMedicationAdapter.notifyDataSetChanged();
 
-        view.findViewById(R.id.btnNext).setOnClickListener(new View.OnClickListener() {
+       binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                NavDirections navDirections = FragmentNumberOfDaysDirections.startdateDrugAct();
-                NavController navController = Navigation.findNavController(view);
-                navController.navigate(navDirections);
+                NavController navController= Navigation.findNavController(root);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("object", (Serializable) medication);
+                navController.navigate(R.id.startdateDrugAct,bundle);
             }
         });
-        return view;
-
+        return root;
     }
 
     public void getInti(){

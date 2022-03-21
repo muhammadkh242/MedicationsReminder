@@ -15,6 +15,9 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
+import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
+import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
+import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.ActivityEditDrugBinding;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenter;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenterInterface;
@@ -38,7 +41,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
     List<String> weeks;
     List<String> list;
     boolean flag = false;
-    AddMedicationPresenterInterface addMedI;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -53,9 +55,7 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         days = new ArrayList<>();
         weeks = new ArrayList<>();
         list = new ArrayList<>();
-        addMedI = AddMedicationPresenter.getInstance(getApplicationContext(),
-                Repo.getInstance(getApplicationContext(),
-                        ConcreteLocalSource.getInstance(getApplicationContext())));
+
 
         list.add("......");
         list.add("30 days");
@@ -97,11 +97,14 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
              if(selectedId==binding.radioDay.getId()){
+                 medication.setEveryDayOr("Yes");
                  ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, days);
                  ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                  binding.spinnerDuration.setAdapter(ad);
             }
              else {
+                 // weeks
+                 medication.setEveryDayOr("No");
                  flag = true;
                  ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, weeks);
                  ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -133,7 +136,7 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
                 String text = adapterView.getItemAtPosition(i).toString();
                 medication.setDurationDrug(text);
                 medication.setName(binding.edtmedname.getText().toString());
-                addMedI.calDuration(medication);
+                CalculationMedication.calDuration();
 
             }
 
@@ -161,7 +164,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 binding.editDate.setText(dayOfMonth +"-"+(month+1)+"-"+year);
-                Log.i("TAG", "onDateSet: "+dayOfMonth+month+year);
                 medication.setFirstDateDose(dayOfMonth+"-"+(month+1)+"-"+year);
 
             }
@@ -178,7 +180,7 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 binding.editTime.setText(selectedHour +":"+selectedMinute);
                 medication.setFirstTimeDose(selectedHour+":"+selectedMinute);
-                addMedI.calListHour(medication);
+                CalculationMedication.calListHour();
 
             }
         }, hour, minute, true);//Yes 24 hour time

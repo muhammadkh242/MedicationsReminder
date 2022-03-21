@@ -8,8 +8,8 @@ import android.util.Log;
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
 import com.example.medicalreminder.model.authentication.User;
-import com.example.medicalreminder.remote.firebase.auth.FirebaseDelegate;
-import com.example.medicalreminder.remote.firebase.auth.FirebaseSource;
+import com.example.medicalreminder.remote.firestore.auth.FirebaseDelegate;
+import com.example.medicalreminder.remote.firestore.auth.FirebaseSource;
 
 
 public class Repository implements RepositoryInterface {

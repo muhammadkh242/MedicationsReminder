@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.authentication.register.view.RegisterViewInterface;
-import com.example.medicalreminder.remote.firebase.auth.FirebaseDelegate;
+import com.example.medicalreminder.remote.firestore.auth.FirebaseDelegate;
 import com.example.medicalreminder.model.authentication.repository.RepositoryInterface;
 import com.example.medicalreminder.model.authentication.User;
 

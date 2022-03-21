@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.firebase.invitation;
+package com.example.medicalreminder.remote.firestore.invitation;
 
 import android.content.Context;
 

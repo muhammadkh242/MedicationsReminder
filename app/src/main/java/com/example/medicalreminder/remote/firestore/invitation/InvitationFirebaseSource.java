@@ -1,4 +1,4 @@
-package com.example.medicalreminder.remote.firebase.invitation;
+package com.example.medicalreminder.remote.firestore.invitation;
 
 public interface InvitationFirebaseSource {
     public void accept();

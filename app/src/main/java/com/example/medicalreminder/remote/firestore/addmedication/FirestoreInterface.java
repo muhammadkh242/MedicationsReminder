@@ -1,9 +1,8 @@
-package com.example.medicalreminder.remote.firebase.addmedication;
+package com.example.medicalreminder.remote.firestore.addmedication;
 
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 

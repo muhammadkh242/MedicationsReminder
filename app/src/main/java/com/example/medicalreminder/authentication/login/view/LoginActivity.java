@@ -15,8 +15,8 @@ import com.example.medicalreminder.authentication.register.view.RegisterActivity
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenter;
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenterInterface;
 import com.example.medicalreminder.databinding.ActivitySignupBinding;
-import com.example.medicalreminder.firebase.auth.FirebaseClient;
-import com.example.medicalreminder.model.authentication.Repository;
+import com.example.medicalreminder.model.authentication.repository.Repository;
+import com.example.medicalreminder.remote.firestore.auth.FirebaseClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
