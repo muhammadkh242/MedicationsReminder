@@ -1,19 +1,20 @@
-package com.example.medicalreminder.local.dbmedication;
+package com.example.medicalreminder.local;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.medicalreminder.local.dbdrug.DrugDao;
 import com.example.medicalreminder.local.dbdrug.DrugDataBase;
+import com.example.medicalreminder.local.dbmedication.MedicationDao;
+import com.example.medicalreminder.local.dbmedication.MedicationDataBase;
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConcreteLocalSource implements LocalSource{
+public class ConcreteLocalSource implements LocalSource {
 
     private  Context context;
     private   static ConcreteLocalSource concreteLocalSource;
@@ -40,11 +41,10 @@ public class ConcreteLocalSource implements LocalSource{
     //medication
     @Override
     public void insertMedicationOffline(MedicationList medList ) {
-        Log.i("TAG", "insertMedicationOffline: "+medList.getDate());
         new Thread(new Runnable() {
             @Override
             public void run() {
-                MedicationList obj = medDao.getDrugsObj(medList.getDate());
+                MedicationList obj = getMedsObjOffline(medList.getDate());
                 if(obj != null){
                     List<MedicationDose> listQuery = obj.getList();
                     List<MedicationDose> listUser = medList.getList();
@@ -64,11 +64,11 @@ public class ConcreteLocalSource implements LocalSource{
         }).start();
     }
     @Override
-    public LiveData<MedicationList> getDrugsOffline(String date) {
+    public LiveData<MedicationList> getMedsOffline(String date) {
         return medDao.getDrugs(date);
     }
     @Override
-    public MedicationList getDrugsObjOffline(String date) {
+    public MedicationList getMedsObjOffline(String date) {
         return medDao.getDrugsObj(date);
     }
     @Override
@@ -92,11 +92,11 @@ public class ConcreteLocalSource implements LocalSource{
         }).start();
     }
     @Override
-    public LiveData<Drug> getDrugDetails(String name) {
+    public LiveData<Drug> getDrugDetailsOffline(String name) {
         return drugDao.getDrugDetails(name);
     }
     @Override
-    public LiveData<List<Drug>> getAllDrugDetails() {
+    public LiveData<List<Drug>> getAllDrugDetailsOffline() {
         return drugDao.getAllDrugDetails();
     }
 

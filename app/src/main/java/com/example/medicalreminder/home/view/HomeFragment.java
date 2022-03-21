@@ -22,15 +22,14 @@ import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.FragmentHomeBinding;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenter;
 import com.example.medicalreminder.home.presenter.HomeFragmentPresenterInterface;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 import com.example.medicalreminder.model.home.RepoHome;
 import com.example.medicalreminder.model.meddialog.RepoDialog;
 import com.example.medicalreminder.services.worker.MyNewWorker;
@@ -67,7 +66,7 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
         manager = new LinearLayoutManager(getContext());
         adapter = new HomeFragmentAdapter(getContext(), this);
         presenter = new HomeFragmentPresenter
-                (getContext(), this, Repo.getInstance(getContext(),
+                (getContext(), this, RepoAdd.getInstance(getContext(),
                         ConcreteLocalSource.getInstance(getContext())),
                         RepoDialog.getInstance(getContext()),
                         RepoHome.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));

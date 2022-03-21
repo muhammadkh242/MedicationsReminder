@@ -1,10 +1,11 @@
 package com.example.medicalreminder.medicationsmanaging.presenter;
 
 public interface MedicationsPresenterInterface {
+
     //remote
-    public void getMeds();
+    public void getMedsRealtime();
 
     //local
-    public void getAllMeds();
+    public void getMedsOffline();
 }
 

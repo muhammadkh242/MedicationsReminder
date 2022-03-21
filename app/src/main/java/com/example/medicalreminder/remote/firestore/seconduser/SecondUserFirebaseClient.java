@@ -1,7 +1,5 @@
 package com.example.medicalreminder.remote.firestore.seconduser;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -26,7 +24,6 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
 
 
     CollectionReference fireStore = FirebaseFirestore.getInstance().collection("Drug");
-    List<MedicationList> list = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medList = new MutableLiveData<>();
 
     public MutableLiveData<List<MedicationList>> getData(String date, String id) {
@@ -41,12 +38,9 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             MedicationList medicationList = document.toObject(MedicationList.class);
-                            Log.i("TAG", "onComplete: " + medicationList.getList().size());
                             list.add(medicationList);
                         }
-                        Log.i("TAG", "onComplete:  LIST SIZE" + list.size());
                         dataList.setValue(list);
-
                     }
                 });
         return dataList;
@@ -67,18 +61,9 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
                 else{
                     medList = getData(date, id);
                 }
-                Log.i("TAG", "ID FOR THE SECOND ONE: " + id);
             }
         });
         return medList;
     }
-
-    @Override
-    public void storeMed(Drug drug) {
-        DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-        db.child(FirebaseAuth.getInstance().getUid()).push().setValue(drug);
-
-    }
-
 
 }

@@ -7,23 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.medicalreminder.HomeActivity;
-import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
-import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.calculation.CalculationMedication;
-import com.example.medicalreminder.databinding.FormMedQuestionScreenBinding;
 import com.example.medicalreminder.databinding.RefillReminderScreenBinding;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
-import com.example.medicalreminder.remote.firestore.seconduser.SecondUserFirebaseClient;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +29,6 @@ public class FragmentRefillReminder extends Fragment {
     List<String> list;
     Drug drug;
     AddMedicationPresenterInterface addMedPreI;
-    SecondUserFirebaseClient userFirebaseClient = new SecondUserFirebaseClient();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,7 +62,7 @@ public class FragmentRefillReminder extends Fragment {
                 // firestore
                 addMedPreI.insertMedicationFirestore(CalculationMedication.medDose);
                 //realtime
-                storeMed(drug);
+                addMedPreI.insertDrugRealTime(drug);
                 Intent intent = new Intent(getContext(), HomeActivity.class);
                 startActivity(intent);
             }
@@ -84,10 +76,6 @@ public class FragmentRefillReminder extends Fragment {
         list = new ArrayList<>();
         medication = Medication.getInstance();
         addMedPreI = AddMedicationPresenter.getInstance(getContext(),
-                Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
-    }
-
-    public void storeMed(Drug drug){
-        userFirebaseClient.storeMed(drug);
+                RepoAdd.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
     }
 }

@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,15 +14,12 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.ActivityEditDrugBinding;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenter;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenterInterface;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
 import com.example.medicalreminder.model.editmedication.RepoEdit;
 
 import java.util.ArrayList;
@@ -49,13 +45,13 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         binding = ActivityEditDrugBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         medication = Medication.getInstance();
+
         editMedPI = EditMedicationPresenter.getInstance(getApplicationContext()
                 , RepoEdit.getInstance(getApplicationContext(),
                         ConcreteLocalSource.getInstance(getApplicationContext())));
         days = new ArrayList<>();
         weeks = new ArrayList<>();
         list = new ArrayList<>();
-
 
         list.add("......");
         list.add("30 days");
@@ -78,7 +74,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, list);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinner.setAdapter(ad);
-
 
         binding.editDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +181,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         }, hour, minute, true);//Yes 24 hour time
         mTimePicker.setTitle("Select Time");
         mTimePicker.show();
-
     }
 
     @Override

@@ -5,11 +5,14 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenterInterface;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.remote.realtime.RealTime;
-import com.example.medicalreminder.remote.realtime.RealTimeInterface;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTime;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTimeInterface;
+import com.example.medicalreminder.remote.realtime.editmedication.EditMedicationInterfaceRealTime;
+import com.example.medicalreminder.remote.realtime.editmedication.EditMedicationRealTime;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,13 +26,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Firestore implements FirestoreInterface {
+public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
 
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
     List<MedicationList> list = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
     String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    RealTimeInterface realTimeDBInterface = new RealTime();
+    EditMedicationInterfaceRealTime realTimeDBInterface = new EditMedicationRealTime();
 
     @Override
     public void insertDrugsOnline(MedicationList med) {
@@ -52,7 +55,6 @@ public class Firestore implements FirestoreInterface {
                                     .collection(med.getDate())
                                     .document(med.getList().get(0).getName())
                                     .set(med);
-                            Log.i("TAG", "size: " + med.getList().size());
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -72,7 +74,6 @@ public class Firestore implements FirestoreInterface {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             MedicationList medicationList = document.toObject(MedicationList.class);
-                            Log.i("TAG", "onComplete: " + medicationList.getList().size());
                             list.add(medicationList);
                         }
                         medication.setValue(list);

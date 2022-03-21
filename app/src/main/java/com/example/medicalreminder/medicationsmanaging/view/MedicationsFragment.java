@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +19,11 @@ import android.widget.Button;
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.displaymedication.view.DisplayDrugDetails;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenter;
 import com.example.medicalreminder.medicationsmanaging.presenter.MedicationsPresenterInterface;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 import com.example.medicalreminder.model.medicationsmanaging.MedicationsRepo;
 
 import java.io.Serializable;
@@ -33,18 +32,14 @@ import java.util.List;
 public class MedicationsFragment extends Fragment implements OnMedClickListener, MedicationsViewInterface{
 
     RecyclerView activeRecycler;
-
     RecyclerAdapter activeAdapter;
-
     Button addBtn;
     LinearLayoutManager layoutManager;
-
     MedicationsPresenterInterface presenter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
     }
 
@@ -57,9 +52,7 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
         addBtn = view.findViewById(R.id.addMedBtn);
         activeRecycler = view.findViewById(R.id.recycler_one);
 
-
         activeRecycler.setHasFixedSize(true);
-
 
         activeAdapter = new RecyclerAdapter(getContext(), this);
 
@@ -86,21 +79,21 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
             }
         });
 
-        if(Repo.getInstance(getContext(),ConcreteLocalSource.getInstance(getContext())).connection()){
-            getMeds();
-
+        if(RepoAdd.getInstance(getContext(),
+                ConcreteLocalSource.getInstance(getContext())).connection()){
+            getMedsRealTime();
         }
         else{
-            getAllMeds();
+            getMedsOffline();
         }
 
         return view;
     }
 
 
-    //FROM REMOTE
+    //FROM REALTIME
     @Override
-    public void showMeds(MutableLiveData<List<Drug>> meds) {
+    public void showMedsRealTime(MutableLiveData<List<Drug>> meds) {
         meds.observe((LifecycleOwner) getContext(), new Observer<List<Drug>>() {
             @Override
             public void onChanged(List<Drug> drugs) {
@@ -108,17 +101,16 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
                 activeRecycler.setAdapter(activeAdapter);
             }
         });
-
     }
 
     @Override
-    public void getMeds() {
-        presenter.getMeds();
+    public void getMedsRealTime() {
+        presenter.getMedsRealtime();
     }
 
     //FROM ROOM
     @Override
-    public void showAllMeds(LiveData<List<Drug>> list) {
+    public void showMedsOffline(LiveData<List<Drug>> list) {
         list.observe((LifecycleOwner) getContext(), new Observer<List<Drug>>() {
             @Override
             public void onChanged(List<Drug> drugs) {
@@ -129,9 +121,8 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
     }
 
     @Override
-    public void getAllMeds() {
-        Log.i("TAG", "getAllMeds: ");
-        presenter.getAllMeds();
+    public void getMedsOffline() {
+        presenter.getMedsOffline();
     }
 
     @Override

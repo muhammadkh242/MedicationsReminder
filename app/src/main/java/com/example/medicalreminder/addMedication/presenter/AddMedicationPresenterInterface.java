@@ -7,6 +7,7 @@ import java.util.List;
 public interface AddMedicationPresenterInterface {
 
     public void insertDrugOffline(Drug drug);
+    public void insertDrugRealTime(Drug drug);
     public void insertMedicationOffline(List<MedicationDose> medDose);
     public void insertMedicationFirestore(List<MedicationDose> medDose);
 

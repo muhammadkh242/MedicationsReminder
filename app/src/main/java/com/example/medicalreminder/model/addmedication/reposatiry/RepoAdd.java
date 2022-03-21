@@ -9,30 +9,34 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.remote.firestore.addmedication.Firestore;
-import com.example.medicalreminder.remote.firestore.addmedication.FirestoreInterface;
-import com.example.medicalreminder.local.dbmedication.LocalSource;
+import com.example.medicalreminder.remote.firestore.addmedication.AddMedicationFirestore;
+import com.example.medicalreminder.remote.firestore.addmedication.AddMedicationFirestoreInterface;
+import com.example.medicalreminder.local.LocalSource;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTime;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTimeInterface;
 
 import java.util.List;
 
-public class Repo implements RepoInterface {
+public class RepoAdd implements RepoAddInterface {
 
     Context context;
     LocalSource localSource;
-    FirestoreInterface firestoreInterface;
-    private static Repo repository;
+    AddMedicationFirestoreInterface firestoreInterface;
+    AddMedicationRealTimeInterface realTimeInterface;
+    private static RepoAdd repository;
     NetworkInfo activeNetwork;
     ConnectivityManager connectivityManager;
 
-    private Repo(Context context, LocalSource localSource){
+    private RepoAdd(Context context, LocalSource localSource){
         this.context = context;
        this.localSource = localSource;
-       firestoreInterface = new Firestore();
+       firestoreInterface = new AddMedicationFirestore();
+       realTimeInterface = new AddMedicationRealTime();
     }
 
-    public  static Repo getInstance(Context context, LocalSource localSource){
+    public  static RepoAdd getInstance(Context context, LocalSource localSource){
         if(repository == null){
-            repository = new Repo(context,localSource);
+            repository = new RepoAdd(context,localSource);
         }
         return repository;
     }
@@ -45,7 +49,7 @@ public class Repo implements RepoInterface {
     }
     @Override
     public LiveData<MedicationList> getDrugsOffline(String date) {
-        return localSource.getDrugsOffline(date);
+        return localSource.getMedsOffline(date);
     }
     @Override
     public void deleteDateOffline(String date) {
@@ -59,7 +63,7 @@ public class Repo implements RepoInterface {
     }
     @Override
     public LiveData<List<Drug>> getAllDrugDetailsOffline() {
-        return localSource.getAllDrugDetails();
+        return localSource.getAllDrugDetailsOffline();
     }
 
 
@@ -73,6 +77,12 @@ public class Repo implements RepoInterface {
     public MutableLiveData<List<MedicationList>> getDrugsOnline(String date) {
         return firestoreInterface.getDrugsOnline(date);
     }
+
+    //------------------------realtime
+    public void insertDrugRealTime(Drug drug){
+   realTimeInterface.insertDrugRealTime(drug);
+    }
+
 
     public boolean connection(){
         boolean checkNetwork = false;

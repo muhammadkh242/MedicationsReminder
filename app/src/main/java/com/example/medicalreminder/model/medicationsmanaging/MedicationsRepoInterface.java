@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface MedicationsRepoInterface {
 
-    public MutableLiveData<List<Drug>> getMeds();
-    public LiveData<List<Drug>> getAllMeds();
+    public MutableLiveData<List<Drug>> getMedsRealtime();
+    public LiveData<List<Drug>> getMedsOffline();
 }

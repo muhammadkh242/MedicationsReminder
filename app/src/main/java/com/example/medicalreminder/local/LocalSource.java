@@ -1,4 +1,4 @@
-package com.example.medicalreminder.local.dbmedication;
+package com.example.medicalreminder.local;
 
 
 import androidx.lifecycle.LiveData;
@@ -13,14 +13,14 @@ public interface LocalSource {
 
         //medication
         public void insertMedicationOffline(MedicationList medList );
-        public LiveData<MedicationList> getDrugsOffline(String date);
-        public MedicationList getDrugsObjOffline(String date);
+        public LiveData<MedicationList> getMedsOffline(String date);
+        public MedicationList getMedsObjOffline(String date);
         public void deleteDateOffline(String date);
 
 
         //drug
        public void insertDrugOffline(Drug drug );
-       public LiveData<Drug> getDrugDetails(String name);
-       public LiveData<List<Drug>>getAllDrugDetails();
+       public LiveData<Drug> getDrugDetailsOffline(String name);
+       public LiveData<List<Drug>> getAllDrugDetailsOffline();
     }
 

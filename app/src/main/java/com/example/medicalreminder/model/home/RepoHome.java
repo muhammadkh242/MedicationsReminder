@@ -6,12 +6,14 @@ import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import com.example.medicalreminder.remote.firestore.addmedication.Firestore;
-import com.example.medicalreminder.remote.firestore.addmedication.FirestoreInterface;
-import com.example.medicalreminder.local.dbmedication.LocalSource;
+import com.example.medicalreminder.remote.firestore.addmedication.AddMedicationFirestore;
+import com.example.medicalreminder.remote.firestore.addmedication.AddMedicationFirestoreInterface;
+import com.example.medicalreminder.local.LocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.remote.realtime.RealTime;
-import com.example.medicalreminder.remote.realtime.RealTimeInterface;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTime;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTimeInterface;
+import com.example.medicalreminder.remote.realtime.refillreminder.RefillReminderInterfaceRealTime;
+import com.example.medicalreminder.remote.realtime.refillreminder.RefillReminderRealTime;
 import com.example.medicalreminder.services.worker.RefillWorker;
 
 public class RepoHome implements RepoHomeInterface{
@@ -19,14 +21,14 @@ public class RepoHome implements RepoHomeInterface{
     Context context;
     LocalSource localSource;
     private static RepoHome repo;
-    FirestoreInterface firestoreInterface;
-    RealTimeInterface realTimeDBInterface;
+    AddMedicationFirestoreInterface firestoreInterface;
+    RefillReminderInterfaceRealTime realTimeDBInterface;
 
     private RepoHome(Context context, LocalSource localSource){
         this.context = context;
         this.localSource = localSource;
-        firestoreInterface = new Firestore();
-        realTimeDBInterface = new RealTime();
+        firestoreInterface = new AddMedicationFirestore();
+        realTimeDBInterface = new RefillReminderRealTime();
     }
 
     public  static RepoHome getInstance(Context context, LocalSource localSource){
@@ -48,11 +50,11 @@ public class RepoHome implements RepoHomeInterface{
                     .build();
             WorkManager.getInstance(context).enqueue(request);
         }
-        realTimeDBInterface.updateRealTime(drug);
+        realTimeDBInterface.updateDrugRealTime(drug);
     }
 
     @Override
     public Drug getDrugRealTime(String name) {
-        return realTimeDBInterface.getDataRealTime(name);
+        return realTimeDBInterface.getDrugRealtime(name);
     }
 }

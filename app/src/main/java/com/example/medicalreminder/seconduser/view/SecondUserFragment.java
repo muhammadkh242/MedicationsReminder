@@ -149,7 +149,6 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
             }
         });
 
-
     }
 
     public void getMeds(String date){

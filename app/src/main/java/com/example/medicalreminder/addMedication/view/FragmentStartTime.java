@@ -1,11 +1,9 @@
 package com.example.medicalreminder.addMedication.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TimePicker;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -18,10 +16,10 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.R;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.StarttimeDoseQuestionScreenBinding;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 
 import java.io.Serializable;
 
@@ -42,7 +40,7 @@ public class FragmentStartTime extends Fragment{
         // Inflate the layout for this fragment
         binding = StarttimeDoseQuestionScreenBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
-        addMedPreI = AddMedicationPresenter.getInstance(getContext(), Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
+        addMedPreI = AddMedicationPresenter.getInstance(getContext(), RepoAdd.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
         binding.date.setIs24HourView(true);
         medication = (Medication) getArguments().getSerializable("object");
 

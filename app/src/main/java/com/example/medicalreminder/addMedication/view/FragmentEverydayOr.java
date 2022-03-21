@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
@@ -19,10 +18,9 @@ import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapt
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.EverydayOrQuestionScreenBinding;
-import com.example.medicalreminder.databinding.NameDrugQuestionScreenBinding;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -87,7 +85,7 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     public void getInti(){
         list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
-        addMedPI = AddMedicationPresenter.getInstance(getContext(), Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
+        addMedPI = AddMedicationPresenter.getInstance(getContext(), RepoAdd.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
         layoutManager = new LinearLayoutManager(getContext());
         medication = Medication.getInstance();
 

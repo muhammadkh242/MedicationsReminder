@@ -5,9 +5,7 @@ import android.content.Context;
 import com.example.medicalreminder.model.addmedication.Medication;
 import com.example.medicalreminder.model.editmedication.RepoEditInterface;
 
-
 public class EditMedicationPresenter implements EditMedicationPresenterInterface{
-
 
     Context context;
     private static EditMedicationPresenterInterface editMedpI;

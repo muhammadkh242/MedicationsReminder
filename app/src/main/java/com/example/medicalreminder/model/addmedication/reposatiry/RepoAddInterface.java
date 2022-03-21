@@ -12,24 +12,22 @@ import java.util.List;
 import io.reactivex.rxjava3.core.Single;
 
 
-public interface RepoInterface {
+public interface RepoAddInterface {
 
     //room
     void insertMedicatinOffline(MedicationList medList);
-
     void insertDrugOffline(Drug drug);
-
     void deleteDateOffline(String date);
-
     LiveData<MedicationList> getDrugsOffline(String date);
-
     LiveData<List<Drug>> getAllDrugDetailsOffline();
 
 
     //firestore
     void insertMedicationFirestore(MedicationList list);
-
     MutableLiveData<List<MedicationList>> getDrugsOnline(String date);
+
+    //realtime
+    void insertDrugRealTime(Drug drug);
 
     //connection Network
     boolean connection();

@@ -4,10 +4,11 @@ import android.content.Context;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.remote.realtime.RealTime;
-import com.example.medicalreminder.remote.realtime.RealTimeInterface;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTime;
+import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTimeInterface;
+import com.example.medicalreminder.remote.realtime.medicationsmanaging.MedicationManagingRealTime;
 
 import java.util.List;
 
@@ -16,12 +17,12 @@ public class MedicationsRepo implements MedicationsRepoInterface{
     private Context context;
     private static MedicationsRepo medicationsRepo = null;
     private ConcreteLocalSource localSource;
-    private RealTimeInterface realTimeDBInterface;
+    private MedicationManagingRealTime realTimeDBInterface;
 
     private MedicationsRepo(Context context, ConcreteLocalSource localSource) {
         this.context = context;
         this.localSource = localSource;
-        realTimeDBInterface = new RealTime();
+        realTimeDBInterface = new MedicationManagingRealTime();
     }
 
     public static MedicationsRepo getMedicationsRepo(Context context, ConcreteLocalSource localSource) {
@@ -31,13 +32,15 @@ public class MedicationsRepo implements MedicationsRepoInterface{
         return medicationsRepo;
     }
 
+    //realtime
     @Override
-    public MutableLiveData<List<Drug>> getMeds() {
-        return realTimeDBInterface.getMedNamesRealTime();
+    public MutableLiveData<List<Drug>> getMedsRealtime() {
+        return realTimeDBInterface.getNamesDrugsRealTime();
     }
 
+    //room
     @Override
-    public LiveData<List<Drug>> getAllMeds() {
-        return localSource.getAllDrugDetails();
+    public LiveData<List<Drug>> getMedsOffline() {
+        return localSource.getAllDrugDetailsOffline();
     }
 }

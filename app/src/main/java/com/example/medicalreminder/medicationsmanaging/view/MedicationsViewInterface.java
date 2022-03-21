@@ -8,8 +8,9 @@ import com.example.medicalreminder.model.addmedication.Drug;
 import java.util.List;
 
 public interface MedicationsViewInterface {
-    public void showMeds(MutableLiveData<List<Drug>> meds);
-    public void getMeds();
-    public void showAllMeds(LiveData<List<Drug>> list);
-    public void getAllMeds();
+
+    public void showMedsRealTime(MutableLiveData<List<Drug>> meds);
+    public void getMedsRealTime();
+    public void showMedsOffline(LiveData<List<Drug>> list);
+    public void getMedsOffline();
 }

@@ -9,9 +9,9 @@ import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
 import com.example.medicalreminder.calculation.CalculationMedication;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
+import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAdd;
 import com.example.medicalreminder.model.meddialog.RepoDialog;
 
 import java.text.SimpleDateFormat;
@@ -38,7 +38,7 @@ public class MyNewWorker extends Worker {
         String newDate = CalculationMedication.incrementCalenderDate(
                 (CalculationMedication.formatCalenderDate(formatter.format(date))));
         Log.i("TAG", "doWork: " + newDate);
-        LiveData<MedicationList> list = Repo.getInstance
+        LiveData<MedicationList> list = RepoAdd.getInstance
                 (getApplicationContext(),
                         ConcreteLocalSource.getInstance(getApplicationContext())).getDrugsOffline(newDate);
         if(list.getValue() != null) {

@@ -11,19 +11,14 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
-import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.DurationOfDrugQuestionScreenBinding;
-import com.example.medicalreminder.local.dbmedication.ConcreteLocalSource;
 
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.Medication;
-import com.example.medicalreminder.model.addmedication.reposatiry.Repo;
-import com.example.medicalreminder.remote.firestore.seconduser.SecondUserFirebaseClient;
 
 
 import java.io.Serializable;

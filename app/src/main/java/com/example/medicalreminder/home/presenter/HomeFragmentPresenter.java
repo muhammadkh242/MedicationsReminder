@@ -8,21 +8,20 @@ import androidx.lifecycle.LiveData;
 import com.example.medicalreminder.home.view.HomeFragmentViewInterface;
 import com.example.medicalreminder.model.addmedication.Drug;
 import com.example.medicalreminder.model.addmedication.MedicationList;
-import com.example.medicalreminder.model.addmedication.reposatiry.RepoInterface;
+import com.example.medicalreminder.model.addmedication.reposatiry.RepoAddInterface;
 import com.example.medicalreminder.model.home.RepoHomeInterface;
 import com.example.medicalreminder.model.meddialog.RepoDialogInterface;
-
 
 public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
 
     private HomeFragmentViewInterface view;
-    private RepoInterface repo;
+    private RepoAddInterface repo;
     private Context context;
     private RepoDialogInterface repoDialog;
     private RepoHomeInterface repoHomeInterface;
 
     public HomeFragmentPresenter(Context context, HomeFragmentViewInterface view,
-                                 RepoInterface repo, RepoDialogInterface repoDialog, RepoHomeInterface repoHomeInterface) {
+                                 RepoAddInterface repo, RepoDialogInterface repoDialog, RepoHomeInterface repoHomeInterface) {
         this.context = context;
         this.view = view;
         this.repo = repo;
@@ -59,6 +58,5 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
         drug.setTotalPills(drug.getTotalPills() - 1);
         repoHomeInterface.updateDrugRealTime(drug);
     }
-
 
 }

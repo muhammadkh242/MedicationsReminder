@@ -8,7 +8,7 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
 
 import java.util.List;
 
-public interface FirestoreInterface {
+public interface AddMedicationFirestoreInterface {
 
     void insertDrugsOnline(MedicationList list);
 

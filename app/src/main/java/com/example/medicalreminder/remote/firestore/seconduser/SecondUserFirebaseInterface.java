@@ -9,9 +9,7 @@ import java.util.List;
 
 public interface SecondUserFirebaseInterface {
 
-    //fire store
+    //firestore
     public  MutableLiveData<List<MedicationList>> getMeds(String date);
 
-    //real time
-    public void storeMed(Drug drug);
 }
