@@ -46,4 +46,10 @@ public class SecondUserRepo implements SecondUserRepoInterface{
     public void deleteFriend() {
         firebaseInterface.deleteFriend();
     }
+
+    @Override
+    public void takeFriendPill(String name){
+        firebaseInterface.takeFriendPill(name);
+    }
+
 }

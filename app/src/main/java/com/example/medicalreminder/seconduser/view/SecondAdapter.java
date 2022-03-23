@@ -43,6 +43,8 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
         MedicationDose medicationDose = meds.get(position);
         holder.getNameTxt().setText(meds.get(position).getName());
         holder.getTimeTxt().setText(meds.get(position).getHour());
+        holder.takeTxt.setText("Take (1) Pill");
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +71,7 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
         TextView nameTxt;
         TextView timeTxt;
         TextView pillTxt;
+        TextView takeTxt;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -76,6 +79,8 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
             nameTxt = itemView.findViewById(R.id.name_med_txt);
             timeTxt = itemView.findViewById(R.id.time_txt_home);
             pillTxt = itemView.findViewById(R.id.pillsTxt_home);
+            takeTxt = itemView.findViewById(R.id.pillsTxt_home);
+
 
         }
 

@@ -10,4 +10,6 @@ public interface SecondUserRepoInterface {
     public MutableLiveData<List<MedicationList>> getMeds(String date);
 
     public void deleteFriend();
+
+    public void takeFriendPill(String name);
 }

@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
@@ -37,7 +38,7 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
     RecyclerAdapter activeAdapter;
 
     LinearLayoutManager layoutManager;
-
+    ProgressBar progressBar;
     MedicationsPresenterInterface presenter;
 
     @Override
@@ -52,7 +53,8 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_medication, container, false);
-
+        progressBar = view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
         activeRecycler = view.findViewById(R.id.recycler_one);
 
 
@@ -96,6 +98,8 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
             public void onChanged(List<Drug> drugs) {
                 activeAdapter.setData(drugs);
                 activeRecycler.setAdapter(activeAdapter);
+                progressBar.setVisibility(View.GONE);
+
             }
         });
     }

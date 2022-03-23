@@ -18,6 +18,7 @@
         tools:replace="android:allowBackup" >
         <activity
             android:name=".refillreminder.RfillDialogActivity"
+            android:theme="@style/TransparentCompat"
             android:exported="false" />
 
         <service

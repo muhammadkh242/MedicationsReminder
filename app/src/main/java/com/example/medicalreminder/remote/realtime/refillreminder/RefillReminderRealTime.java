@@ -13,13 +13,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RefillReminderRealTime implements RefillReminderInterfaceRealTime{
 
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     Drug drug = new Drug();
 
     @Override
     public Drug getDrugRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child(userId);
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         Query query = reference.orderByChild("name").equalTo(name);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -39,7 +39,7 @@ public class RefillReminderRealTime implements RefillReminderInterfaceRealTime{
     @Override
     public void updateDrugRealTime(Drug drug) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child(userId);
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         Query query = reference.orderByChild("name").equalTo(drug.getName());
         query.addValueEventListener(new ValueEventListener() {
             @Override

@@ -24,4 +24,10 @@ public class SecondUserPresenter implements SecondUserPresenterInterface{
     public void deleteFriend() {
         repoInterface.deleteFriend();
     }
+
+    @Override
+    public void takeFriendPill(String name) {
+        repoInterface.takeFriendPill(name);
+
+    }
 }

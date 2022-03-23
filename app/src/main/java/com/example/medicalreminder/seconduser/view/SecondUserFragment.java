@@ -93,12 +93,13 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
         end = Calendar.getInstance();
 
         CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
-        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 String id = (String) task.getResult().get("id");
                 if(id == null){
-                    Toast.makeText(getContext(), "NO tracked users", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "NO tracked users", Toast.LENGTH_SHORT).show();
                 }
                 else{
 
@@ -125,7 +126,24 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
     @Override
     public void onStart() {
         super.onStart();
-        displayCalendar();
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                String id = (String) task.getResult().get("id");
+                if(id != null){
+                    displayCalendar();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 
     private void displayCalendar(){
@@ -177,6 +195,11 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
     }
 
     @Override
+    public void takeFriendPill(String name) {
+        presenter.takeFriendPill(name);
+    }
+
+    @Override
     public void onClick(MedicationDose dose) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -194,7 +217,11 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
         takeIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //reduce total pills for your friend
+                takeFriendPill(dose.getName());
                 dialog.cancel();
+
             }
         });
 

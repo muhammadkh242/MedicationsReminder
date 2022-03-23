@@ -7,9 +7,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.refillreminder.RfillDialogActivity;
+import com.example.medicalreminder.services.boardcast.RefillReciever;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -19,7 +22,7 @@ import androidx.work.WorkerParameters;
 
 public class RefillWorker extends Worker {
     public static  final String CHANNEL_ID = "ch_id";
-
+    public static RefillReciever RefillReciever;
 
     public RefillWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -31,15 +34,31 @@ public class RefillWorker extends Worker {
 
         String name = getInputData().getString("name");
 
-        showNotification(name);
+//        showNotification(name);
 
+        startBroadCast(name);
 
         return Result.success();
     }
 
+
+
+
+    public void startBroadCast(String name){
+        IntentFilter intentFilter = new IntentFilter("refillDialog");
+        getApplicationContext().registerReceiver(RefillReciever,intentFilter);
+        Intent outintent = new Intent();
+        outintent.putExtra("name", name);
+        outintent.setAction("refillDialog");
+        outintent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+        getApplicationContext().sendBroadcast(outintent);
+    }
+
+
+
 //  @RequiresApi(api = Build.VERSION_CODES.Q)
     public void showNotification(String medName){
-        Intent notifyIntent = new Intent(getApplicationContext(), RefillDialog.class);
+        Intent notifyIntent = new Intent(getApplicationContext(), RfillDialogActivity.class);
         // Set the Activity to start in a new, empty task
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                 | Intent.FLAG_ACTIVITY_CLEAR_TASK);

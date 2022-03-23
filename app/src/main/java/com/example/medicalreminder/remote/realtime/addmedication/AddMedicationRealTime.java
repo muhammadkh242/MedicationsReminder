@@ -8,12 +8,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddMedicationRealTime implements AddMedicationRealTimeInterface {
 
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     @Override
     public void insertDrugRealTime(Drug drug) {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference("meds");
-        db.child(userId).push().setValue(drug);
+        db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).push().setValue(drug);
 
     }
     

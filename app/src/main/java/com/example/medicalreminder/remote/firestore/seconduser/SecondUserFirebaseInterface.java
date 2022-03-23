@@ -13,4 +13,6 @@ public interface SecondUserFirebaseInterface {
     public  MutableLiveData<List<MedicationList>> getMeds(String date);
     public void deleteFriend();
 
+    void takeFriendPill(String name);
+
 }

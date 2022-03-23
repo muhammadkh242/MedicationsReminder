@@ -40,7 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.getMedTxt().setText(meds.get(position).getName());
         holder.getFormTxt().setText(meds.get(position).getForm());
-        holder.pillNum.setText(meds.get(position).getTotalPills());
+        holder.getPillNum().setText(String.valueOf(meds.get(position).getTotalPills()) + " Pill(s) left");
         if(meds.get(position).getForm().equals("pill")){
             holder.getImageView().setImageResource(R.drawable.drug);
 
@@ -83,7 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             medTxt = medRow.findViewById(R.id.medName);
             formTxt = medRow.findViewById(R.id.formTxt);
             imageView = medRow.findViewById(R.id.image);
-            pillNum = medRow.findViewById(R.id.pillNumTxt);
+            pillNum = medRow.findViewById(R.id.pillTxt);
 
         }
 
@@ -97,6 +97,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ImageView getImageView() {
             return imageView;
+        }
+
+        public TextView getPillNum() {
+            return pillNum;
         }
 
         public View getMedRow() {
