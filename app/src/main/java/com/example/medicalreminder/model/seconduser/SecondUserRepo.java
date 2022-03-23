@@ -52,4 +52,9 @@ public class SecondUserRepo implements SecondUserRepoInterface{
         firebaseInterface.takeFriendPill(name);
     }
 
+    @Override
+    public void take(String name) {
+        firebaseInterface.take(name);
+    }
+
 }

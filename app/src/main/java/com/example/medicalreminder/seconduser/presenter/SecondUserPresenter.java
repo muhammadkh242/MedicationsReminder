@@ -30,4 +30,9 @@ public class SecondUserPresenter implements SecondUserPresenterInterface{
         repoInterface.takeFriendPill(name);
 
     }
+
+    @Override
+    public void take(String name) {
+        repoInterface.take(name);
+    }
 }

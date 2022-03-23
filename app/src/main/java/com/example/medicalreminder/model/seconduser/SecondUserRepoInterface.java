@@ -12,4 +12,6 @@ public interface SecondUserRepoInterface {
     public void deleteFriend();
 
     public void takeFriendPill(String name);
+
+    public void take(String name);
 }

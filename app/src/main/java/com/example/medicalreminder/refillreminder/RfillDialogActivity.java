@@ -12,11 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.remote.firestore.seconduser.SecondUserFirebaseClient;
 
 public class RfillDialogActivity extends AppCompatActivity {
     private String name;
     AlertDialog dialog;
-
+    SecondUserFirebaseClient secondUserFirebaseClient = new SecondUserFirebaseClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,8 @@ public class RfillDialogActivity extends AppCompatActivity {
                 }
                 else{
                     //call refill method
+                    int num = Integer.valueOf(refillEdit.getText().toString());
+                    secondUserFirebaseClient.setRefill(name, num);
                 }
             }
         });

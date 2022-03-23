@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.medicalreminder"
-    android:networkSecurityConfig="@xml/network_security_config" >
+    android:networkSecurityConfig="@xml/network_security_config">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -15,11 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder"
-        tools:replace="android:allowBackup" >
+        tools:replace="android:allowBackup">
+        <service
+            android:name=".services.service.Take"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".refillreminder.RfillDialogActivity"
-            android:theme="@style/TransparentCompat"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/TransparentCompat" />
 
         <service
             android:name=".services.service.Reply"
@@ -34,6 +39,7 @@
             android:name=".services.boardcast.MyReceiver"
             android:enabled="true"
             android:exported="true" />
+
 
         <activity
             android:name=".seconduser.view.SecondUserActivity"
@@ -52,7 +58,7 @@
         <activity android:name=".eidtmedication.view.EditDrug" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

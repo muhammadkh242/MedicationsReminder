@@ -1,5 +1,6 @@
 package com.example.medicalreminder.authentication.register.presenter;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -47,5 +48,6 @@ public class RegisterPresenter implements RegisterPresenterInterface, FirebaseDe
         Intent intent = new Intent(context, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
+
     }
 }

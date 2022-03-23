@@ -12,8 +12,11 @@ import com.example.medicalreminder.authentication.register.view.RegisterActivity
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
 import com.example.medicalreminder.model.addmedication.Drug;
+import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.example.medicalreminder.services.service.MyNotification;
 import com.example.medicalreminder.services.service.Reply;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirestoreRegistrar;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,31 +68,11 @@ public class SplashActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate: " + FirebaseAuth.getInstance().getUid());
 
 
-        Log.i(TAG, "onCreate: " + getDrugDaysRealtime("panadol").size());
+
     }
 
-    public List<String> getDrugDaysRealtime(String name) {
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child("L2AbdT0LocWgGrRPatCKTzxYbz33");
-        Query query = reference
-                .orderByChild("name").equalTo(name);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                days = new ArrayList<>();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Drug drug = dataSnapshot.getValue(Drug.class);
-                    days = drug.getDays();
-                    Log.i("TAG", "onDataChange: "+days.size());
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-        return days;
-    }
+
 
 }

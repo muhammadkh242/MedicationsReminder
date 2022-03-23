@@ -44,7 +44,7 @@ public class TrackerFirebaseClient implements TrackerFirebaseSource{
                 }
                 else{
                     Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                    FirebaseAuth.getInstance().getUid(), true, null);
+                    FirebaseAuth.getInstance().getUid(), true, null, null);
                     CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
                     reference.document(email).set(invitation);
                     Toast.makeText(context, "Request has been sent", Toast.LENGTH_LONG).show();

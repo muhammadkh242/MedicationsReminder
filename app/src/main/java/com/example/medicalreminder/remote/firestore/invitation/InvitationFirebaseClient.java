@@ -45,7 +45,7 @@ public class InvitationFirebaseClient implements InvitationFirebaseSource{
                             }
                         });
                         String id = invitation.getId();
-                        Invitation invitation1 = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),id, false,null);
+                        Invitation invitation1 = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),id, false,null, null);
                         reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail())
                                 .set(invitation1);
                     }
@@ -75,7 +75,7 @@ public class InvitationFirebaseClient implements InvitationFirebaseSource{
             }
         });
         Invitation invitation = new Invitation(FirebaseAuth.getInstance().getCurrentUser().getEmail(),
-                null, false,null);
+                null, false,null, null);
         reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail())
                 .set(invitation);
 

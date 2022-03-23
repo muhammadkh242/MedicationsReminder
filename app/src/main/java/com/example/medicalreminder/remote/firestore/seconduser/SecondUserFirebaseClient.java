@@ -106,6 +106,43 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
 
     }
 
+    public void setRefill(String name, int num){
+        myDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Invitation invitation = task.getResult().toObject(Invitation.class);
+                String id = invitation.getId();
+                refill(id, name, num);
+            }
+        });
+    }
+
+    public void refill(String id, String name, int num){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
+                .child(id);
+        Query query = reference.orderByChild("name").equalTo(name);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    Drug drug = dataSnapshot.getValue(Drug.class);
+                    drug.setTotalPills(drug.getTotalPills()+num);
+                    reference.child(dataSnapshot.getKey()).setValue(drug);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+
     public void take(String id, String name){
         Log.i("TAG", "take: SECONDUSERFIREBASECLIENT");
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
@@ -128,6 +165,34 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
             }
         });
 
+
+    }
+
+    @Override
+    public void take(String name){
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+        reference.document(FirebaseAuth.getInstance().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Invitation invitation = task.getResult().toObject(Invitation.class);
+                String friendID = invitation.getId();
+                sendNotification(friendID);
+
+            }
+        });
+    }
+
+    public void sendNotification(String id){
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+        reference.document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Invitation invitation = task.getResult().toObject(Invitation.class);
+                invitation.setTake(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                reference.document(id).set(invitation);
+
+            }
+        });
 
     }
 

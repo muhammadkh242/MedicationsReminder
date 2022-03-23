@@ -17,6 +17,9 @@ import com.example.medicalreminder.authentication.login.presenter.LoginPresenter
 import com.example.medicalreminder.databinding.ActivitySignupBinding;
 import com.example.medicalreminder.model.authentication.repository.Repository;
 import com.example.medicalreminder.remote.firestore.auth.FirebaseClient;
+import com.example.medicalreminder.services.service.MyNotification;
+import com.example.medicalreminder.services.service.Reply;
+import com.example.medicalreminder.services.service.Take;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -78,6 +81,14 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
                 signIn();
             }
         });
+
+        if(FirebaseAuth.getInstance().getUid() != null){
+
+            startService(new Intent(this, MyNotification.class));
+            startService(new Intent(this, Take.class));
+            startService(new Intent(this, Reply.class));
+
+        }
     }
 
     @Override

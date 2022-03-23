@@ -14,6 +14,8 @@ public interface SecondUserViewInterface {
 
     public void takeFriendPill(String name);
 
+    public void take(String name);
+
 //    public void showFriendMeds(MutableLiveData<List<Drug>> meds);
 //    public void getFriendMeds();
 

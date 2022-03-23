@@ -2,7 +2,6 @@ package com.example.medicalreminder.services.service;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
@@ -17,71 +16,51 @@ import com.example.medicalreminder.R;
 import com.example.medicalreminder.model.invitation.Invitation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class Reply extends Service {
-    public static  final String CHANNEL_ID = "reply_id";
+public class Take extends Service {
+    public static  final String CHANNEL_ID = "myyyyid";
 
-    CollectionReference myRef = FirebaseFirestore.getInstance().collection("Notifications");
+    public Take() {
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-        Log.i("TAG", "onStartCommand: on reply");
-
-        if(FirebaseAuth.getInstance().getUid() != null){
-            listenToReply();
-
-        }
-
+        Log.i("TAG", "onStartCommand: TAKE SERVICE");
+        listen();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+
     }
 
-
-
-    public void listenToReply(){
-        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+    public void listen(){
+        Log.i("TAG", "listen: ");
+        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
+        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value.get("reply") != null){
-                    Invitation invitation;
-                    if(value.get("reply").equals("yes")){
-                        showNotification("yes");
-                        invitation = value.toObject(Invitation.class);
-                        invitation.setReply(null);
-                        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
-                    }
-                    else if(value.get("reply").equals("no")){
-                        showNotification("no");
-                        invitation = value.toObject(Invitation.class);
-                        invitation.setReply(null);
-                        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
-                    }
-                }
+                if(value.get("take") != null){
+                    String user = (String) value.get("take");
+                    Log.i("TAG", "onEvent: take" + value.get("take"));
+                    Invitation invitation = value.toObject(Invitation.class);
+                    invitation.setTake(null);
+                    reference.document(user).set(invitation);
+                    showNotification(user);
 
+                }
             }
         });
     }
 
 
-
-    public void showNotification(String msg){
-        String str = "";
-        if(msg.equals("yes")){
-            str = "Accepted";
-        }
-        else if(msg.equals("no")){
-            str = "Rejected";
-        }
+    public void showNotification(String user){
 
         Log.i("TAG", "showNotification: ");
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -98,10 +77,11 @@ public class Reply extends Service {
         android.app.Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Invitation")
-                .setContentText("Request " + str)
+                .setContentText(user + " invite you to be a HealthTracker")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true).build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-        managerCompat.notify(7, notification);
+        managerCompat.notify(999, notification);
     }
+
 }

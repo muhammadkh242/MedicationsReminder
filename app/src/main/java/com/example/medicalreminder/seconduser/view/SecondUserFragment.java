@@ -200,6 +200,11 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
     }
 
     @Override
+    public void take(String name) {
+        presenter.take(name);
+    }
+
+    @Override
     public void onClick(MedicationDose dose) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -220,6 +225,7 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
 
                 //reduce total pills for your friend
                 takeFriendPill(dose.getName());
+                take(dose.getName());
                 dialog.cancel();
 
             }

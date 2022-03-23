@@ -15,4 +15,6 @@ public interface SecondUserFirebaseInterface {
 
     void takeFriendPill(String name);
 
+    public void take(String name);
+
 }

@@ -6,5 +6,7 @@ public interface SecondUserPresenterInterface {
 
     public void takeFriendPill(String name);
 
+    public void take(String name);
+
 
 }

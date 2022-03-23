@@ -5,15 +5,17 @@ public class Invitation {
     String id;
     boolean invitaion;
     String reply;
+    String take;
 
     public Invitation() {
     }
 
-    public Invitation(String email, String id, boolean invitaion, String reply) {
+    public Invitation(String email, String id, boolean invitaion, String reply, String take) {
         this.email = email;
         this.id = id;
         this.invitaion = invitaion;
         this.reply = reply;
+        this.take = take;
     }
 
     public String getEmail() {
@@ -34,6 +36,14 @@ public class Invitation {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setTake(String take) {
+        this.take = take;
+    }
+
+    public String getTake() {
+        return take;
     }
 
     public void setInvitaion(boolean invitaion) {
