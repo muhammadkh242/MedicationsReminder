@@ -80,7 +80,7 @@ public class FirebaseClient implements FirebaseSource {
         progressDialog.setMessage("Wait for Login.");
         progressDialog.setTitle("Login.");
         progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
+      //  progressDialog.show();
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

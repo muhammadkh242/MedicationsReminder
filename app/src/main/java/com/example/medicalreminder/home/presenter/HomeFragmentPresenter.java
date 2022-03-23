@@ -47,16 +47,15 @@ public class HomeFragmentPresenter implements HomeFragmentPresenterInterface {
 
     @Override
     public void getDrugRealTime(String name) {
-        Log.i("TAG", "getDrugRealTime: "+ name);
-        repoHomeInterface.getDrugRealTime(name);
-        updateDrugRealTime(repoHomeInterface.getDrugRealTime(name));
+        Drug d = repoHomeInterface.getDrugRealTime(name);
+//        Log.i("TAG", "updateDrugRealTime:get "+ d.getTotalPills());
+//        updateDrugRealTime(d);
     }
 
     @Override
     public void updateDrugRealTime(Drug drug) {
-        Log.i("TAG", "updateDrugRealTime1111111111: " + drug.getTotalPills());
+        Log.i("TAG", "updateDrugRealTime:update " + drug.getTotalPills());
         drug.setTotalPills(drug.getTotalPills() - 1);
         repoHomeInterface.updateDrugRealTime(drug);
     }
-
 }

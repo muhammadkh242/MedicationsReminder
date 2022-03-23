@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
+    tools:context=".seconduser.view.SecondUserActivity">
 
     <TextView
         android:id="@+id/textview_second"
@@ -13,6 +13,8 @@
         app:layout_constraintBottom_toTopOf="@id/button_second"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
+        android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

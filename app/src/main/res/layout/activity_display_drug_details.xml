@@ -95,36 +95,24 @@
             android:id="@+id/txtReminders"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="@string/drug_reminders"
-            android:textColor="#778383"
-            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/txtReminder_details"
-            app:layout_constraintStart_toStartOf="@id/constraint2"
-            />
-        <Button
-            android:id="@+id/btnSuspend"
-            android:layout_width="79dp"
-            android:layout_height="30dp"
-            android:background="@drawable/shape_button"
-            android:text="@string/button_suspend"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.949"
-            app:layout_constraintStart_toStartOf="@id/txtReminders"
-            app:layout_constraintTop_toTopOf="@id/txtReminders">
-
-        </Button>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtReminder_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/txtReminders"
-            app:layout_constraintTop_toBottomOf="@id/btnSuspend">
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@+id/txtReminders"
+            tools:layout_editor_absoluteX="0dp">
 
         </TextView>
 
@@ -132,12 +120,12 @@
             android:id="@+id/txtReminder_Time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@id/txtPrescription"
-            app:layout_constraintStart_toStartOf="@id/txtReminder_details"
-            app:layout_constraintTop_toBottomOf="@id/txtReminder_details">
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/txtReminder_details"
+            app:layout_constraintTop_toBottomOf="@+id/txtReminder_details">
 
         </TextView>
 
@@ -145,40 +133,28 @@
             android:id="@+id/txtPrescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:text="@string/drug_reminders"
-            android:textColor="#778383"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/txtReminders"
             app:layout_constraintTop_toBottomOf="@id/txtReminder_Time">
 
         </TextView>
 
-        <Button
-            android:id="@+id/btnRefill"
-            android:layout_width="79dp"
-            android:layout_height="30dp"
-            android:background="@drawable/shape_button"
-            android:text="@string/button_refill"
-            android:textSize="9sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.949"
-            app:layout_constraintStart_toStartOf="@id/txtPrescription"
-            app:layout_constraintTop_toTopOf="@id/txtPrescription">
-
-        </Button>
-
         <TextView
             android:id="@+id/txtRefill"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="@string/drug_reminder_details"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/txtPrescription"
-            app:layout_constraintTop_toBottomOf="@id/btnRefill">
+            app:layout_constraintTop_toBottomOf="@id/txtPrescription">
 
         </TextView>
 

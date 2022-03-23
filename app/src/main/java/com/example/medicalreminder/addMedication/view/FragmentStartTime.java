@@ -42,6 +42,11 @@ public class FragmentStartTime extends Fragment{
         View root = binding.getRoot();
         addMedPreI = AddMedicationPresenter.getInstance(getContext(), RepoAdd.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
         binding.date.setIs24HourView(true);
+        View view = inflater.inflate(R.layout.starttime_dose_question_screen, container, false);
+        medication = Medication.getInstance();
+        //addMedPreI = AddMedicationPresenter.getInstance(getContext(), Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
+
+
         medication = (Medication) getArguments().getSerializable("object");
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +60,7 @@ public class FragmentStartTime extends Fragment{
                 medication.setFirstTimeDose(hour+":"+minute);
                 CalculationMedication.calListHour();
                 NavController navController= Navigation.findNavController(root);
+//                addMedPreI.calListHour(medication);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("object", (Serializable) medication);
                 navController.navigate(R.id.durationDrugAct,bundle);

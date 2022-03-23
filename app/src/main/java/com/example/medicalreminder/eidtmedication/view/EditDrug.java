@@ -132,7 +132,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
                 medication.setDurationDrug(text);
                 medication.setName(binding.edtmedname.getText().toString());
                 CalculationMedication.calDuration();
-
             }
 
             @Override

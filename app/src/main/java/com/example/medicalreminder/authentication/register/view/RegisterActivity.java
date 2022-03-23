@@ -30,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
 
         progressDialog = new ProgressDialog(this);
         presenterInt = new RegisterPresenter(
-                this, Repository.getInstance(this, FirebaseClient.getInstance(this) ), this);
+                this, Repository.getInstance(this, FirebaseClient.getInstance(this)), this);
         listener = new onRegisterClickListener() {
             @Override
             public void onClick(String email, String password) {
@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                finish();
             }
         });
 
@@ -60,7 +61,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
 
     @Override
     public void saveUserData(String email, String password) {
-            presenterInt.checkDataReg(email, password);
+        presenterInt.checkDataReg(email, password);
+        finish();
     }
 
 

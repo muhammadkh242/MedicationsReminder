@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".medicationsmanaging.view.MedicationsActivity">
+    tools:context=".authentication.login.view.GoogleLoginActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

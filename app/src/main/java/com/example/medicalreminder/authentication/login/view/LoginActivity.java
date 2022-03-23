@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.medicalreminder.HomeActivity;
+import com.example.medicalreminder.R;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenter;
 import com.example.medicalreminder.authentication.login.presenter.LoginPresenterInterface;
@@ -51,10 +53,10 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         auth = FirebaseAuth.getInstance();
         presenter = new LoginPresenter(this,
                 Repository.getInstance(this, FirebaseClient.getInstance(this)), this);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString())
-                .requestEmail()
-                .build();
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+////                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
         binding.txtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,11 +76,12 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
         });
 
 
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
+//        googleSignInClient = GoogleSignIn.getClient(this, gso);
         binding.googleSigninBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signIn();
+//                signIn();
+                startActivity(new Intent(getApplicationContext(), GoogleLoginActivity.class));
             }
         });
 
@@ -95,6 +98,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
     public void saveUser(String email, String password) {
         presenter.checkDataLogin(email, password);
         Log.i("TAG", "saveUser: ");
+        finish();
     }
 
     private void signIn() {
@@ -132,6 +136,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = auth.getCurrentUser();
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     updateUI(user);
                 } else {
                     Toast.makeText(LoginActivity.this, "Successful", Toast.LENGTH_SHORT).show();
@@ -147,6 +152,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
             String name = account.getDisplayName();
             String email = account.getEmail();
             Uri photoUrl = account.getPhotoUrl();
+            Log.i("TAG", "updateUI: " + email);
             Toast.makeText(this, name + email, Toast.LENGTH_SHORT).show();
         }
     }

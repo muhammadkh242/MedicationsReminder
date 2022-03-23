@@ -20,10 +20,14 @@
         android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="5dp"
+        app:cardCornerRadius="20sp"
+        android:background="@color/white"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/time_txt_home">
+        app:layout_constraintTop_toBottomOf="@id/time_txt_home"
+        tools:ignore="UnusedAttribute">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

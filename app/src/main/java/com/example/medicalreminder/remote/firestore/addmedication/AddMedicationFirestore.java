@@ -31,14 +31,12 @@ public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
     List<MedicationList> list = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
-//    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    String userId = "TP13bm60i1TDSoQcEwPKq6vKKPu2";
     EditMedicationInterfaceRealTime realTimeDBInterface = new EditMedicationRealTime();
 
     @Override
     public void insertDrugsOnline(MedicationList med) {
         firebaseFirestore
-                .document(userId)
+                .document( FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection(med.getDate())
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -46,13 +44,13 @@ public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         if (!queryDocumentSnapshots.isEmpty()) {
                             firebaseFirestore.
-                                    document(userId)
+                                    document( FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .collection(med.getDate())
                                     .document(med.getList().get(0).getName())
                                     .set(med);
                         } else {
                             firebaseFirestore
-                                    .document(userId)
+                                    .document( FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .collection(med.getDate())
                                     .document(med.getList().get(0).getName())
                                     .set(med);
@@ -67,7 +65,7 @@ public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
 
     @Override
     public MutableLiveData<List<MedicationList>> getDrugsOnline(String date) {
-        firebaseFirestore.document(userId)
+        firebaseFirestore.document( FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection(date)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

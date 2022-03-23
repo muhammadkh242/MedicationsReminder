@@ -5,9 +5,8 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.example.medicalreminder.local.ConcreteLocalSource;
+
 import com.example.medicalreminder.model.addmedication.Drug;
-import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTime;
-import com.example.medicalreminder.remote.realtime.addmedication.AddMedicationRealTimeInterface;
 import com.example.medicalreminder.remote.realtime.medicationsmanaging.MedicationManagingRealTime;
 
 import java.util.List;

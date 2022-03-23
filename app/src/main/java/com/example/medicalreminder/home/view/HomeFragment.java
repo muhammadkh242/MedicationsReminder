@@ -197,6 +197,7 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
             public void onClick(View view) {
                 Toast.makeText(getContext(), "skip", Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onClick: ");
+                dialog.cancel();
             }
         });
         ImageView imgTake = customLayout.findViewById(R.id.imgCheckTake);

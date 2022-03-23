@@ -4,6 +4,8 @@ import com.example.medicalreminder.model.addmedication.Drug;
 
 public interface RepoHomeInterface {
 
-    public void updateDrugRealTime(Drug drug);
-    public Drug getDrugRealTime(String name);
+    void updateDrugRealTime(Drug drug);
+
+    Drug getDrugRealTime(String name);
+
 }

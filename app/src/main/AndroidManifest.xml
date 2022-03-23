@@ -26,14 +26,14 @@
             android:exported="false"
             android:theme="@style/TransparentCompat" />
 
-        <service
-            android:name=".services.service.Reply"
-            android:enabled="true"
-            android:exported="true" />
-        <service
-            android:name=".services.service.MyNotification"
-            android:enabled="true"
-            android:exported="true" />
+<!--        <service-->
+<!--            android:name=".services.service.Reply"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true" />-->
+<!--        <service-->
+<!--            android:name=".services.service.MyNotification"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true" />-->
 
         <receiver
             android:name=".services.boardcast.MyReceiver"

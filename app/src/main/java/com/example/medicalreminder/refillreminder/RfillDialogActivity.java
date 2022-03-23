@@ -21,7 +21,7 @@ public class RfillDialogActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rfill_dialog);
+        setContentView(R.layout.refill_dialog);
 
         Intent incomingintent = getIntent();
         name = incomingintent.getStringExtra("name");

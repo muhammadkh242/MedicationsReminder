@@ -94,4 +94,8 @@ dependencies {
     //cardView
     implementation "androidx.cardview:cardview:1.0.0"
 
+    // facebook
+    implementation 'com.facebook.android:facebook-login:latest.release'
+
+
 }

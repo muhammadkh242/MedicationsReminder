@@ -25,17 +25,18 @@ public class MyWorker extends Worker{
     @Override
     public Result doWork() {
         Data inputData = getInputData();
-       startBroadCast(inputData.getString("DETAIL"));
+       startBroadCast(inputData.getString("FIRST"));
         Log.i("TAG", "doWork: ");
         return Result.success();
     }
 
     public void startBroadCast(String name){
-        Log.i("TAG", "startBroadCast: ");
+        Log.i("TAG", "startBroadCast: " + name);
         IntentFilter intentFilter = new IntentFilter("medDialog");
         getApplicationContext().registerReceiver(myReceiver,intentFilter);
         Intent in = new Intent();
-        in.putExtra("DETAIL", name);
+        in.putExtra("FIRST", name);
+        Log.i("TAG", "startBroadCast: " + name);
         in.setAction("medDialog");
         in.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         getApplicationContext().sendBroadcast(in);
