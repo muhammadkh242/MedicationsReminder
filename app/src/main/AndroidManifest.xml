@@ -19,7 +19,8 @@
         <service
             android:name=".services.service.Take"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"/>
+        <activity android:name=".authentication.login.view.GoogleLoginActivity"/>
 
         <activity
             android:name=".refillreminder.RfillDialogActivity"

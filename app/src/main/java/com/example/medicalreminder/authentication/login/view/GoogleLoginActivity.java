@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.local.sharedpref.SharedPref;
+import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
+import com.example.medicalreminder.model.authentication.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -36,6 +39,8 @@ public class GoogleLoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_GOOGLE_SIGN_IN = 357753;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private SharedPrefsInterface prefsInterface = new SharedPref(getApplicationContext());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +103,11 @@ public class GoogleLoginActivity extends AppCompatActivity {
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.i("TAG", "onComplete: " + user.getEmail());
+                            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                            User user1 = new User();
+                            user1.getEmail();
+                            user1.getPassword();
+                            prefsInterface.savePrefs(user1);
 //                            UserPojo testUser = new UserPojo(user.getDisplayName(), "", user.getEmail(), "NULL", "False", "NULL", "NULL");
 //                            FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
 //                                    .setValue(testUser).addOnCompleteListener(new OnCompleteListener<Void>() {
