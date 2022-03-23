@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import com.example.medicalreminder.R;
-import com.example.medicalreminder.refillreminder.RefillDialog;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;

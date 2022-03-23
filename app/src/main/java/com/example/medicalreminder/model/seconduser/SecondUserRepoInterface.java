@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface SecondUserRepoInterface {
     public MutableLiveData<List<MedicationList>> getMeds(String date);
+
+    public void deleteFriend();
 }

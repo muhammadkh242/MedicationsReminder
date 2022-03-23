@@ -19,4 +19,9 @@ public class SecondUserPresenter implements SecondUserPresenterInterface{
         viewInterface.showData(repoInterface.getMeds(date));
 
     }
+
+    @Override
+    public void deleteFriend() {
+        repoInterface.deleteFriend();
+    }
 }

@@ -11,5 +11,6 @@ public interface SecondUserFirebaseInterface {
 
     //firestore
     public  MutableLiveData<List<MedicationList>> getMeds(String date);
+    public void deleteFriend();
 
 }

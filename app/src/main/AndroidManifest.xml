@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.medicalreminder"
-    android:networkSecurityConfig="@xml/network_security_config">
+    android:networkSecurityConfig="@xml/network_security_config" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:allowBackup="false"
@@ -15,27 +15,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MedicalReminder"
-        tools:replace="android:allowBackup">
-
+        tools:replace="android:allowBackup" >
         <activity
-            android:name=".refillreminder.RefillDialog"
-            android:exported="false"
-            android:label="@string/title_activity_refill_dialog"
-            android:theme="@style/Theme.MedicalReminder.NoActionBar" />
+            android:name=".refillreminder.RfillDialogActivity"
+            android:exported="false" />
 
-<!--        <service android:name=".services.service.Reply"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"/>-->
-
-<!--        <service-->
-<!--            android:name=".services.service.Notification"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"/>-->
+        <service
+            android:name=".services.service.Reply"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.service.MyNotification"
+            android:enabled="true"
+            android:exported="true" />
 
         <receiver
             android:name=".services.boardcast.MyReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <activity
             android:name=".seconduser.view.SecondUserActivity"
@@ -46,14 +43,15 @@
             android:theme="@style/TransparentCompat" />
         <activity android:name=".authentication.login.view.LoginActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".dialogmed.DialogActivity"
-            android:theme="@style/TransparentCompat"/>
+        <activity
+            android:name=".dialogmed.DialogActivity"
+            android:theme="@style/TransparentCompat" />
         <activity android:name=".authentication.register.view.RegisterActivity" />
         <activity android:name=".displaymedication.view.DisplayDrugDetails" />
         <activity android:name=".eidtmedication.view.EditDrug" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

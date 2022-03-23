@@ -1,8 +1,6 @@
 package com.example.medicalreminder.seconduser.view;
-
-import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
@@ -13,9 +11,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.medicalreminder.R;
+import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenter;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.FragmentSecondUserBinding;
 import com.example.medicalreminder.model.addmedication.MedicationDose;
@@ -26,15 +27,12 @@ import com.example.medicalreminder.seconduser.presenter.SecondUserPresenterInter
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ import java.util.List;
 import in.akshit.horizontalcalendar.HorizontalCalendarView;
 import in.akshit.horizontalcalendar.Tools;
 
-public class SecondUserFragment extends Fragment implements SecondUserViewInterface{
+public class SecondUserFragment extends Fragment implements SecondUserViewInterface, OnClickListenerSecondUser{
 
     FragmentSecondUserBinding binding;
 
@@ -60,10 +58,7 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
 
     SecondUserPresenterInterface presenter;
 
-    public SecondUserFragment() {
-        // Required empty public constructor
-    }
-
+    AlertDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,11 +73,21 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
         View root = binding.getRoot();
 
         layoutManager = new LinearLayoutManager(getContext());
-        adapter = new SecondAdapter(getContext());
+        adapter = new SecondAdapter(getContext(), this);
 
         presenter = new SecondUserPresenter(this, SecondUserRepo.getRepo(getContext()));
         binding.recyclerSecond.setLayoutManager(layoutManager);
         binding.recyclerSecond.setAdapter(adapter);
+
+
+        binding.delBtn.setEnabled(false);
+        binding.delBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteFriend();
+            }
+        });
+
 
         start = Calendar.getInstance();
         end = Calendar.getInstance();
@@ -96,13 +101,18 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
                     Toast.makeText(getContext(), "NO tracked users", Toast.LENGTH_LONG).show();
                 }
                 else{
+
                     displayCalendar();
                     binding.calendarSecond.setUpCalendar(start.getTimeInMillis(), end.getTimeInMillis(), dates, new HorizontalCalendarView.OnCalendarListener() {
                         @Override
                         public void onDateSelected(String date) {
+                            Log.i("TAG", "onDateSelected: " + date);
                             getMeds(CalculationMedication.formatCalenderDate(date));
+
                         }
                     });
+
+                    binding.delBtn.setEnabled(true);
 
                 }
             }
@@ -110,6 +120,12 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
 
 
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        displayCalendar();
     }
 
     private void displayCalendar(){
@@ -153,5 +169,45 @@ public class SecondUserFragment extends Fragment implements SecondUserViewInterf
 
     public void getMeds(String date){
         presenter.getMeds(date);
+    }
+
+    @Override
+    public void deleteFriend() {
+        presenter.deleteFriend();
+    }
+
+    @Override
+    public void onClick(MedicationDose dose) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View myDialogView = getLayoutInflater().inflate(R.layout.friend_take_dialog, null);
+        builder.setView(myDialogView);
+
+        TextView medName = myDialogView.findViewById(R.id.medName);
+        TextView timeTxt = myDialogView.findViewById(R.id.timeTxt);
+        ImageView takeIcon = myDialogView.findViewById(R.id.takeIcon);
+        ImageView closeIcon = myDialogView.findViewById(R.id.closeIcon);
+
+        medName.setText(dose.getName());
+        timeTxt.setText(dose.getHour());
+
+        takeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+
+        closeIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+
+
     }
 }

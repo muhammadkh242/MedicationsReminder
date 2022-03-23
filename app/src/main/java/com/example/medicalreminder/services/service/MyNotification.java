@@ -22,7 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class Notification extends Service {
+public class MyNotification extends Service {
     public static  final String CHANNEL_ID = "my_id";
 
 
@@ -39,7 +39,10 @@ public class Notification extends Service {
                 this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
         );
 
-        listen(notifyPendingIntent);
+        if(FirebaseAuth.getInstance().getUid() != null){
+            listen(notifyPendingIntent);
+        }
+
 
         return super.onStartCommand(intent, flags, startId);
     }

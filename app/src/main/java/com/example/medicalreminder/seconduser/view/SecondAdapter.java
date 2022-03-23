@@ -17,11 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder>{
-    private List<MedicationDose> meds = new ArrayList<>();
-    private final Context context;
 
-    public SecondAdapter(Context context) {
+    private List<MedicationDose> meds = new ArrayList<>();
+    private Context context;
+    private OnClickListenerSecondUser onClickListenerSecondUser;
+
+    public SecondAdapter(Context context, OnClickListenerSecondUser onClickListenerSecondUser) {
         this.context = context;
+        this.onClickListenerSecondUser = onClickListenerSecondUser;
     }
 
     @NonNull
@@ -37,8 +40,15 @@ public class SecondAdapter extends RecyclerView.Adapter<SecondAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        MedicationDose medicationDose = meds.get(position);
         holder.getNameTxt().setText(meds.get(position).getName());
         holder.getTimeTxt().setText(meds.get(position).getHour());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickListenerSecondUser.onClick(medicationDose);
+            }
+        });
     }
 
     public void setData(List<MedicationDose> meds){

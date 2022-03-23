@@ -40,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.getMedTxt().setText(meds.get(position).getName());
         holder.getFormTxt().setText(meds.get(position).getForm());
+        holder.pillNum.setText(meds.get(position).getTotalPills());
         if(meds.get(position).getForm().equals("pill")){
             holder.getImageView().setImageResource(R.drawable.drug);
 
@@ -58,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public void setData(List<Drug> meds){
         this.meds = meds;
-//        notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     @Override
@@ -73,6 +74,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView medTxt;
         TextView formTxt;
         ImageView imageView;
+        TextView pillNum;
         View medRow;
 
         public ViewHolder(@NonNull View itemView) {
@@ -81,6 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             medTxt = medRow.findViewById(R.id.medName);
             formTxt = medRow.findViewById(R.id.formTxt);
             imageView = medRow.findViewById(R.id.image);
+            pillNum = medRow.findViewById(R.id.pillNumTxt);
 
         }
 

@@ -10,7 +10,7 @@ import android.util.Log;
 import com.example.medicalreminder.authentication.register.view.RegisterActivity;
 import com.example.medicalreminder.local.sharedpref.SharedPref;
 import com.example.medicalreminder.local.sharedpref.SharedPrefsInterface;
-import com.example.medicalreminder.services.service.Notification;
+import com.example.medicalreminder.services.service.MyNotification;
 import com.example.medicalreminder.services.service.Reply;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 if (prefsInterface.getFromPrefs().getEmail() != null) {
                     startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                    Intent intent = new Intent(getApplicationContext(), Notification.class);
+                    Intent intent = new Intent(getApplicationContext(), MyNotification.class);
                     startService(intent);
                     Intent intent1 = new Intent(getApplicationContext(), Reply.class);
                     startService(intent1);
@@ -44,4 +44,5 @@ public class SplashActivity extends AppCompatActivity {
 
         Log.i(TAG, "onCreate: " + FirebaseAuth.getInstance().getUid());
     }
+
 }

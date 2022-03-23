@@ -1,5 +1,7 @@
 package com.example.medicalreminder.remote.firestore.seconduser;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
@@ -9,9 +11,9 @@ import com.example.medicalreminder.model.addmedication.MedicationList;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -24,7 +26,11 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
 
 
     CollectionReference fireStore = FirebaseFirestore.getInstance().collection("Drug");
+    String myEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
     MutableLiveData<List<MedicationList>> medList = new MutableLiveData<>();
+    DocumentReference myDoc =  FirebaseFirestore.getInstance().collection("Notifications")
+            .document(myEmail);
 
     public MutableLiveData<List<MedicationList>> getData(String date, String id) {
         MutableLiveData<List<MedicationList>> dataList = new MutableLiveData<>();
@@ -61,9 +67,25 @@ public class SecondUserFirebaseClient implements SecondUserFirebaseInterface{
                 else{
                     medList = getData(date, id);
                 }
+                Log.i("TAG", "ID FOR THE SECOND ONE: " + id);
             }
         });
         return medList;
     }
+
+    @Override
+    public void deleteFriend() {
+
+        myDoc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                Invitation invitation = task.getResult().toObject(Invitation.class);
+                invitation.setId(null);
+                myDoc.set(invitation);
+            }
+        });
+
+    }
+
 
 }

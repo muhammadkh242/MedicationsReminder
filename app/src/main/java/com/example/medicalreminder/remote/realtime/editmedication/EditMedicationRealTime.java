@@ -18,14 +18,13 @@ import java.util.List;
 
 public class EditMedicationRealTime implements EditMedicationInterfaceRealTime {
 
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     List<String> days = new ArrayList<>();
 
 
     @Override
     public List<String> getDrugDaysRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
-                .child(userId);
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         Query query = reference
                 .orderByChild("name").equalTo(name);
         query.addValueEventListener(new ValueEventListener() {
@@ -47,7 +46,7 @@ public class EditMedicationRealTime implements EditMedicationInterfaceRealTime {
     }
     public void deleteDrugRealtime(String name) {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds");
-        reference.child(userId).get()
+        reference.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {

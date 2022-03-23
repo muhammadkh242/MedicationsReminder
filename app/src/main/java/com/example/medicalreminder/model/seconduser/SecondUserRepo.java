@@ -41,4 +41,9 @@ public class SecondUserRepo implements SecondUserRepoInterface{
         }
         return firebaseInterface.getMeds(date);
     }
+
+    @Override
+    public void deleteFriend() {
+        firebaseInterface.deleteFriend();
+    }
 }

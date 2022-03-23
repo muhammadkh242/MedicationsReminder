@@ -14,8 +14,10 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.model.invitation.Invitation;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,10 +26,15 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class Reply extends Service {
     public static  final String CHANNEL_ID = "reply_id";
 
+    CollectionReference myRef = FirebaseFirestore.getInstance().collection("Notifications");
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        listenToReply();
+        if(FirebaseAuth.getInstance().getUid() != null){
+            listenToReply();
+
+        }
 
         return super.onStartCommand(intent, flags, startId);
     }
@@ -38,18 +45,27 @@ public class Reply extends Service {
     }
 
 
+
     public void listenToReply(){
-        CollectionReference reference = FirebaseFirestore.getInstance().collection("Notifications");
-        reference.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value.get("reply").equals("yes")){
-                    String inviter = (String) value.get("email");
-                    showNotification("yes");
+                if(value.get("reply") != null){
+                    Invitation invitation;
+                    if(value.get("reply").equals("yes")){
+                        showNotification("yes");
+                        invitation = value.toObject(Invitation.class);
+                        invitation.setReply(null);
+                        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
+                    }
+                    else if(value.get("reply").equals("no")){
+                        showNotification("no");
+                        invitation = value.toObject(Invitation.class);
+                        invitation.setReply(null);
+                        myRef.document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).set(invitation);
+                    }
                 }
-                else if(value.get("reply").equals("no")){
-                    showNotification("no");
-                }
+
             }
         });
     }

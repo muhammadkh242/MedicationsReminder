@@ -31,7 +31,8 @@ public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
     CollectionReference firebaseFirestore = FirebaseFirestore.getInstance().collection("Drug");
     List<MedicationList> list = new ArrayList<>();
     MutableLiveData<List<MedicationList>> medication = new MutableLiveData<>();
-    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    String userId = "TP13bm60i1TDSoQcEwPKq6vKKPu2";
     EditMedicationInterfaceRealTime realTimeDBInterface = new EditMedicationRealTime();
 
     @Override
