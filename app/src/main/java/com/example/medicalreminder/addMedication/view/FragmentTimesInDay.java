@@ -68,7 +68,8 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
 
 
     @Override
-    public void onClick(String txt) {
+    public void onClick(String txt) {        binding.btnNext.setVisibility(View.VISIBLE);
+
         medication.setTimesInday(txt);
     }
     public void getInti(){

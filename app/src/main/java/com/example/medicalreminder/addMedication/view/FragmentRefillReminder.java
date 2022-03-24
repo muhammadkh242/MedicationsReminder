@@ -37,6 +37,7 @@ public class FragmentRefillReminder extends Fragment {
         View root = binding.getRoot();
         getInti();
         medication = (Medication) getArguments().getSerializable("object");
+        binding.btnDone.setVisibility(View.VISIBLE);
 
 
         binding.btnDone.setOnClickListener(new View.OnClickListener() {

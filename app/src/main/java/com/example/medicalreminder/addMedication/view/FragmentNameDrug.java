@@ -35,6 +35,7 @@ public class FragmentNameDrug  extends Fragment {
         // Inflate the layout for this fragment
         binding = NameDrugQuestionScreenBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
+        binding.btnNext.setVisibility(View.VISIBLE);
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

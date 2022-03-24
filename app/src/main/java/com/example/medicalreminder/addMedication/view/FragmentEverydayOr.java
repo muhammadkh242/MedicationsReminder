@@ -87,6 +87,7 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     }
     @Override
     public void onClick(String txt) {
+        binding.btnNext.setVisibility(View.VISIBLE);
         medication.setEveryDayOr(txt);
     }
 

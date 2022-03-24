@@ -146,6 +146,8 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         binding.done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                medication.setRefill(Integer.parseInt(binding.editPills.getText().toString()));
+                medication.setTotalPills(Integer.parseInt(binding.editTotalPills.getText().toString()));
                 Intent intent = new Intent(EditDrug.this, HomeActivity.class);
                 startActivity(intent);
                 editDrug();

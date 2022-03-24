@@ -46,7 +46,7 @@ public class RegisterPresenter implements RegisterPresenterInterface, FirebaseDe
         Toast.makeText(context, success, Toast.LENGTH_SHORT).show();
         Log.i("TAG", "onFailureResult: "+ success);
         Intent intent = new Intent(context, HomeActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
 
     }

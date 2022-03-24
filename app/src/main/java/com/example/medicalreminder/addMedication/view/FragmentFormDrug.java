@@ -69,6 +69,7 @@ public class FragmentFormDrug  extends Fragment implements OnAddMedClickListner 
 
     @Override
     public void onClick(String txt) {
+        binding.btnNext.setVisibility(View.VISIBLE);
         medication.setForm(txt);
     }
     public void getInti(){

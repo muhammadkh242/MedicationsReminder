@@ -76,6 +76,7 @@ public class FragmentDurationDrug  extends Fragment  implements OnAddMedClickLis
     }
     @Override
     public void onClick(String txt) {
+        binding.btnNext.setVisibility(View.VISIBLE);
      medication.setDurationDrug(txt);
     }
     public void getInti(){

@@ -132,6 +132,8 @@ public class AddMedicationFirestore implements AddMedicationFirestoreInterface {
         drug.setDurationDrug(medication.getDurationDrug());
         drug.setStatusDrug("no");
         drug.setDays(medication.getDays());
+        drug.setRefill(medication.getRefill());
+        drug.setTotalPills(medication.getTotalPills());
         if(medication.getEveryDayOr().equals(Constant.ANSWER_YES)){
             drug.setTimesInDays(medication.getTimesInday());
         }

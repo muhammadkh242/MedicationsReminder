@@ -19,6 +19,6 @@ public class MyReceiver extends BroadcastReceiver {
         intent1.putExtra("FIRST", name);
         intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent1);
-        context.unregisterReceiver(MyWorker.myReceiver);
+//        context.unregisterReceiver(MyWorker.myReceiver);
     }
 }

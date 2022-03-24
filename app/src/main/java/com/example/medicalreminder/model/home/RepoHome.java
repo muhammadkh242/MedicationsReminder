@@ -28,7 +28,7 @@ public class RepoHome implements RepoHomeInterface{
         this.context = context;
         this.localSource = localSource;
         firestoreInterface = new AddMedicationFirestore();
-        realTimeDBInterface = new RefillReminderRealTime();
+        realTimeDBInterface = RefillReminderRealTime.getInstance(context);
     }
 
     public  static RepoHome getInstance(Context context, LocalSource localSource){

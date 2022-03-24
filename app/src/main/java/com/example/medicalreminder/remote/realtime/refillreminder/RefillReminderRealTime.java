@@ -1,10 +1,15 @@
 package com.example.medicalreminder.remote.realtime.refillreminder;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.medicalreminder.model.addmedication.Drug;
+import com.example.medicalreminder.services.worker.RefillWorker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,8 +23,19 @@ import com.google.firebase.database.ValueEventListener;
 public class RefillReminderRealTime implements RefillReminderInterfaceRealTime{
 
 //    String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-    Drug drug = new Drug();
+private Context context;
+private static RefillReminderRealTime reminderRealTime;
 
+
+private RefillReminderRealTime(Context context){
+    this.context = context;
+}
+
+public static RefillReminderRealTime getInstance(Context context){
+    if(reminderRealTime == null)
+        reminderRealTime = new RefillReminderRealTime(context);
+    return reminderRealTime;
+}
 //    @Override
 //    public Drug getDrugRealtime(String name) {
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("meds")
@@ -54,6 +70,14 @@ public class RefillReminderRealTime implements RefillReminderInterfaceRealTime{
                     Drug drug = snapshot.getValue(Drug.class);
                     Log.i("TAG", "onComplete: " + drug.getTotalPills());
                     drug.setTotalPills(drug.getTotalPills()-1);
+                    Data data = new Data.Builder().putString("name", name).build();
+
+                    if(drug.getTotalPills() == drug.getRefill()){
+                        OneTimeWorkRequest request =  new OneTimeWorkRequest.Builder(RefillWorker.class)
+                                .setInputData(data)
+                                .build();
+                        WorkManager.getInstance(context).enqueue(request);
+                    }
                     updateDrugRealTime(drug);
                 }
             }

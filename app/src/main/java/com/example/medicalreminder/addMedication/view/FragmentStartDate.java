@@ -35,6 +35,7 @@ public class FragmentStartDate extends Fragment {
         binding = StartdateDrugQuestionScreenBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         medication = (Medication) getArguments().getSerializable("object");
+        binding.btnNext.setVisibility(View.VISIBLE);
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

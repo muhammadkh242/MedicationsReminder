@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,8 +21,9 @@ public class RfillDialogActivity extends AppCompatActivity {
     SecondUserFirebaseClient secondUserFirebaseClient = new SecondUserFirebaseClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("TAG", "onCreate: ddddddddddddddddddddddddddddddddddddddddddddddddd");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.refill_dialog);
+        setContentView(R.layout.activity_main);
 
         Intent incomingintent = getIntent();
         name = incomingintent.getStringExtra("name");

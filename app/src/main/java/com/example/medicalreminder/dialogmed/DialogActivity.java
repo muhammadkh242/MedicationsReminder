@@ -60,7 +60,7 @@ public class DialogActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(DialogActivity.this, "Take", Toast.LENGTH_SHORT).show();
                 Log.i("TAG", "onClick: ");
-                RefillReminderInterfaceRealTime realTimeDBInterface = new RefillReminderRealTime();
+                RefillReminderInterfaceRealTime realTimeDBInterface =  RefillReminderRealTime.getInstance(getApplicationContext());
                 realTimeDBInterface.getDrugRealtime(name);
                 dialog.cancel();
             }

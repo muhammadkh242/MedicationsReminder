@@ -17,8 +17,26 @@ public class Medication implements Serializable {
     private String everyDayOr;
     private String timesInday;
     private String durationDrug;
-    private String timesInWeeks;
 
+    public int getTotalPills() {
+        return totalPills;
+    }
+
+    public void setTotalPills(int totalPills) {
+        this.totalPills = totalPills;
+    }
+
+    public int getRefill() {
+        return refill;
+    }
+
+    public void setRefill(int refill) {
+        this.refill = refill;
+    }
+
+    private String timesInWeeks;
+    private int totalPills;
+    private int refill;
     private static Medication medication;
 
     private Medication() {

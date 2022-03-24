@@ -10,7 +10,7 @@
         android:id="@+id/constraint"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#3B7ADA"
+        android:background="@color/blue_300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"

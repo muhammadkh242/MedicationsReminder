@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/back"
+    android:background="@color/blue_300"
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/text"
@@ -197,7 +197,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginEnd="40dp"
-            android:backgroundTint="@color/back"
+            android:backgroundTint="@color/blue_300"
+            android:visibility="invisible"
             android:text="@string/next"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

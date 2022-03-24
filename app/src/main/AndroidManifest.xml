@@ -25,7 +25,8 @@
 
         <activity
             android:name=".refillreminder.RfillDialogActivity"
-            android:exported="false"
+            android:enabled="true"
+            android:exported="true"
             android:theme="@style/TransparentCompat" />
 
         <service
@@ -41,7 +42,10 @@
             android:name=".services.boardcast.MyReceiver"
             android:enabled="true"
             android:exported="true" />
-
+        <receiver
+            android:name=".services.boardcast.RefillReciever"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".seconduser.view.SecondUserActivity"

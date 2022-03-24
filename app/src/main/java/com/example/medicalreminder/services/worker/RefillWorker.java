@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.invitation.view.InvitationActivity;
 import com.example.medicalreminder.refillreminder.RfillDialogActivity;
 import com.example.medicalreminder.services.boardcast.RefillReciever;
 
@@ -19,13 +20,14 @@ import androidx.core.app.NotificationCompat;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-
+import com.example.medicalreminder.refillreminder.RfillDialogActivity;
 public class RefillWorker extends Worker {
     public static  final String CHANNEL_ID = "ch_id";
     public static RefillReciever RefillReciever;
 
     public RefillWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
+        RefillReciever = new RefillReciever();
     }
 
     @NonNull
@@ -33,10 +35,17 @@ public class RefillWorker extends Worker {
     public Result doWork() {
 
         String name = getInputData().getString("name");
+        Intent notifyIntent = new Intent(getApplicationContext(), RfillDialogActivity.class);
+        // Set the Activity to start in a new, empty task
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // Create the PendingIntent
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                getApplicationContext(), 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT
+        );
 
-//        showNotification(name);
-
-        startBroadCast(name);
+        showNotification(name, notifyPendingIntent);
+//        startBroadCast(name);
 
         return Result.success();
     }
@@ -45,6 +54,7 @@ public class RefillWorker extends Worker {
 
 
     public void startBroadCast(String name){
+        Log.i("TAG", "startBroadCast: RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
         IntentFilter intentFilter = new IntentFilter("refillDialog");
         getApplicationContext().registerReceiver(RefillReciever,intentFilter);
         Intent outintent = new Intent();
@@ -57,7 +67,7 @@ public class RefillWorker extends Worker {
 
 
 //  @RequiresApi(api = Build.VERSION_CODES.Q)
-    public void showNotification(String medName){
+    public void showNotification(String medName, PendingIntent intent){
         Intent notifyIntent = new Intent(getApplicationContext(), RfillDialogActivity.class);
         // Set the Activity to start in a new, empty task
         notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
@@ -83,7 +93,7 @@ public class RefillWorker extends Worker {
                 .setContentTitle("Refill Reminder")
                 .setContentText(medName + " is about to end")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(notifyPendingIntent)
+                .setContentIntent(intent)
                 .setAutoCancel(true).build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(getApplicationContext());
         managerCompat.notify(2, notification);

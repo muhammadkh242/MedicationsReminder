@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         app:menu="@menu/home"
-        android:background="@color/purple_700"
+        android:background="@color/blue_300"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 

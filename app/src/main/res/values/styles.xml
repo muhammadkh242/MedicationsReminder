@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
+    <style name="DemoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/blue_300</item>
+
+        <!-- Defining that new color in ColorPrimaryDark -->
+        <item name="colorPrimaryDark">@color/blue_300</item>
+        <item name="colorAccent">@color/blue_300</item>
+    </style>
     <style name="TransparentCompat" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>

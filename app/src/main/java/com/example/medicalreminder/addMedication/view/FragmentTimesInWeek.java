@@ -77,7 +77,8 @@ public class FragmentTimesInWeek extends Fragment implements OnAddMedClickListne
     }
 
     @Override
-    public void onClick(String txt) {
+    public void onClick(String txt) {        binding.btnNext.setVisibility(View.VISIBLE);
+
         medication.setTimesInWeeks(txt);
     }
 }

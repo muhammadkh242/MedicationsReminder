@@ -48,7 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="30dp"
         android:textColor="@color/white"
-        android:backgroundTint="@color/back"
+        android:backgroundTint="@color/blue_300"
         tools:layout_editor_absoluteX="150dp"
         tools:layout_editor_absoluteY="669dp" />
 

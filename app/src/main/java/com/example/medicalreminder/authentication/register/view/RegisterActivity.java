@@ -31,13 +31,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
         progressDialog = new ProgressDialog(this);
         presenterInt = new RegisterPresenter(
                 this, Repository.getInstance(this, FirebaseClient.getInstance(this)), this);
-        listener = new onRegisterClickListener() {
-            @Override
-            public void onClick(String email, String password) {
-                saveUserData(email, password);
-            }
-
-        };
+//        listener = new onRegisterClickListener() {
+//            @Override
+//            public void onClick(String email, String password) {
+//                saveUserData(email, password);
+//            }
+//
+//        };
 
         binding.txtClickSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +50,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterViewI
         binding.btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onClick(binding.editEmailSignin.getText().toString(),
-                        binding.editPasswordSignin.getText().toString());
-                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+//                listener.onClick(binding.editEmailSignin.getText().toString(),
+//                        binding.editPasswordSignin.getText().toString());
+//                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                String email = binding.editEmailSignin.getText().toString().trim();
+                String password = binding.editEmailSignin.getText().toString().trim();
+                saveUserData(email, password);
             }
         });
 

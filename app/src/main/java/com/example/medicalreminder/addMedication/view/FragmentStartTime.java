@@ -45,6 +45,7 @@ public class FragmentStartTime extends Fragment{
         View view = inflater.inflate(R.layout.starttime_dose_question_screen, container, false);
         medication = Medication.getInstance();
         //addMedPreI = AddMedicationPresenter.getInstance(getContext(), Repo.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
+        binding.btnNext.setVisibility(View.VISIBLE);
 
 
         medication = (Medication) getArguments().getSerializable("object");
