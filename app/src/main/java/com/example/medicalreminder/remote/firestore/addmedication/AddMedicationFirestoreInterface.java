@@ -10,9 +10,12 @@ import java.util.List;
 
 public interface AddMedicationFirestoreInterface {
 
-    void insertDrugsOnline(MedicationList list);
+    void insertDrugsFirestore(MedicationList list);
 
-    MutableLiveData<List<MedicationList>> getDrugsOnline(String date);
+    MutableLiveData<List<MedicationList>> getDrugsFireStore(String date);
 
-    void deleteDrugOnline(List<String> days, Medication medication);
+    void deleteDrugFirestore( List<String> days,Medication medication);
+
+    void getDrugDaysRealtime(Medication medication);
+
 }

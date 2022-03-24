@@ -85,13 +85,7 @@ public class LoginActivity extends AppCompatActivity implements LoginViewInterfa
             }
         });
 
-        if(FirebaseAuth.getInstance().getUid() != null){
 
-            startService(new Intent(this, MyNotification.class));
-            startService(new Intent(this, Take.class));
-            startService(new Intent(this, Reply.class));
-
-        }
     }
 
     @Override

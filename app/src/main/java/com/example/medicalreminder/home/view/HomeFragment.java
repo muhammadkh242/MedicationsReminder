@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,12 +57,14 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
     private Calendar endTime = Calendar.getInstance();
     private AlertDialog dialog;
     private ArrayList datesToBeColored = new ArrayList();
+    private ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        binding.progressBar2.setVisibility(View.VISIBLE);
 
         manager = new LinearLayoutManager(getContext());
         adapter = new HomeFragmentAdapter(getContext(), this);
@@ -166,6 +169,8 @@ public class HomeFragment extends Fragment implements HomeFragmentViewInterface,
     @Override
     public void getMed(String date) {
         presenter.getMedHome(date);
+        binding.progressBar2.setVisibility(View.INVISIBLE);
+
     }
 
     @Override

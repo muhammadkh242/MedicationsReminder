@@ -44,9 +44,7 @@
             android:layout_marginStart="36dp"
             android:layout_marginTop="8dp"
             android:text="@string/pill"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="25sp"
             app:layout_constraintStart_toEndOf="@+id/edit_refill"
             app:layout_constraintTop_toTopOf="@+id/edit_refill" />
 
@@ -55,23 +53,24 @@
             android:id="@+id/edit_refill_total"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="37dp"
-            app:layout_constraintStart_toStartOf="@+id/edit_refill"
-            app:layout_constraintTop_toBottomOf="@+id/edit_refill"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="@id/edit_refill"
+            app:layout_constraintTop_toBottomOf="@id/edit_refill"
             app:layout_constraintWidth_percent="0.3" />
 
         <TextView
             android:id="@+id/txt_pills_total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:text="@string/total_of_pills"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/txt_pills"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/pill"
+            android:textSize="25sp"
+            app:layout_constraintTop_toTopOf="@id/edit_refill_total"
+            app:layout_constraintStart_toEndOf="@+id/edit_refill_total"
             app:layout_constraintTop_toBottomOf="@+id/txt_pills" />
+
 
         <Button
             android:id="@+id/btnDone"

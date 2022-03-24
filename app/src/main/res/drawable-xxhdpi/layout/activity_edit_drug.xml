@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".eidtmedication.view.EditDrug">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#3B7ADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imagClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/close"
+            app:layout_constraintEnd_toStartOf="@id/edit_drug"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/edit_drug"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="@string/edit_drug"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/imagClose"
+            app:layout_constraintTop_toTopOf="@id/imagClose" />
+
+        <TextView
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintStart_toEndOf="@id/edit_drug"
+            app:layout_constraintTop_toTopOf="@id/edit_drug" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint">
+
+        <TextView
+            android:id="@+id/txtmedname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/medication_name"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/constraint2"
+            app:layout_constraintTop_toTopOf="@id/constraint2" />
+
+        <EditText
+            android:id="@+id/edtmedname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/txtmedname"
+            app:layout_constraintTop_toBottomOf="@id/txtmedname">
+
+        </EditText>
+
+        <TextView
+            android:id="@+id/txtduration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/duration"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/txtmedname"
+            app:layout_constraintTop_toBottomOf="@id/edtmedname">
+
+        </TextView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/txtduration"
+            app:layout_constraintTop_toBottomOf="@id/txtduration">
+
+            <RadioButton
+                android:id="@+id/radioDay"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/days"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/radioWeek"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="@string/weeks"
+                android:textSize="15sp" />
+        </RadioGroup>
+
+        <Spinner
+            android:id="@+id/spinner_duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.879"
+            app:layout_constraintStart_toEndOf="@id/radioGroup"
+            app:layout_constraintTop_toBottomOf="@id/edtmedname"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <TextView
+            android:id="@+id/choose_start_date_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_date"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/radioGroup"
+            app:layout_constraintStart_toStartOf="@id/radioGroup"
+            />
+
+        <EditText
+            android:id="@+id/edit_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/choose_start_date_txt"
+            app:layout_constraintTop_toTopOf="@id/choose_start_date_txt"
+            app:layout_constraintWidth_percent="0.5"/>
+
+        <TextView
+            android:id="@+id/choose_start_time_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_time"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/edit_date"
+            app:layout_constraintStart_toStartOf="@id/choose_start_date_txt"
+            />
+
+        <EditText
+            android:id="@+id/edit_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintTop_toTopOf="@id/choose_start_time_txt"
+            app:layout_constraintStart_toEndOf="@id/choose_start_time_txt"/>
+
+        <TextView
+            android:id="@+id/txt_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/duration"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/edit_time"
+            app:layout_constraintStart_toStartOf="@id/choose_start_time_txt"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.3"
+            app:layout_constraintTop_toBottomOf="@id/edit_time"
+            app:layout_constraintStart_toEndOf="@id/txt_duration"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

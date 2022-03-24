@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface RepoEditInterface {
 
-    public void deleteDrugFirestore(List<String> days , Medication medication );
-    public List<String> getDrugsDaysRealtime(String name);
-    public void deleteDrugRealtime(String date);
+    public void getDrugDaysRealtime(Medication medication);
 }

@@ -20,6 +20,7 @@ public interface RepoAddInterface {
     void deleteDateOffline(String date);
     LiveData<MedicationList> getDrugsOffline(String date);
     LiveData<List<Drug>> getAllDrugDetailsOffline();
+    LiveData<Drug> getDrug(String name);
 
 
     //firestore

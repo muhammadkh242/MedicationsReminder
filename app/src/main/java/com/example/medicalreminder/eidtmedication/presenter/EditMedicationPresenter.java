@@ -1,5 +1,4 @@
 package com.example.medicalreminder.eidtmedication.presenter;
-
 import android.content.Context;
 
 import com.example.medicalreminder.model.addmedication.Medication;
@@ -24,10 +23,8 @@ public class EditMedicationPresenter implements EditMedicationPresenterInterface
     }
 
     @Override
-    public void deleteDrugFirestore(Medication medication) {
+    public void getDrugDaysRealTime(Medication medication) {
         this.medication = medication;
-        repoEditInterface.deleteDrugFirestore(
-                repoEditInterface.getDrugsDaysRealtime(medication.getName()),
-                medication);
+        repoEditInterface.getDrugDaysRealtime(medication);
     }
 }

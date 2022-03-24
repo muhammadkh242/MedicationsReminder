@@ -4,5 +4,5 @@ import com.example.medicalreminder.model.addmedication.Medication;
 
 public interface EditMedicationPresenterInterface {
 
-    public void deleteDrugFirestore(Medication medication);
+    public void getDrugDaysRealTime(Medication medication);
 }

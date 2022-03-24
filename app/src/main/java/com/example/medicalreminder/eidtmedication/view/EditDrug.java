@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,8 +15,10 @@ import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
+import com.example.medicalreminder.HomeActivity;
 import com.example.medicalreminder.calculation.CalculationMedication;
 import com.example.medicalreminder.databinding.ActivityEditDrugBinding;
+import com.example.medicalreminder.displaymedication.view.DisplayDrugDetails;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenter;
 import com.example.medicalreminder.eidtmedication.presenter.EditMedicationPresenterInterface;
 import com.example.medicalreminder.local.ConcreteLocalSource;
@@ -91,21 +94,21 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int selectedId = radioGroup.getCheckedRadioButtonId();
-             if(selectedId==binding.radioDay.getId()){
-                 medication.setEveryDayOr("Yes");
-                 ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, days);
-                 ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                 binding.spinnerDuration.setAdapter(ad);
+                if(selectedId==binding.radioDay.getId()){
+                    medication.setEveryDayOr("Yes");
+                    ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, days);
+                    ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spinnerDuration.setAdapter(ad);
+                }
+                else {
+                    // weeks
+                    medication.setEveryDayOr("No");
+                    flag = true;
+                    ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, weeks);
+                    ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    binding.spinnerDuration.setAdapter(ad);
+                }
             }
-             else {
-                 // weeks
-                 medication.setEveryDayOr("No");
-                 flag = true;
-                 ArrayAdapter ad = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_spinner_item, weeks);
-                 ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                 binding.spinnerDuration.setAdapter(ad);
-             }
-        }
         });
         binding.spinnerDuration.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -143,10 +146,19 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
         binding.done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(EditDrug.this, HomeActivity.class);
+                startActivity(intent);
                 editDrug();
             }
         });
-}
+        binding.imagClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EditDrug.this, DisplayDrugDetails.class);
+                startActivity(intent);
+            }
+        });
+    }
     private void displayDatePicker(){
         final Calendar calendar = Calendar.getInstance ();
         mYear = calendar.get ( Calendar.YEAR );
@@ -184,6 +196,6 @@ public class EditDrug extends AppCompatActivity  implements EditMedicationViewIn
 
     @Override
     public void editDrug() {
-     editMedPI.deleteDrugFirestore(medication);
+        editMedPI.getDrugDaysRealTime(medication);
     }
 }

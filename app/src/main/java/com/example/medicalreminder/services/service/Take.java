@@ -77,7 +77,7 @@ public class Take extends Service {
         android.app.Notification notification =  new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("Invitation")
-                .setContentText(user + " invite you to be a HealthTracker")
+                .setContentText(user + " dose has been taken")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true).build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);

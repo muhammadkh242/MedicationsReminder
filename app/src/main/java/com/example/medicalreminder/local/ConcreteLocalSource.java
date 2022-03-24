@@ -73,12 +73,12 @@ public class ConcreteLocalSource implements LocalSource {
     }
     @Override
     public void deleteDateOffline(String date) {
-     new Thread(new Runnable() {
-         @Override
-         public void run() {
-            medDao.deleteDate(date);
-         }
-     });
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                medDao.deleteDate(date);
+            }
+        });
     }
 
     //drug
@@ -99,5 +99,6 @@ public class ConcreteLocalSource implements LocalSource {
     public LiveData<List<Drug>> getAllDrugDetailsOffline() {
         return drugDao.getAllDrugDetails();
     }
+
 
 }

@@ -41,12 +41,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.getMedTxt().setText(meds.get(position).getName());
         holder.getFormTxt().setText(meds.get(position).getForm());
         holder.getPillNum().setText(String.valueOf(meds.get(position).getTotalPills()) + " Pill(s) left");
-        if(meds.get(position).getForm().equals("pill")){
-            holder.getImageView().setImageResource(R.drawable.drug);
+        if(meds.get(position).getForm() != null){
+            if(meds.get(position).getForm().equals("pill")){
+                holder.getImageView().setImageResource(R.drawable.drug);
+
+            }
+            else{
+                holder.getImageView().setImageResource(R.drawable.injection);
+            }
 
         }
         else{
-            holder.getImageView().setImageResource(R.drawable.injection);
+            holder.getImageView().setImageResource(R.drawable.drug);
+
         }
 
         holder.getMedRow().setOnClickListener(new View.OnClickListener() {

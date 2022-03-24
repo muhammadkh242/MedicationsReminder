@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".dialogmed.DialogActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="5dp"
+            app:strokeWidth="2dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/imgInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/information"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="40dp"
+                android:src="@drawable/delete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintTop_toTopOf="@id/imgInfo"
+                app:layout_constraintWidth_percent="0.2"/>
+
+            <ImageView
+                android:id="@+id/imgEdit"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintStart_toEndOf="@id/imgDelete"
+                app:layout_constraintTop_toTopOf="@id/imgDelete"
+                app:layout_constraintWidth_percent="0.2"/>
+
+            <ImageView
+                android:id="@+id/imgDrug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/drug"
+                app:layout_constraintBottom_toTopOf="@id/txtDrugName"
+                app:layout_constraintEnd_toStartOf="@id/imgDelete"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintHorizontal_bias="0.719"
+                app:layout_constraintStart_toEndOf="@id/imgInfo"
+                app:layout_constraintTop_toTopOf="@id/imgInfo"
+                app:layout_constraintWidth_percent="0.1"/>
+
+            <TextView
+                android:id="@+id/txtDrugName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/drug_name"
+                app:layout_constraintStart_toStartOf="@id/imgDrug"
+                app:layout_constraintTop_toBottomOf="@id/imgDrug"/>
+
+            <ImageView
+                android:id="@+id/imgSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:src="@drawable/schedule"
+                app:layout_constraintBottom_toTopOf="@id/imgDetailsDrug"
+                app:layout_constraintEnd_toStartOf="@id/txtSchedule"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toStartOf="@id/imgInfo"
+                app:layout_constraintTop_toBottomOf="@id/imgInfo">
+
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/imgDetailsDrug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/note"
+                app:layout_constraintEnd_toStartOf="@id/txtDetailsDrug"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/imgSchedule"
+                app:layout_constraintTop_toBottomOf="@id/imgSchedule"/>
+
+            <TextView
+                android:id="@+id/txtSchedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_drug"
+                app:layout_constraintStart_toEndOf="@id/imgSchedule"
+                app:layout_constraintTop_toTopOf="@id/imgSchedule">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/txtDetailsDrug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_drug"
+                app:layout_constraintStart_toEndOf="@id/imgDetailsDrug"
+                app:layout_constraintStart_toStartOf="@id/txtSchedule"
+                app:layout_constraintTop_toTopOf="@id/imgDetailsDrug"/>
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:layout_constraintHorizontal_weight="1"
+                android:id="@+id/imgSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/close"
+                app:civ_circle_background_color="#B3A3A3"
+                app:layout_constraintStart_toStartOf="@id/txtDetailsDrug"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:layout_constraintHorizontal_weight="1"
+                android:id="@+id/imgCheckTake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/check_true"
+                app:civ_circle_background_color="#3B7ADA"
+                app:layout_constraintStart_toEndOf="@id/imgSkip"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                app:layout_constraintHorizontal_weight="1"
+                android:id="@+id/imgSnooze"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintWidth_percent="0.1"
+                app:layout_constraintHeight_percent="0.125"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/alarm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.235"
+                app:layout_constraintStart_toEndOf="@id/imgCheckTake"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDrug">
+
+            </de.hdodenhof.circleimageview.CircleImageView>
+
+            <TextView
+                android:text="@string/skip"
+                android:id="@+id/txtSkip"
+                app:layout_constraintEnd_toEndOf="@id/imgSkip"
+                app:layout_constraintTop_toBottomOf="@id/imgSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+            </TextView>
+            <TextView
+                android:text="@string/take"
+                android:id="@+id/txtTake"
+                app:layout_constraintEnd_toEndOf="@id/imgCheckTake"
+                app:layout_constraintTop_toBottomOf="@id/imgCheckTake"
+                app:layout_constraintStart_toStartOf="@id/imgCheckTake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/txtReschedule"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/snooze"
+                app:layout_constraintEnd_toEndOf="@id/imgSnooze"
+                app:layout_constraintTop_toBottomOf="@id/imgSnooze">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>

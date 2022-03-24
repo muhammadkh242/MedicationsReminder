@@ -39,7 +39,7 @@ public class GoogleLoginActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private final static int RC_GOOGLE_SIGN_IN = 357753;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private SharedPrefsInterface prefsInterface = new SharedPref(getApplicationContext());
+    private SharedPrefsInterface prefsInterface = new SharedPref(getApplication());
 
 
     @Override

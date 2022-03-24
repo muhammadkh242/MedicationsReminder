@@ -124,6 +124,7 @@ public class MedicationsFragment extends Fragment implements OnMedClickListener,
     @Override
     public void getMedsOffline() {
         presenter.getMedsOffline();
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override

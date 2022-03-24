@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 import com.example.medicalreminder.R;
+import com.example.medicalreminder.constant.Constant;
 import com.example.medicalreminder.databinding.NameDrugQuestionScreenBinding;
 import com.example.medicalreminder.databinding.NumberOfTakedDayQuestionScreenBinding;
 import com.example.medicalreminder.model.addmedication.Medication;
@@ -28,7 +29,6 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
 
     NumberOfTakedDayQuestionScreenBinding binding;
     AddMedicationAdapter addMedicationAdapter;
-    List<String> list;
     LinearLayoutManager layoutManager;
     Medication medication;
 
@@ -49,12 +49,7 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.setAdapter(addMedicationAdapter);
 
-        list.add("Once day");
-        list.add("Twice day");
-        list.add("3 times in day");
-        list.add("4 times in day");
-
-        addMedicationAdapter.setList(list);
+        addMedicationAdapter.setList(Constant.TIMES_IN_DAYS);
         addMedicationAdapter.notifyDataSetChanged();
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +72,6 @@ public class FragmentTimesInDay extends Fragment  implements OnAddMedClickListne
         medication.setTimesInday(txt);
     }
     public void getInti(){
-        list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         layoutManager = new LinearLayoutManager(getContext());
 

@@ -13,8 +13,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/cv"
         android:layout_margin="16dp"
-        android:background="@color/grey"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="5dp">
+        <TextView
+            android:id="@+id/pillTxt"
+            android:text="5"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
@@ -23,7 +30,7 @@
             android:background="@drawable/circularimage"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/padding_10"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,28 +40,20 @@
         <TextView
             android:id="@+id/medName"
             android:layout_width="wrap_content"
+            android:textSize="17dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
             tools:text="@string/med_name" />
-        <TextView
-            android:id="@+id/pillTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="50dp"
-            android:textSize="13sp"
-            tools:text="Pills" />
 
         <TextView
             android:id="@+id/formTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textSize="17dp"
             android:layout_marginTop="@dimen/padding_10"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="280dp"
             tools:layout_editor_absoluteX="267dp"
             tools:layout_editor_absoluteY="13dp"
             tools:text="form" />

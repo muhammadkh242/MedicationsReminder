@@ -29,9 +29,9 @@ public class RepoAdd implements RepoAddInterface {
 
     private RepoAdd(Context context, LocalSource localSource){
         this.context = context;
-       this.localSource = localSource;
-       firestoreInterface = new AddMedicationFirestore();
-       realTimeInterface = new AddMedicationRealTime();
+        this.localSource = localSource;
+        firestoreInterface = new AddMedicationFirestore();
+        realTimeInterface = new AddMedicationRealTime();
     }
 
     public  static RepoAdd getInstance(Context context, LocalSource localSource){
@@ -45,7 +45,7 @@ public class RepoAdd implements RepoAddInterface {
     //medication
     @Override
     public void insertMedicatinOffline(MedicationList medDose) {
-     localSource.insertMedicationOffline(medDose);
+        localSource.insertMedicationOffline(medDose);
     }
     @Override
     public LiveData<MedicationList> getDrugsOffline(String date) {
@@ -66,21 +66,26 @@ public class RepoAdd implements RepoAddInterface {
         return localSource.getAllDrugDetailsOffline();
     }
 
+    @Override
+    public LiveData<Drug> getDrug(String name) {
+        return localSource.getDrugDetailsOffline(name);
+    }
+
 
 
     //----------------------------------FIRESTORE
     @Override
     public void insertMedicationFirestore(MedicationList list) {
-        firestoreInterface.insertDrugsOnline(list);
+        firestoreInterface.insertDrugsFirestore(list);
     }
     @Override
     public MutableLiveData<List<MedicationList>> getDrugsOnline(String date) {
-        return firestoreInterface.getDrugsOnline(date);
+        return firestoreInterface.getDrugsFireStore(date);
     }
 
     //------------------------realtime
     public void insertDrugRealTime(Drug drug){
-   realTimeInterface.insertDrugRealTime(drug);
+        realTimeInterface.insertDrugRealTime(drug);
     }
 
 

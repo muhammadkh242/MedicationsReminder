@@ -15,6 +15,7 @@ import com.example.medicalreminder.addMedication.presenter.AddMedicationPresente
 import com.example.medicalreminder.addMedication.presenter.AddMedicationPresenterInterface;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
+import com.example.medicalreminder.constant.Constant;
 import com.example.medicalreminder.databinding.NumberOfDaysQuestionScreenBinding;
 import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
@@ -28,7 +29,6 @@ public class FragmentTimesInWeek extends Fragment implements OnAddMedClickListne
 
     AddMedicationAdapter addMedicationAdapter;
     AddMedicationPresenterInterface addMedPI;
-    List<String> list;
     LinearLayoutManager layoutManager;
     NumberOfDaysQuestionScreenBinding binding;
     Medication medication;
@@ -50,15 +50,11 @@ public class FragmentTimesInWeek extends Fragment implements OnAddMedClickListne
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.setAdapter(addMedicationAdapter);
 
-        list.add("Once week");
-        list.add("Twice week");
-        list.add("3 times in week");
-        list.add("4 times in week");
 
-        addMedicationAdapter.setList(list);
+        addMedicationAdapter.setList(Constant.TIMES_IN_WEEK);
         addMedicationAdapter.notifyDataSetChanged();
 
-       binding.btnNext.setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -72,7 +68,6 @@ public class FragmentTimesInWeek extends Fragment implements OnAddMedClickListne
     }
 
     public void getInti(){
-        list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         addMedPI = AddMedicationPresenter.getInstance(getContext(), RepoAdd.getInstance(getContext(),
                 ConcreteLocalSource.getInstance(getContext())));

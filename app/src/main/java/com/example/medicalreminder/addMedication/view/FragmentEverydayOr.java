@@ -17,6 +17,7 @@ import com.example.medicalreminder.R;
 import com.example.medicalreminder.addMedication.view.adapter.AddMedicationAdapter;
 import com.example.medicalreminder.addMedication.view.adapter.OnAddMedClickListner;
 import com.example.medicalreminder.calculation.CalculationMedication;
+import com.example.medicalreminder.constant.Constant;
 import com.example.medicalreminder.databinding.EverydayOrQuestionScreenBinding;
 import com.example.medicalreminder.local.ConcreteLocalSource;
 import com.example.medicalreminder.model.addmedication.Medication;
@@ -32,7 +33,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     Medication medication;
     AddMedicationAdapter addMedicationAdapter;
     EverydayOrQuestionScreenBinding binding;
-    List<String> list;
     LinearLayoutManager layoutManager;
 
     @Override
@@ -44,7 +44,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         binding = EverydayOrQuestionScreenBinding.inflate(inflater,container,false);
         View root = binding.getRoot();
         getInti();
@@ -54,9 +53,7 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
         binding.recycler.setLayoutManager(layoutManager);
         binding.recycler.setAdapter(addMedicationAdapter);
 
-        list.add("Yes");
-        list.add("No");
-        addMedicationAdapter.setList(list);
+        addMedicationAdapter.setList(Constant.ANSWER);
         addMedicationAdapter.notifyDataSetChanged();
 
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +72,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
                     bundle.putSerializable("object", (Serializable) medication);
                     navController.navigate(R.id.numberDaysAct,bundle);
                 }
-
             }
         });
 
@@ -83,7 +79,6 @@ public class FragmentEverydayOr  extends Fragment  implements OnAddMedClickListn
     }
 
     public void getInti(){
-        list = new ArrayList<>();
         addMedicationAdapter = new AddMedicationAdapter(getContext(),this);
         addMedPI = AddMedicationPresenter.getInstance(getContext(), RepoAdd.getInstance(getContext(), ConcreteLocalSource.getInstance(getContext())));
         layoutManager = new LinearLayoutManager(getContext());
